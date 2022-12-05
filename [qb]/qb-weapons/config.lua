@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.ReloadTime = math.random(4000, 6000)
+Config.ReloadTime = math.random(1000, 1500)
 
 Config.DurabilityBlockedWeapons = {
     "weapon_stungun",
