@@ -381,7 +381,7 @@ QBShared.Items = {
     ['antipatharia_coral'] 			 = {['name'] = 'antipatharia_coral', 			['label'] = 'Antipatharia', 			['weight'] = 1000, 		['type'] = 'item', 		['image'] = 'antipatharia_coral.png', 	['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,    ['combinable'] = nil,   ['description'] = 'Its also known as black corals or thorn corals'},
 	['diving_gear'] 			     = {['name'] = 'diving_gear', 					['label'] = 'Diving Gear', 				['weight'] = 30000, 	['type'] = 'item', 		['image'] = 'diving_gear.png', 			['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,    ['combinable'] = nil,   ['description'] = 'An oxygen tank and a rebreather'},
     ['diving_fill']                  = {['name'] = 'diving_fill',                   ['label'] = 'Diving Tube',              ['weight'] = 3000,      ['type'] = 'item',      ['image'] = 'diving_tube.png',          ['unique'] = true,      ['useable'] = true,     ['shouldClose'] = true,    ['combinable'] = nil,   ['discription'] = 'An oxygen tube and a rebreather'},
-	
+
 	-- Other Tools
 	['casinochips'] 				 = {['name'] = 'casinochips', 			  	  	['label'] = 'Casino Chips', 			['weight'] = 0, 		['type'] = 'item', 		['image'] = 'casinochips.png', 			['unique'] = false, 	['useable'] = false, 	['shouldClose'] = false,	['combinable'] = nil,   ['description'] = 'Chips For Casino Gambling'},
 	['stickynote'] 			 	 	 = {['name'] = 'stickynote', 			  		['label'] = 'Sticky note', 				['weight'] = 0, 		['type'] = 'item', 		['image'] = 'stickynote.png', 			['unique'] = true, 		['useable'] = false, 	['shouldClose'] = false,   ['combinable'] = nil,   ['description'] = 'Sometimes handy to remember something :)'},
@@ -394,4 +394,31 @@ QBShared.Items = {
 	['labkey'] 			 			 = {['name'] = 'labkey', 						['label'] = 'Key', 						['weight'] = 500, 		['type'] = 'item', 		['image'] = 'labkey.png', 				['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Key for a lock...?'},
 	['printerdocument'] 			 = {['name'] = 'printerdocument', 				['label'] = 'Document', 				['weight'] = 500, 		['type'] = 'item', 		['image'] = 'printerdocument.png', 		['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A nice document'},
 
+
+    -- Kenevir
+    ['weed'] = {
+        ['name'] = 'weed',
+        ['label'] = 'Weed X',
+        ['weight'] = 10,
+        ['type'] = 'item',
+        ['image'] = 'weed_brick.png',
+        ['unique'] = false,
+        ['useable'] = false,
+		['shouldClose'] = true,
+		 ['combinable'] = nil,
+        ['description'] = '1KG Weed Brick to sell to large customers.',
+	},
+
+    ['weed_islenmis'] = {
+        ['name'] = 'weed_islenmis',
+        ['label'] = 'Weed Pro',
+        ['weight'] = 10,
+        ['type'] = 'item',
+        ['image'] = 'weed_brick.png',
+        ['unique'] = false,
+        ['useable'] = false,
+		['shouldClose'] = true,
+		 ['combinable'] = nil,
+        ['description'] = '1KG Weed Brick to sell to large customers.',
+	},
     }
