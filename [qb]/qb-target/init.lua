@@ -39,13 +39,13 @@ Config.DrawSprite = false
 Config.DrawDistance = 10.0
 
 -- The color of the sprite in rgb, the first value is red, the second value is green, the third value is blue and the last value is alpha (opacity). Here is a link to a color picker to get these values: https://htmlcolorcodes.com/color-picker/
-Config.DrawColor = {255, 255, 255, 255}
+Config.DrawColor = { 255, 255, 255, 255 }
 
 -- The color of the sprite in rgb when the PolyZone is targeted, the first value is red, the second value is green, the third value is blue and the last value is alpha (opacity). Here is a link to a color picker to get these values: https://htmlcolorcodes.com/color-picker/
-Config.SuccessDrawColor = {30, 144, 255, 255}
+Config.SuccessDrawColor = { 30, 144, 255, 255 }
 
 -- The color of the outline in rgb, the first value is red, the second value is green, the third value is blue and the last value is alpha (opacity). Here is a link to a color picker to get these values: https://htmlcolorcodes.com/color-picker/
-Config.OutlineColor = {255, 255, 255, 255}
+Config.OutlineColor = { 255, 255, 255, 255 }
 
 -- Enable default options (Toggling vehicle doors)
 Config.EnableDefaultOptions = true
@@ -102,16 +102,50 @@ Config.GlobalPlayerOptions = {
 }
 
 Config.Peds = {
-
+	{ -- KENEVİR SATIŞ
+		model = 'a_m_m_hasjew_01',
+		coords = vector4(1222.46, 1898.9, 76.94, 92.11),
+		networked = true,
+		invincible = true,
+		blockevents = true,
+		freeze = true,
+		target = {
+			options = {
+				{
+					type = "client",
+					event = "ude-kenevir:weedSellTarget",
+					icon = "fas fa-sign-in-alt",
+					label = "Kenevir Sat",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ --- Kenevir İŞLEME
+		model = 'a_m_m_hillbilly_01',
+		coords = vector4(1340.06, 4392.09, 43.35, 164.79),
+		networked = true,
+		invincible = true,
+		blockevents = true,
+		freeze = true,
+	}
 }
 
 -------------------------------------------------------------------------------
 -- Functions
 -------------------------------------------------------------------------------
-local function JobCheck() return true end
-local function GangCheck() return true end
-local function ItemCheck() return true end
-local function CitizenCheck() return true end
+local function JobCheck()
+	return true
+end
+local function GangCheck()
+	return true
+end
+local function ItemCheck()
+	return true
+end
+local function CitizenCheck()
+	return true
+end
 
 CreateThread(function()
 	local state = GetResourceState('qb-core')
@@ -119,8 +153,8 @@ CreateThread(function()
 		local timeout = 0
 		while state ~= 'started' and timeout <= 100 do
 			timeout += 1
-			state = GetResourceState('qb-core')
-			Wait(0)
+		state = GetResourceState('qb-core')
+		Wait(0)
 		end
 		Config.Standalone = false
 	end
@@ -197,13 +231,29 @@ CreateThread(function()
 end)
 
 function CheckOptions(data, entity, distance)
-	if distance and data.distance and distance > data.distance then return false end
-	if data.job and not JobCheck(data.job) then return false end
-	if data.excludejob and JobCheck(data.excludejob) then return false end
-	if data.gang and not GangCheck(data.gang) then return false end
-	if data.excludegang and GangCheck(data.excludegang) then return false end
-	if data.item and not ItemCheck(data.item) then return false end
-	if data.citizenid and not CitizenCheck(data.citizenid) then return false end
-	if data.canInteract and not data.canInteract(entity, distance, data) then return false end
+	if distance and data.distance and distance > data.distance then
+		return false
+	end
+	if data.job and not JobCheck(data.job) then
+		return false
+	end
+	if data.excludejob and JobCheck(data.excludejob) then
+		return false
+	end
+	if data.gang and not GangCheck(data.gang) then
+		return false
+	end
+	if data.excludegang and GangCheck(data.excludegang) then
+		return false
+	end
+	if data.item and not ItemCheck(data.item) then
+		return false
+	end
+	if data.citizenid and not CitizenCheck(data.citizenid) then
+		return false
+	end
+	if data.canInteract and not data.canInteract(entity, distance, data) then
+		return false
+	end
 	return true
 end
