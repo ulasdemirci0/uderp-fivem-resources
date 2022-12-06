@@ -4,7 +4,7 @@ Config.MaxHeight = 5.0
 Config.MaxLength = 5.0
 Config.DamageNeeded = 100.0
 Config.IdleCamera = true
-Config.EnableProne = true
+Config.EnableProne = false
 Config.JointEffectTime = 60
 Config.RemoveWeaponDrops = true
 Config.RemoveWeaponDropsTimer = 25
@@ -13,7 +13,7 @@ Config.DirtLevel = 0.1 -- Threshold for the dirt level to be counted as dirty
 Config.DisableAmbience = false -- Disabled distance sirens, distance car alarms, etc
 
 Config.Disable = {
-    disableHudComponents = {1, 2, 3, 4, 7, 9, 13, 14, 19, 20, 21, 22}, -- Hud Components: https://docs.fivem.net/natives/?_0x6806C51AD12B83B8
+    disableHudComponents = {1, 2, 3, 4, 7, 9, 13, 19, 20, 21, 22}, -- Hud Components: https://docs.fivem.net/natives/?_0x6806C51AD12B83B8
     disableControls = {37}, -- Controls: https://docs.fivem.net/docs/game-references/controls/
     displayAmmo = true -- false disables ammo display
 }
