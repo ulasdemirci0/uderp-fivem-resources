@@ -1,14 +1,16 @@
-fx_version 'cerulean'
+fx_version 'adamant'
 game 'gta5'
 
-description 'qb-loading'
-version '1.0'
+author 'NaorNC#8998' -- # Discord - Discord.gg/cKt4Mpd2PQ
+description 'nc-loadingscreen'
 
-lua54 'yes'
-client_script 'client/client.lua'
+files {
+    '*.html',
+    'assets/**/*.*',
+    'assets/**/**/*.*'
+}
 
-files { 'assets/**', 'html/*', }
+client_script 'client.lua'
 
-loadscreen { 'html/index.html' }
-loadscreen_cursor 'yes'
-loadscreen_manual_shutdown 'yes'
+--loadscreen_manual_shutdown "yes"
+loadscreen 'index.html'
