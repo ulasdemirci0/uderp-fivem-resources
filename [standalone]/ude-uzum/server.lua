@@ -1,5 +1,5 @@
-drugBaseName = "weed"
-drugProcessedName = "weed_islenmis"
+drugBaseName = "grape"
+drugProcessedName = "wine"
 local QBCore = exports["qb-core"]:GetCoreObject()
 drugPerPrice = 500
 -- Üzüm SATMA

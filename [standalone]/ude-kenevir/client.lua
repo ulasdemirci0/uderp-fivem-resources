@@ -157,7 +157,7 @@ local LastWeedLocation = 1
 Citizen.CreateThread(
         function()
             while true do
-                local sleep = 2000
+                local sleep = 500
                 local player = PlayerPedId()
                 local playercoords = GetEntityCoords(player)
                 local dst = GetDistanceBetweenCoords(
@@ -205,7 +205,7 @@ Citizen.CreateThread(
                     DrawText3Ds(
                             Config.WeedLocation[LastWeedLocation].x,
                             Config.WeedLocation[LastWeedLocation].y,
-                            Config.WeedLocation[LastWeedLocation].z + 0.3,
+                            Config.WeedLocation[LastWeedLocation].z + 1.3,
                             "[E] Kenevir Topla"
                     )
                     if dst2 < 1 then
@@ -283,5 +283,27 @@ Citizen.CreateThread(
                 AddTextComponentString(info.title)
                 EndTextCommandSetBlipName(info.blip)
             end
+            PropSpawn()
         end
+
 )
+function PropSpawn()
+    for k,v in pairs (Config.Props) do
+        RequestModel(v.model)
+        local iter_for_request = 1
+        while not HasModelLoaded(v.model) and iter_for_request < 5 do
+            Wait(500)
+            iter_for_request = iter_for_request + 1
+        end
+        if not HasModelLoaded(v.model) then
+            SetModelAsNoLongerNeeded(v.model)
+        else
+            local ped = PlayerPedId()
+            local created_object = CreateObjectNoOffset(v.model, v.coords.x, v.coords.y, v.coords.z - 1, 1, 0, 1)
+            PlaceObjectOnGroundProperly(created_object)
+            SetEntityHeading(created_object, v.coords.w)
+            FreezeEntityPosition(created_object, true)
+            SetModelAsNoLongerNeeded(v.model)
+        end
+    end
+end
