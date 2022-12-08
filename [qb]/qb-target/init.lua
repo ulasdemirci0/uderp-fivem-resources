@@ -104,8 +104,8 @@ Config.GlobalPlayerOptions = {
 Config.Peds = {
 	{ -- KENEVİR SATIŞ
 		model = 'a_m_m_hasjew_01',
-		coords = vector4(1222.46, 1898.9, 76.94, 92.11),
-		networked = true,
+		coords = vector4(-468.96, 6289.69, 12.61, 145.46),
+		networked = false,
 		invincible = true,
 		blockevents = true,
 		freeze = true,
@@ -120,15 +120,52 @@ Config.Peds = {
 			},
 			distance = 2.5
 		}
+	},{ -- ÜZÜM SATIŞ
+		model = 'a_m_y_business_02',
+		coords = vector4(-2189.29, -398.77, 12.3, 227.57),
+		networked = false,
+		invincible = true,
+		blockevents = true,
+		freeze = true,
+		target = {
+			options = {
+				{
+					type = "client",
+					event = "ude-uzum:weedSellTarget",
+					icon = "fas fa-sign-in-alt",
+					label = "Üzüm Suyu Sat",
+				},
+			},
+			distance = 2.5
+		}
 	},
 	{ --- Kenevir İŞLEME
 		model = 'a_m_m_hillbilly_01',
 		coords = vector4(1340.06, 4392.09, 43.35, 164.79),
-		networked = true,
+		networked = false,
 		invincible = true,
 		blockevents = true,
 		freeze = true,
-	}
+	},
+	{ -- ÜZÜM İŞLEME
+		model = 'a_m_y_beach_01',
+		coords = vector4(-1517.62, 1502.71, 110.62, 66.98),
+		networked = false,
+		invincible = true,
+		blockevents = true,
+		freeze = true,
+		target = {
+			options = {
+				{
+					type = "client",
+					event = "ude-uzum:processGrapeTarget",
+					icon = "fas fa-sign-in-alt",
+					label = "Üzüm İşle",
+				},
+			},
+			distance = 2.5
+		}
+	},
 }
 
 -------------------------------------------------------------------------------
