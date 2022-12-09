@@ -1,145 +1,145 @@
 Config = {}
 
-Config.OpenMenu = 'I' -- https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
-Config.StressChance = 0 -- Default: 10% -- Percentage Stress Chance When Shooting (0-1)
-Config.UseMPH = true -- If true speed math will be done as MPH, if false KPH will be used (YOU HAVE TO CHANGE CONTENT IN STYLES.CSS TO DISPLAY THE CORRECT TEXT)
-Config.MinimumStress = 50 -- Minimum Stress Level For Screen Shaking
-Config.MinimumSpeedUnbuckled = 500000000 -- Going Over This Speed Will Cause Stress
-Config.MinimumSpeed = 10000000 -- Going Over This Speed Will Cause Stress
-Config.DisablePoliceStress = true -- If true will disable stress for people with the police job
+function GetFramework()
+	return exports["qb-core"]:GetCoreObject()
+end
 
--- Stress
-Config.WhitelistedWeaponArmed = { -- weapons specifically whitelisted to not show armed mode
-    -- miscellaneous
-    `weapon_petrolcan`,
-    `weapon_hazardcan`,
-    `weapon_fireextinguisher`,
-    -- melee
-    `weapon_dagger`,
-    `weapon_bat`,
-    `weapon_bottle`,
-    `weapon_crowbar`,
-    `weapon_flashlight`,
-    `weapon_golfclub`,
-    `weapon_hammer`,
-    `weapon_hatchet`,
-    `weapon_knuckle`,
-    `weapon_knife`,
-    `weapon_machete`,
-    `weapon_switchblade`,
-    `weapon_nightstick`,
-    `weapon_wrench`,
-    `weapon_battleaxe`,
-    `weapon_poolcue`,
-    `weapon_briefcase`,
-    `weapon_briefcase_02`,
-    `weapon_garbagebag`,
-    `weapon_handcuffs`,
-    `weapon_bread`,
-    `weapon_stone_hatchet`,
-    -- throwables
-    `weapon_grenade`,
-    `weapon_bzgas`,
-    `weapon_molotov`,
-    `weapon_stickybomb`,
-    `weapon_proxmine`,
-    `weapon_snowball`,
-    `weapon_pipebomb`,
-    `weapon_ball`,
-    `weapon_smokegrenade`,
-    `weapon_flare`
+Config.Locale = {
+	['you_are_on_location'] = 'Şu anda buradasınız -> <strong>%s</strong>',
+
+	['date_format'] = {
+		default = 'Tarih: <strong>%s %s, %s</strong>',
+		simple = '<strong>%s, %s</strong>',
+		simpleWithHours = 'Tarih: <strong>%s</strong>, <strong>%s, %s</strong>',
+		withWeekday = '<strong>%s, %s of %s, %s</strong>',
+		withHours = 'Tarih: <strong>%s</strong>, <strong>%s of %s, %s</strong>',
+		withWeekdayAndHours = 'Tarih: <strong>%s</strong>, <strong>%s, %s of %s, %s</strong>'
+	},
+
+	['weekDay_0'] = 'Pazar',
+	['weekDay_1'] = 'Pazartesi',
+	['weekDay_2'] = 'Salı',
+	['weekDay_3'] = 'Çarşamba',
+	['weekDay_4'] = 'Perşembe',
+	['weekDay_5'] = 'Cuma',
+	['weekDay_6'] = 'Cumartesi',
+
+	['day_1'] = '1',
+	['day_2'] = '2',
+	['day_3'] = '3',
+	['day_4'] = '4',
+	['day_5'] = '5',
+	['day_6'] = '6',
+	['day_7'] = '7',
+	['day_8'] = '8',
+	['day_9'] = '9',
+
+	['day_10'] = '10',
+	['day_11'] = '11',
+	['day_12'] = '12',
+	['day_13'] = '13',
+	['day_14'] = '14',
+	['day_15'] = '15',
+	['day_16'] = '16',
+	['day_17'] = '17',
+	['day_18'] = '18',
+	['day_19'] = '19',
+
+	['day_20'] = '20',
+	['day_21'] = '21',
+	['day_22'] = '22',
+	['day_23'] = '23',
+	['day_24'] = '24',
+	['day_25'] = '25',
+	['day_26'] = '26',
+	['day_27'] = '27',
+	['day_28'] = '28',
+	['day_29'] = '29',
+
+	['day_30'] = '30',
+	['day_31'] = '31',
+
+	['month_0'] = 'Ocak',
+	['month_1'] = 'Şubat',
+	['month_2'] = 'Mart',
+	['month_3'] = 'Nisan',
+	['month_4'] = 'Mayıs',
+	['month_5'] = 'Haziran',
+	['month_6'] = 'Temmuz',
+	['month_7'] = 'Ağustos',
+	['month_8'] = 'Eylül',
+	['month_9'] = 'Ekim',
+	['month_10'] = 'Kasım',
+	['month_11'] = 'Aralık',
+
+	['toggleui'] = 'Hud Aç/Kapat',
+
 }
 
-Config.WhitelistedWeaponStress = {
-    `weapon_petrolcan`,
-    `weapon_hazardcan`,
-    `weapon_fireextinguisher`
+Config.serverLogo = 'https://i.imgur.com/AcgDL9f.png'
+
+Config.font = {
+	name 	= 'Montserrat',
+	url 	= 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900&display=swap'
 }
 
-Config.Intensity = {
-    ["blur"] = {
-        [1] = {
-            min = 50,
-            max = 60,
-            intensity = 1500,
-        },
-        [2] = {
-            min = 60,
-            max = 70,
-            intensity = 2000,
-        },
-        [3] = {
-            min = 70,
-            max = 80,
-            intensity = 2500,
-        },
-        [4] = {
-            min = 80,
-            max = 90,
-            intensity = 2700,
-        },
-        [5] = {
-            min = 90,
-            max = 100,
-            intensity = 3000,
-        },
-    }
+Config.date = {
+	format	 	= 'default',
+	AmPm		= false
 }
 
-Config.EffectInterval = {
-    [1] = {
-        min = 50,
-        max = 60,
-        timeout = math.random(50000, 60000)
-    },
-    [2] = {
-        min = 60,
-        max = 70,
-        timeout = math.random(40000, 50000)
-    },
-    [3] = {
-        min = 70,
-        max = 80,
-        timeout = math.random(30000, 40000)
-    },
-    [4] = {
-        min = 80,
-        max = 90,
-        timeout = math.random(20000, 30000)
-    },
-    [5] = {
-        min = 90,
-        max = 100,
-        timeout = math.random(15000, 20000)
-    }
+Config.voice = {
+
+	levels = {
+		default = 5.0,
+		shout = 12.0,
+		whisper = 1.0,
+		current = 0
+	},
+	
+	keys = {
+		distance 	= '~',
+	}
 }
 
-Config.Menu = {
-    isOutMapChecked = false, -- isOutMapChecked
-    isOutCompassChecked = false, -- isOutMapChecked
-    isCompassFollowChecked = true, -- isCompassFollowChecked
-    isOpenMenuSoundsChecked = true, -- isOpenMenuSoundsChecked
-    isResetSoundsChecked = true, -- isResetSoundsChecked
-    isListSoundsChecked = true, -- isListSoundsChecked
-    isMapNotifChecked = true, -- isMapNotifChecked
-    isLowFuelChecked = true, -- isLowFuelChecked
-    isCinematicNotifChecked = true, -- isCinematicNotifChecked
-    isDynamicHealthChecked = true, -- isDynamicHealthChecked
-    isDynamicArmorChecked= true, -- isDynamicArmorChecked
-    isDynamicHungerChecked = true, -- isDynamicHungerChecked
-    isDynamicThirstChecked = true, -- isDynamicThirstChecked
-    isDynamicStressChecked = true, -- isDynamicStressChecked
-    isDynamicOxygenChecked = true, -- isDynamicOxygenChecked
-    isChangeFPSChecked = true, -- isChangeFPSChecked
-    isHideMapChecked = false, -- isHideMapChecked
-    isToggleMapBordersChecked = true, -- isToggleMapBordersChecked
-    isDynamicEngineChecked = true, -- isDynamicEngineChecked
-    isDynamicNitroChecked = true, -- isDynamicNitroChecked
-    isChangeCompassFPSChecked = true, -- isChangeCompassFPSChecked
-    isCompassShowChecked = true, -- isShowCompassChecked
-    isShowStreetsChecked = true, -- isShowStreetsChecked
-    isPointerShowChecked = true, -- isPointerShowChecked
-    isDegreesShowChecked = true, -- isDegreesShowChecked
-    isCineamticModeChecked = false, -- isCineamticModeChecked
-    isToggleMapShapeChecked = 'square', -- isToggleMapShapeChecked
+
+Config.vehicle = {
+	speedUnit = 'KMH',
+	maxSpeed = 240,
+
+	keys = {
+		seatbelt 	= 'K',
+		cruiser		= 'CAPS',
+		signalLeft	= 'LEFT',
+		signalRight	= 'RIGHT',
+		signalBoth	= 'DOWN',
+	}
+}
+
+Config.ui = {
+	toggleui = true,
+	
+	showServerLogo		= true,
+
+	showJob		 		= true,
+
+	showWalletMoney 	= true,
+	showBankMoney 		= true,
+	showBlackMoney 		= false,
+	showSocietyMoney	= false,
+
+	showDate 			= false,
+	showLocation 		= true,
+	showVoice	 		= true,
+
+	showHealth			= true,
+	showArmor	 		= true,
+	showStamina	 		= true,
+
+	showHunger 			= true,
+	showThirst	 		= true,
+
+	showMinimap			= false,
+
+	showWeapons			= true,	
 }
