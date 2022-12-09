@@ -67,7 +67,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0) -- crash engelleme
 
-		SetVehicleDensityMultiplierThisFrame(0.01) -- trafik yoğunluğunu ayarla (max 1)
+		SetVehicleDensityMultiplierThisFrame(0.0) -- trafik yoğunluğunu ayarla (max 1)
 		SetPedDensityMultiplierThisFrame(0.0) -- npc yoğunluğunu ayarla (max 1)
 		SetRandomVehicleDensityMultiplierThisFrame(0.0) -- rastgele araçları (araba senaryoları / park yerinden çıkan arabalar vb.) ayarla (max 1)
 		SetParkedVehicleDensityMultiplierThisFrame(0.0) -- rastgele park etmiş araçları (park etmiş araba senaryoları) ayarla (max 1)
