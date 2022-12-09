@@ -66,7 +66,7 @@ Config.DefaultHudColors = {
 
 
 -------------------------------------------- Watermark hud --------------------------------------------
-Config.DisableWaterMarkTextAndLogo = true -- true - Disable watermark text and logo
+Config.DisableWaterMarkTextAndLogo = false -- true - Disable watermark text and logo
 Config.UseWaterMarkText = false -- if true text will be shown | if  false logo will be shown
 Config.WaterMarkText1 = "Adriatic" -- Top right server text
 Config.WaterMarkText2 = "RP"  -- Top right server text
@@ -74,8 +74,8 @@ Config.WaterMarkLogo = "https://cdn.discordapp.com/attachments/90830112985778585
 Config.LogoWidth = "0px"
 Config.LogoHeight = "0px"
 Config.EnableId = true -- Determines if display server id or nor
-Config.EnableWatermarkCash = false -- Determines if display cash or nor
-Config.EnableWatermarkBankMoney = false -- Determines if display bank money or nor
+Config.EnableWatermarkCash = true -- Determines if display cash or nor
+Config.EnableWatermarkBankMoney = true -- Determines if display bank money or nor
 Config.EnableWatermarkJob = true -- Determines if display job or nor
 Config.EnableWatermarkWeaponImage = true -- Determines if display weapon image or nor
 Config.EnableWaterMarkHud = true -- Determines if right-top hud is enabled or not
@@ -243,22 +243,22 @@ Config.Notifications = { -- Notifications
     },
     ["took_off_seatbelt"] = {
         type = "error",
-        message = "Hai rimosso la cintura.",
+        message = "Kemer çıkartıldı.",
         time = 5000
     },
     ["took_seatbelt"] = {
         type = "success",
-        message = "Hai inserito la cintura.",
+        message = "Kemer takıldı.",
         time = 5000
     },
     ["cruise_actived"] = {
         type = "success",
-        message = "Cruise attivato.",
+        message = "Hız sınırı aktif edildi.",
         time = 5000
     },
     ["cruise_disabled"] = {
         type = "error",
-        message = "Cruise disattivato.",
+        message = "Hız sınırı kapatıldı.",
         time = 5000
     },
     ["spam"] = {
@@ -268,32 +268,32 @@ Config.Notifications = { -- Notifications
     },
     ["engine_on"] = {
         type = "success",
-        message = "Motore Acceso.",
+        message = "Motor çalıştırıldı.",
         time = 5000
     }, 
     ["engine_off"] = {
         type = "success",
-        message = "Motore Spento.",
+        message = "Motor durduruldu.",
         time = 5000
     }, 
     ["cant_install_nitro"] = {
         type = "error",
-        message = "Non puoi usare il Nitro da dentro il veicolo.",
+        message = "Nitro takılamıyor.",
         time = 5000
     }, 
     ["no_veh_nearby"] = {
         type = "error",
-        message = "Non c'è nessun veicolo vicino.",
+        message = "Yakında araç bulunamadı.",
         time = 5000
     }, 
     ["cash_display"] = {
         type = "success",
-        message = "You have $%s in your pocket.",
+        message = "Nakit $%s taşıyorsun.",
         time = 5000
     }, 
     ["bank_display"] = {
         type = "success",
-        message = "You have $%s in your bank.",
+        message = "Banka hesabında $%s var",
         time = 5000
     }, 
 }
