@@ -70,7 +70,78 @@ Config.CircleZones = {
 }
 
 Config.BoxZones = {
-
+	["PortakalTree1"] = {
+		name = "portakaltree1",
+		coords = vector3(162.27, 1680.02, 227.76),
+		length = 1.6,
+		width = 2.0,
+		heading = 26,
+		maxZ = 230,
+		minZ = 225,
+		debugPoly = false,
+		options = {
+			{
+				event = "ude-portakal:gatherWeedTarget",
+				icon = "fas fa-sign-in-alt",
+				label = "Portakal Topla",
+			},
+		},
+		distance = 3.5
+	},
+	["PortakalTree2"] = {
+		name = "portakaltree2",
+		coords = vector3(167.1, 1685.41, 226.57),
+		length = 1.6,
+		width = 2.0,
+		heading = 26,
+		maxZ = 230,
+		minZ = 225,
+		debugPoly = false,
+		options = {
+			{
+				event = "ude-portakal:gatherWeedTarget",
+				icon = "fas fa-sign-in-alt",
+				label = "Portakal Topla",
+			},
+		},
+		distance = 3.5
+	},
+	["PortakalTree3"] = {
+		name = "portakaltree3",
+		coords = vector3(172.59, 1681.85, 227.21),
+		length = 1.6,
+		width = 2.0,
+		heading = 26,
+		maxZ = 230,
+		minZ = 225,
+		debugPoly = false,
+		options = {
+			{
+				event = "ude-portakal:gatherWeedTarget",
+				icon = "fas fa-sign-in-alt",
+				label = "Portakal Topla",
+			},
+		},
+		distance = 3.5
+	},
+	["PortakalTree4"] = {
+		name = "portakaltree4",
+		coords = vector3(168.23, 1677.76, 227.89),
+		length = 1.6,
+		width = 2.0,
+		heading = 26,
+		maxZ = 230,
+		minZ = 225,
+		debugPoly = false,
+		options = {
+			{
+				event = "ude-portakal:gatherWeedTarget",
+				icon = "fas fa-sign-in-alt",
+				label = "Portakal Topla",
+			},
+		},
+		distance = 3.5
+	},
 }
 
 Config.PolyZones = {
@@ -102,25 +173,7 @@ Config.GlobalPlayerOptions = {
 }
 
 Config.Peds = {
-	{ -- KENEVİR SATIŞ
-		model = 'a_m_m_hasjew_01',
-		coords = vector4(-468.96, 6289.69, 12.61, 145.46),
-		networked = false,
-		invincible = true,
-		blockevents = true,
-		freeze = true,
-		target = {
-			options = {
-				{
-					type = "client",
-					event = "ude-kenevir:weedSellTarget",
-					icon = "fas fa-sign-in-alt",
-					label = "Kenevir Sat",
-				},
-			},
-			distance = 2.5
-		}
-	},{ -- ÜZÜM SATIŞ
+	{ -- ÜZÜM SATIŞ
 		model = 'a_m_y_business_02',
 		coords = vector4(-2189.29, -398.77, 12.3, 227.57),
 		networked = false,
@@ -138,14 +191,6 @@ Config.Peds = {
 			},
 			distance = 2.5
 		}
-	},
-	{ --- Kenevir İŞLEME
-		model = 'a_m_m_hillbilly_01',
-		coords = vector4(1340.06, 4392.09, 43.35, 164.79),
-		networked = false,
-		invincible = true,
-		blockevents = true,
-		freeze = true,
 	},
 	{ -- ÜZÜM İŞLEME
 		model = 'a_m_y_beach_01',
@@ -166,6 +211,26 @@ Config.Peds = {
 			distance = 2.5
 		}
 	},
+	{ -- portakal satış
+		model = 'a_m_y_beach_01',
+		coords = vector4(1045.08, 697.74, 157.85, 62.44),
+		networked = false,
+		invincible = true,
+		blockevents = true,
+		freeze = true,
+		target = {
+			options = {
+				{
+					type = "client",
+					event = "ude-portakal:weedSellTarget",
+					icon = "fas fa-sign-in-alt",
+					label = "Portakal Sat",
+				},
+			},
+			distance = 2.5
+		}
+	},
+
 }
 
 -------------------------------------------------------------------------------

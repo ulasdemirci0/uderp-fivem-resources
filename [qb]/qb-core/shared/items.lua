@@ -421,4 +421,16 @@ QBShared.Items = {
 		 ['combinable'] = nil,
         ['description'] = '',
 	},
+    ['portakal'] = {
+        ['name'] = 'portakal',
+        ['label'] = 'Portakal',
+        ['weight'] = 1000,
+        ['type'] = 'item',
+        ['image'] = 'orange.png',
+        ['unique'] = false,
+        ['useable'] = false,
+		['shouldClose'] = true,
+		 ['combinable'] = nil,
+        ['description'] = '',
+	},
     }
