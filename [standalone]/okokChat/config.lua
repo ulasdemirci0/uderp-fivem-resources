@@ -38,7 +38,7 @@ Config.StaffOnlyCommand = 'staffo'
 --------------------------------
 -- [Advertisements]
 
-Config.EnableAdvertisementCommand = true
+Config.EnableAdvertisementCommand = false
 
 Config.AdvertisementCommand = 'ad'
 
@@ -49,7 +49,7 @@ Config.AdvertisementCooldown = 5 -- in minutes
 --------------------------------
 -- [Twitch]
 
-Config.EnableTwitchCommand = true
+Config.EnableTwitchCommand = false
 
 Config.TwitchCommand = 'twitch'
 
@@ -61,7 +61,7 @@ Config.TwitchList = {
 --------------------------------
 -- [Youtube]
 
-Config.EnableYoutubeCommand = true
+Config.EnableYoutubeCommand = false
 
 Config.YoutubeCommand = 'youtube'
 
@@ -73,14 +73,14 @@ Config.YoutubeList = {
 --------------------------------
 -- [Twitter]
 
-Config.EnableTwitterCommand = true
+Config.EnableTwitterCommand = false
 
 Config.TwitterCommand = 'twitter'
 
 --------------------------------
 -- [Police]
 
-Config.EnablePoliceCommand = true
+Config.EnablePoliceCommand = false
 
 Config.PoliceCommand = 'police'
 
@@ -89,7 +89,7 @@ Config.PoliceJobName = 'police'
 --------------------------------
 -- [Ambulance]
 
-Config.EnableAmbulanceCommand = true
+Config.EnableAmbulanceCommand = false
 
 Config.AmbulanceCommand = 'ambulance'
 
@@ -98,7 +98,7 @@ Config.AmbulanceJobName = 'ambulance'
 --------------------------------
 -- [OOC]
 
-Config.EnableOOCCommand = true
+Config.EnableOOCCommand = false
 
 Config.OOCCommand = 'ooc'
 
