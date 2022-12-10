@@ -1,35 +1,35 @@
 local Translations = {
     error = {
-        not_give = "Could not give item to the given id.",
-        givecash = "Usage /givecash [ID] [AMOUNT]",
-        wrong_id = "Wrong ID.",
-        dead = "You are dead LOL.",
-        too_far_away = "You are too far away lmfao.",
-        not_enough = "You don\'t have this amount.",
-        invalid_amount = "Invalid Amount Given"
+        not_give = "Belirtilen ID'ye kart verilemedi.",
+        givecash = "Kullanım /givecash [ID] [MİKTAR]",
+        wrong_id = "Yanlış ID.",
+        dead = "Öldün.",
+        too_far_away = "Çok uzaktasınız.",
+        not_enough = "Yeterli paraya sahip değilsin.",
+        invalid_amount = "Geçersiz miktar girildi."
     },
     success = {
-        debit_card = "You have successfully ordered a Debit Card.",
-        cash_deposit = "You successfully made a cash deposit of $%{value}.",
-        cash_withdrawal = "You successfully made a cash withdrawal of $%{value}.",
-        updated_pin = "You have successfully updated your debit card pin.",
+        debit_card = "Banka kartı başarıyla alındı.",
+        cash_deposit = "Başarıyla $%{value} nakit yatırıldı",
+        cash_withdrawal = "$%{value} para çekildi",
+        updated_pin = "Başarıyla kart şifreni güncelledin",
         savings_deposit = "You successfully made a savings deposit of $%{value}.",
         savings_withdrawal = "You successfully made a savings withdrawal of $%{value}.",
         opened_savings = "You have successfully opened a savings account.",
-        give_cash = "Successfully gave $%{cash} to ID %{id}",
-        received_cash = "Successfully received $%{cash} from ID %{id}"
+        give_cash = "%{id}'ye $%{cash} gönderildi!",
+        received_cash = "%{id} tarafından hesabınıza $%{cash} gönderildi!"
     },
     info = {
-        bank_blip = "Bank",
-        access_bank_target = "Access Bank",
-        access_bank_key = "[E] - Access Bank",
+        bank_blip = "Banka",
+        access_bank_target = "Banka Hesabına Eriş",
+        access_bank_key = "[E] - Banka Hesabına Eriş",
         current_to_savings = "Transfer Current Account to Savings",
         savings_to_current = "Transfer Savings to Current Account",
-        deposit = "Deposit $%{amount} into Current Account",
-        withdraw = "Withdraw $%{amount} from Current Account",
+        deposit = "$%{amount} hesaba yatırıldı.",
+        withdraw = "$%{amount} hesaptan çekildi.",
     },
     command = {
-        givecash = "Give cash to player."
+        givecash = "Oyuncuya para ver."
     }
 }
 

@@ -46,7 +46,7 @@
                             <a class="nav-link m-2" id="bankingTransfer-tab" data-toggle="pill" href="#bankingTransfer"
                                role="tab" aria-controls="bankingTransfer" aria-selected="false" style="color: white">Havale
                                 / EFT</a>
-                            <!-- <a class="nav-link m-1" id="bankingStatement-tab" data-toggle="pill" href="#bankingStatement" role="tab" aria-controls="bankingStatement" aria-selected="false" style= "color: white">Statement</a> -->
+                             <a class="nav-link m-1" id="bankingStatement-tab" data-toggle="pill" href="#bankingStatement" role="tab" aria-controls="bankingStatement" aria-selected="false" style= "color: white">Hesao Geçmişi</a>
                             <!--                                <a class="nav-link m-2" id="bankingSavings-tab" style="display:none; color: white;" data-toggle="pill" href="#bankingSavings" role="tab" aria-controls="bankingSavings" aria-selected="false">Savings Account</a>-->
                             <a class="nav-link m-2" id="bankingActions-tab" data-toggle="pill" href="#bankingActions"
                                role="tab" aria-controls="bankingActions" aria-selected="false" style="color: white">Hesap
@@ -61,8 +61,8 @@
                             <div class="card-header">Hesap Bilgisi</div>
                             <div class="card-body">
                                 <p class="card-text" style="color: white;"><small>
-                                    Account Name: <span id="accountName"></span><br>
-                                    Account Number: <span id="accountNumber"></span><br>
+                                    Ad Soyad: <span id="accountName"></span><br>
+                                    Hesap No: <span id="accountNumber"></span><br>
                                     <!--Account Sort Code: <span id="accountSortCode">-->
 
                                     </span></small></p>
@@ -120,7 +120,7 @@
                                      style="background:rgba(0, 27, 39, 0); color: white; box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0);">
                                     <div class="card-header" style="color: white; "><i
                                             class="fad fa-fw fa-pencil-alt"></i>
-                                        <h3 style="text-align: center;">Quick Actions</h3></div>
+                                        <h3 style="text-align: center;">Hızlı İşlemler</h3></div>
                                     <div class="card-body">
                                         <div class="container-fluid">
                                             <div class="row m-3" id="depositbtn">
@@ -406,7 +406,7 @@
                     <div class="container-fluid p-2">
                         <div class="row">
                             <div class="col-12 title">
-                                <h3>Current Account Statement</h3>
+                                <h3>Cari Hesap Özeti</h3>
                             </div>
                         </div>
                         <div class="row">
@@ -416,11 +416,11 @@
                                         <table id="currentStatement" class="display" style="width:100%">
                                             <thead>
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Description</th>
-                                                <th class="text-center">Withdrawn</th>
-                                                <th class="text-center">Deposit</th>
-                                                <th class="text-center">New Balance</th>
+                                                <th>Tarih</th>
+                                                <th>Açıklama</th>
+                                                <th class="text-center">Çekilen</th>
+                                                <th class="text-center">Yatırılan</th>
+                                                <th class="text-center">Bakiye</th>
                                             </tr>
                                             </thead>
                                             <tbody id="currentStatementContents">
@@ -585,56 +585,59 @@
                                         <div class="container-fluid" id="cardDetails" style="display:none;">
                                             <div class="row">
 
-                                                <div class="col-4">
-                                                    <div class="card text-white bg-info mb-3" id="debitCardPin"
-                                                         style="min-height:230px">
-                                                        <div class="card-header">Change Pin</div>
-                                                        <div class="card-body">Your pin is currently set.</div>
+                                                <!--<div class="col-6">
+                                                    <div class="card text-white mb-3" id="debitCardPin"
+                                                         style="min-height:230px; background-color: #1493dc;">
+                                                        <div class="card-header">Kart Şifresi</div>
+                                                        <div class="card-body">Kartınızı çaldırdığınızda şifrenizi
+                                                            değiştirmeyi ve yeni kart talep etmeyi unutmayınız.
+                                                        </div>
                                                         <div class="card-footer">
                                                             <button class="btn btn-primary btn-block" id="changePin">
-                                                                Change PIN
+                                                                Şifre Değiştir
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
-                                                <div class="col-4">
-                                                    <div class="card text-white bg-dark mb-3" id="requestNewCard1"
-                                                         style="min-height:230px; display:block;">
-                                                        <div class="card-header">Request New Card</div>
-                                                        <div class="card-body">Current Active Card<br>
+                                                <div class="col-12">
+                                                    <div class="card text-white mb-3" id="requestNewCard1"
+                                                         style="min-height:230px; display:block; background-color: #1493dc;">
+                                                        <div class="card-header">Yeni Kart Talebi</div>
+                                                        <div class="card-body">Mevcut Kart:<br>
                                                             <small><span id="cardType">Visa</span><br>
                                                                 <span id="cardNumberShow">************3455</span></small>
                                                         </div>
                                                         <div class="card-footer">
                                                             <button class="btn btn-primary btn-block"
-                                                                    id="makeNewCardRequestBtn1">Make Request
+                                                                    id="makeNewCardRequestBtn1">Yeni Kart İste
                                                             </button>
                                                         </div>
                                                     </div>
 
                                                     <div class="card text-white bg-dark mb-3" id="requestNewCard2"
                                                          style="min-height:230px; display:none;">
-                                                        <div class="card-header">Confirm Request</div>
-                                                        <div class="card-body"><small>By making this request your old
-                                                            card will be blocked.</small>
+                                                        <div class="card-header">Yeni Kart Onayı</div>
+                                                        <div class="card-body"><small>Onaylamanız durumunda önceki
+                                                            kartınız kullanıma kapatılacaktır.</small>
 
                                                         </div>
                                                         <div class="card-footer text-center">
-                                                            <button class="btn btn-success btn-sm"
-                                                                    id="confirmCardRequest">Confirm
+                                                            <button class="btn btn-secondary btn-sm"
+                                                                    id="confirmCardRequest">Onaylıyorum
                                                             </button>
-                                                            <button class="btn btn-danger btn-sm" id="cancelNewCardReq">
-                                                                Cancel
+                                                            <button class="btn btn-primary btn-sm"
+                                                                    id="cancelNewCardReq">
+                                                                İptal
                                                             </button>
                                                         </div>
                                                     </div>
 
                                                     <div class="card text-white bg-success mb-3" id="requestNewCard3"
                                                          style="min-height:230px; display:none;">
-                                                        <div class="card-header">Request Confirmed</div>
-                                                        <div class="card-body"><small>You have received a new card, and
-                                                            your previous one has been blocked.</small>
+                                                        <div class="card-header">Yeni Kart</div>
+                                                        <div class="card-body"><small>Yeni kartınız teslim edildi,
+                                                            önceki kartınızın kullanımı iptal edilmiştir.</small>
 
                                                         </div>
                                                         <div class="card-footer text-center">
@@ -642,7 +645,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-4">
+                                                <!--<div class="col-4">
                                                     <div class="card text-white bg-success mb-3" id="debitCardStatus"
                                                          style="min-height:230px">
                                                         <div class="card-header">Card Unlocked</div>
@@ -653,12 +656,13 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div class="row" id="createNewPin" style="display:none;">
                                                 <div class="col-12">
-                                                    <div class="card bg-light mb-3">
-                                                        <div class="card-header">Create a New Pin</div>
+                                                    <div class="card mb-3"
+                                                         style="background:rgb(0, 27, 39); color: white; box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.527);">
+                                                        <div class="card-header">Yeni Şifre Belirle</div>
                                                         <div class="card-body">
                                                             <div class="container-fluid">
                                                                 <div class="row" id="newPinReqMsgDiv"
@@ -671,8 +675,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-3 my-aut"><label for="newPinNumber"><small>New
-                                                                        Pin Number</small></label></div>
+                                                                    <div class="col-3 my-aut"><label for="newPinNumber"><small>Şifre:</small></label>
+                                                                    </div>
                                                                     <div class="col-9"><input type="password"
                                                                                               class="form-control"
                                                                                               id="newPinNumber"
@@ -680,8 +684,8 @@
                                                                 </div>
                                                                 <div class="row mt-2">
                                                                     <div class="col-12 text-center">
-                                                                        <button class="btn btn-success"
-                                                                                id="updateNewPin">Update Pin
+                                                                        <button class="btn btn-primary"
+                                                                                id="updateNewPin">Güncelle
                                                                         </button>
                                                                     </div>
                                                                 </div>
