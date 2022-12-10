@@ -10,13 +10,70 @@ body {
 }
 
 #bankingContainer {
-    background: #444444 !important;
-    border-radius: 7px;
+    background: radial-gradient(circle, rgba(0, 71, 99, 0.801) 0%, rgba(0,0,0,1) 90%);
+    
     min-height: 800px;
-    max-height: 810px;
+    max-height: 800px;
     display: none;
 }
 
+.ba{
+    color: rgb(255, 255, 255); 
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 31px;
+    margin-top: 70px;
+    font-weight: bold;
+}
+.headbala{
+    color: rgb(255, 255, 255); 
+    margin-left: 35px;
+    font-size: 20px;
+    margin-top: 35px;
+    
+}
+
+#currentBalance{
+    color: rgb(255, 255, 255); 
+    margin-left: 35px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    margin-top: -10px;
+}
+#currentBalance1{
+    color: rgb(255, 255, 255); 
+    margin-left: 35px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    margin-top: -10px;
+}
+#currentBalance2{
+    color: rgb(255, 255, 255); 
+    margin-left: 35px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    margin-top: -10px;
+}
+#currentCashBalance1{
+    color: rgb(255, 255, 255); 
+    margin-left: 35px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    margin-top: -10px;
+}
+#currentCashBalance{
+    color: rgb(255, 255, 255); 
+    margin-left: 35px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    margin-top: -10px;
+}
+#currentCashBalance2{
+    color: rgb(255, 255, 255); 
+    margin-left: -135px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    margin-top: 60px;
+}
 #ATMContainer {
     background: rgba(0, 0, 0, 0.8) !important;
     border-radius: 20px;
@@ -25,7 +82,28 @@ body {
     display: none;
     border: 2px solid red;
 }
-
+#withdrawamountdiv{
+    margin-top: 100px;
+}
+#depositammountdiv{
+    margin-top: 100px;
+}
+#depositAmount{
+    background:rgba(0, 27, 39, 0); color: white; box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0); 
+    border: none;
+    border-bottom: 2px solid white;
+}
+#depositAmount::placeholder{
+    color: white;
+}
+#withdrawAmount{
+    background:rgba(0, 27, 39, 0); color: white; box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0); 
+    border: none;
+    border-bottom: 2px solid white;
+}
+#withdrawAmount::placeholder{
+    color: white;
+}
 .statement:hover {
     background: rgba(150, 149, 149, 0.5) !important;
 }
@@ -56,11 +134,21 @@ body {
     background-color: transparent
 }
 
+span#customerName{
+    color: rgb(255, 255, 255); 
+    font-weight:bold;
+    font-size: 30px;
+    font-family: 'Helvetica Neue', sans-serif;
+    
+}
+#overtitle{
+    margin-bottom: 30px;
+}
 .title {
     color: white;
     margin-bottom: 15px;
     font-weight: bolder;
-    border-left: 2px solid red;
+    border-left: 2px solid white;
 }
 
 .content {
@@ -71,26 +159,63 @@ body {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: rgb(255, 255, 255);
-    background-color: #DC143C;
+    background-color: #1493dc;
+}
+#logoffbutton{
+    background-color: rgb(0, 27, 39);
+    border: 1px solid #1493dc;
+    transition: 0.5s;
+    width: 100px;
+    float: right;
+    margin-top: -15px;
+}
+#logoffbutton:hover{
+    background-color: #000000;
+}
+#quickdiv{
+    margin-top: 100px;
+}
+.nav-link{
+    transition: 0.5s;
+    
+    text-align: center;
+    padding: 16px;
+}
+.nav-link:hover{
+    background-color: #000000;
+    
+}
+.faceimg{
+    height: 50px;
+    width: 50px;
+    margin-bottom:6px;
 }
 
 .btn-primary {
     color: rgb(255, 255, 255);
-    background-color: #DC143C;
+    background-color: rgb(0, 27, 39);
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.527);
+    transition: 0.5s;
     border-color: transparent;
 }
 
 .btn-primary:hover {
     color: rgb(255, 255, 255);
-    background-color: rgb(90, 98, 104);
-    border-color: rgb(84, 91, 98);
+    background-color: #dc143c;
+    border-color: #dc143c;
 }
 
 .btn-secondary {
     color: rgb(255, 255, 255);
+    background-color: rgb(0, 27, 39);
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.527);
+    transition: 0.5s;
+    border-color: transparent;
+    
+}
+.btn-secondary:hover{
     background-color: #28a745;
 }
-
 .small,
 small {
     font-size: 95%;

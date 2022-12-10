@@ -190,6 +190,11 @@ RegisterNUICallback("savingsDeposit", function(data, cb)
     cb(nil)
 end)
 
+RegisterNUICallback("requestNewCard", function(_, cb)
+    TriggerServerEvent('qb-banking:createNewCard')
+    cb("ok")
+end)
+
 RegisterNUICallback("savingsWithdraw", function(data, cb)
     if tonumber(data.amount) ~= nil and tonumber(data.amount) > 0 then
         TriggerServerEvent('qb-banking:savingsWithdraw', data.amount)
@@ -226,8 +231,8 @@ RegisterNUICallback("unLockCard", function(_, cb)
 end)
 
 RegisterNUICallback("updatePin", function(data, cb)
-    if data.pin and data.currentBankCard then
-        TriggerServerEvent('qb-banking:updatePin', data.currentBankCard, data.pin)
+    if data.pin ~= nil then
+        TriggerServerEvent('qb-banking:updatePin', data.pin)
         cb("ok")
     end
     cb(nil)
