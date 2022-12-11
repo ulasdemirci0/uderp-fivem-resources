@@ -1,15 +1,15 @@
 {
   "modal": {
     "save": {
-      "title": "Save customization",
-      "description": "You will remain ugly"
+      "title": "Özelleştirmeyi Kaydet",
+      "description": "Çok sexy oldun bebiş."
     },
     "exit": {
-      "title": "Exit customization",
-      "description": "No changes will be saved"
+      "title": "Kaydetmeden Çık",
+      "description": "Yaptığın değişiklikler iptal edilecek"
     },
-    "accept": "Yes",
-    "decline": "No"
+    "accept": "Onayla",
+    "decline": "İptal"
   },
   "ped": {
     "title": "Ped",
