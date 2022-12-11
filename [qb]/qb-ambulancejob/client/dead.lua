@@ -51,7 +51,7 @@ function OnDeath()
                 loadAnimDict(deadAnimDict)
                 TaskPlayAnim(player, deadAnimDict, deadAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
             end
-            TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_died'))
+            --TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_died'))
         end
     end
 end
@@ -142,6 +142,10 @@ CreateThread(function()
             EnableControlAction(0, 249, true)
             EnableControlAction(0, 46, true)
             EnableControlAction(0, 47, true)
+            if IsControlJustPressed(0, 47) and not emsNotified then
+                TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_down'))
+                emsNotified = true
+            end
 
             if isDead then
                 if not isInHospitalBed then
@@ -185,10 +189,7 @@ CreateThread(function()
                         DrawTxt(0.90, 1.40, 1.0, 1.0, 0.6, Lang:t('info.help_requested'), 255, 255, 255, 255)
                     end
 
-                    if IsControlJustPressed(0, 47) and not emsNotified then
-                        TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_down'))
-                        emsNotified = true
-                    end
+
                 end
 
                 if not isEscorted then

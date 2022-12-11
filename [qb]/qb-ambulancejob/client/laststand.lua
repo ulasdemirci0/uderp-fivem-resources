@@ -69,7 +69,7 @@ function SetLaststand(bool)
             TaskPlayAnim(ped, lastStandDict, lastStandAnim, 1.0, 8.0, -1, 1, -1, false, false, false)
         end
         InLaststand = true
-        TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_down'))
+        --TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_down'))
         CreateThread(function()
             while InLaststand do
                 ped = PlayerPedId()

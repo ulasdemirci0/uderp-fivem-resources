@@ -230,6 +230,18 @@ Config.Peds = {
 			distance = 2.5
 		}
 	},
+	{ -- legal doktor
+		model = 's_m_m_doctor_01',
+		coords = vector4(308.51, -596.47, 42.29, 13.47),
+		networked = false,
+		invincible = true,
+		blockevents = true,
+		freeze = true,
+	},
+
+
+
+
 
 }
 
