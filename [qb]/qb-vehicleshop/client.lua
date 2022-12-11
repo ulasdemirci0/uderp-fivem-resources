@@ -224,14 +224,14 @@ function createFreeUseShop(shopShape, name)
                             icon = "fa-solid fa-circle-info",
                             header = getVehBrand():upper() .. ' ' .. getVehName():upper() .. ' - $' .. getVehPrice(),
                         },
-                        {
+                        --[[{
                             header = Lang:t('menus.test_header'),
                             txt = Lang:t('menus.freeuse_test_txt'),
                             icon = "fa-solid fa-car-on",
                             params = {
                                 event = 'qb-vehicleshop:client:TestDrive',
                             }
-                        },
+                        },]]
                         {
                             header = Lang:t('menus.freeuse_buy_header'),
                             txt = Lang:t('menus.freeuse_buy_txt'),
