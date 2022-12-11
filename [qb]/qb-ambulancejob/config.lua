@@ -213,18 +213,18 @@ Config.ForceInjuryWeapons = { -- Define which weapons will always cause injuries
 }
 
 Config.CriticalAreas = { -- Define body areas that will always cause bleeding if wearing armor or not
-    ['UPPER_BODY'] = { armored = false },
-    ['LOWER_BODY'] = { armored = true },
-    ['SPINE'] = { armored = true },
+    --['UPPER_BODY'] = { armored = false },
+    --['LOWER_BODY'] = { armored = true },
+    --['SPINE'] = { armored = true },
 }
 
 Config.StaggerAreas = { -- Define body areas that will always cause staggering if wearing armor or not
     ['SPINE'] = { armored = true, major = 60, minor = 30 },
     ['UPPER_BODY'] = { armored = false, major = 60, minor = 30 },
-    ['LLEG'] = { armored = true, major = 100, minor = 85 },
-    ['RLEG'] = { armored = true, major = 100, minor = 85 },
-    ['LFOOT'] = { armored = true, major = 100, minor = 100 },
-    ['RFOOT'] = { armored = true, major = 100, minor = 100 },
+    --['LLEG'] = { armored = true, major = 100, minor = 85 },
+    --['RLEG'] = { armored = true, major = 100, minor = 85 },
+    --['LFOOT'] = { armored = true, major = 100, minor = 100 },
+    --['RFOOT'] = { armored = true, major = 100, minor = 100 },
 }
 
 Config.WoundStates = { -- Translate wound alerts
@@ -301,10 +301,10 @@ Config.Bones = { -- Correspond bone hash numbers to their label
     [64097] = 'RFINGER',
     [64112] = 'RFINGER',
     [64113] = 'RFINGER',
-    [36864] = 'RLEG',
-    [51826] = 'RLEG',
-    [20781] = 'RFOOT',
-    [52301] = 'RFOOT',
+    --[36864] = 'RLEG',
+    --[51826] = 'RLEG',
+    --[20781] = 'RFOOT',
+    --[52301] = 'RFOOT',
 }
 
 Config.BoneIndexes = { -- Correspond bone labels to their hash number
@@ -361,9 +361,9 @@ Config.BoneIndexes = { -- Correspond bone labels to their hash number
     -- ['RFINGER'] = 64112,
     ['RFINGER'] = 64113,
     -- ['RLEG'] = 36864,
-    ['RLEG'] = 51826,
+    --['RLEG'] = 51826,
     -- ['RFOOT'] = 20781,
-    ['RFOOT'] = 52301,
+    --['RFOOT'] = 52301,
 }
 
 Config.Weapons = { -- Correspond weapon names to their class number
