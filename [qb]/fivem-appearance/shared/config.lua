@@ -14,7 +14,7 @@ Config.EnablePedsForShops = true
 Config.EnablePedsForClothingRooms = true
 Config.EnablePedsForPlayerOutfitRooms = true
 
-Config.EnablePedMenu = true
+Config.EnablePedMenu = false
 Config.PedMenuGroup = "admin"
 
 Config.NewCharacterSections = {
@@ -87,7 +87,7 @@ Config.Blips = {
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
-        Show = true,
+        Show = false,
         Sprite = 102,
         Color = 4,
         Scale = 0.7,
@@ -117,13 +117,13 @@ Config.TargetConfig = {
         label = "Open Tattoo Shop",
         distance = 3
     },
-    ["surgeon"] = {
+    --[[["surgeon"] = {
         model = "s_m_m_doctor_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-scalpel",
         label = "Open Surgeon",
         distance = 3
-    },
+    },]]
     ["clothingroom"] = {
         model = "mp_g_m_pros_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
