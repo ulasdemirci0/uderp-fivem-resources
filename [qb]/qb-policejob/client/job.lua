@@ -1058,7 +1058,7 @@ CreateThread(function()
     local garageZones = {}
     for _, v in pairs(Config.Locations["vehicle"]) do
         garageZones[#garageZones+1] = BoxZone:Create(
-            vector3(v.x, v.y, v.z), 3, 3, {
+            vector3(v.x, v.y, v.z), 10, 10, {
             name="box_zone",
             debugPoly = false,
             minZ = v.z - 1,
