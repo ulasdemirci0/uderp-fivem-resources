@@ -55,15 +55,15 @@ Vehicle Classes:
 Config = Config or {}
 
 Config.Locations = {
-    ['Innocence'] = {
+    ['mechanic1'] = {
         settings = {
-            label = 'Bennys Motorworks',
-            welcomeLabel = "Welcome to Benny's Motorworks!",
+            label = 'Mekanik',
+            welcomeLabel = "Mekaniğimize Hoş Geldiniz!",
             enabled = true,
         },
         blip = {
-            label = 'Bennys Motorworks',
-            coords = vector3(-205.6992, -1312.7377, 31.1588),
+            label = 'Mekanik',
+            coords = vector3(-363.96, -132.13, 38.27),
             sprite = 72,
             scale = 0.65,
             color = 0,
