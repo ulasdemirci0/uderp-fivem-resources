@@ -2,17 +2,17 @@ Config = {}
 
 Config.MinZOffset = 45
 
-Config.MinimumHouseRobberyPolice = 2
+Config.MinimumHouseRobberyPolice = 5
 
-Config.MinimumTime = 5
-Config.MaximumTime = 22
+Config.MinimumTime = 22
+Config.MaximumTime = 6
 
 Config.Rewards = {
     [1] = {
-        ["cabin"] = {"plastic", "diamond_ring", "goldchain", "weed_skunk", "thermite", "cryptostick", "weapon_golfclub"},
+        ["cabin"] = {"plastic", "diamond_ring", "goldchain", "weapon_golfclub"},
         ["kitchen"] = {"tosti", "sandwich", "goldchain"},
-        ["chest"] = {"plastic", "rolex", "diamond_ring", "goldchain", "weed_skunk", "thermite", "cryptostick", "weapon_combatpistol"},
-        ["livingroom"] = {"plastic", "rolex", "diamond_ring", "goldchain", "thermite", "cryptostick", "tablet", "pistol_ammo"}
+        ["chest"] = {"plastic", "rolex", "diamond_ring", "goldchain", "weed_skunk"},
+        ["livingroom"] = {"plastic", "rolex", "diamond_ring", "goldchain", "tablet", "pistol_ammo"}
     }
 }
 

@@ -1,7 +1,7 @@
 Config = Config or {}
 
 Config.WhitelistedCreators = {
-    "PUTCID",
+    "LLG29051",
 }
 
 Config.RaceSetupAllowed = true
