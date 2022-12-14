@@ -224,7 +224,7 @@ RegisterNetEvent('dispatch:clNotify', function(sNotificationData, sNotificationI
 						update = "newCall",
 						callID = sNotificationId,
 						data = sNotificationData,
-						timer = 5000,
+						timer = 2500,
 						isPolice = IsPoliceJob(PlayerJob.name)
 					})
 				end
