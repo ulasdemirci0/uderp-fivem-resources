@@ -9,9 +9,9 @@ Config.HudSettingsCommand = 'hud' -- Command for open hud settings
 Config.DisplayMapOnWalk = false -- true - Show map when walking | false - Hide map when walking
 Config.DisplayRealTime = false -- if you set this to true will show the real time according to player local time | if false it will show the game time
 Config.EnableSpamNotification = true -- Spam preventation for seatbelt, cruise etc.
-Config.EnableDateDisplay = false -- Determines if display date or nor
+Config.EnableDateDisplay = true -- Determines if display date or nor
 Config.DefaultMap = "rectangle" -- rectangle, radial
-Config.DefaultSpeedometerSize = 0.7 -- 0.5 - 1.3
+Config.DefaultSpeedometerSize = 1.0 -- 0.5 - 1.3
 Config.DefaultHudSize = 1.0 -- 0.5 - 1.3
 Config.EnableAmmoHud = true -- Determines if display ammo hud or nor
 Config.DefaultRefreshRate = 200 -- Refresh rate for vehicle hud
@@ -66,13 +66,13 @@ Config.DefaultHudColors = {
 
 
 -------------------------------------------- Watermark hud --------------------------------------------
-Config.DisableWaterMarkTextAndLogo = false -- true - Disable watermark text and logo
+Config.DisableWaterMarkTextAndLogo = true -- true - Disable watermark text and logo 
 Config.UseWaterMarkText = false -- if true text will be shown | if  false logo will be shown
-Config.WaterMarkText1 = "Adriatic" -- Top right server text
-Config.WaterMarkText2 = "RP"  -- Top right server text
-Config.WaterMarkLogo = "https://cdn.discordapp.com/attachments/908301129857785856/999095184400863362/logoindustrynobg.png?" -- Logo url
-Config.LogoWidth = "0px"
-Config.LogoHeight = "0px"
+Config.WaterMarkText1 = "" -- Top right server text
+Config.WaterMarkText2 = ""  -- Top right server text
+Config.WaterMarkLogo = "" -- Logo url
+Config.LogoWidth = "0"
+Config.LogoHeight = "0"
 Config.EnableId = true -- Determines if display server id or nor
 Config.EnableWatermarkCash = true -- Determines if display cash or nor
 Config.EnableWatermarkBankMoney = true -- Determines if display bank money or nor
@@ -90,15 +90,15 @@ Config.Text2Style = {
 }
 
 -------------------------------------------- Keys --------------------------------------------
-Config.DefaultCruiseControlKey = "K" -- Default control key for cruise. Players can change the key according to their desire 
+Config.DefaultCruiseControlKey = "Y" -- Default control key for cruise. Players can change the key according to their desire 
 Config.DefaultSeatbeltControlKey = "B" -- Default control key for seatbelt. Players can change the key according to their desire 
-Config.VehicleEngineToggleKey = "M" -- Default control key for toggle engine. Players can change the key according to their desire 
+Config.VehicleEngineToggleKey = "G" -- Default control key for toggle engine. Players can change the key according to their desire 
 Config.NitroKey = "SHIFT" -- Default control key for use nitro. Players can change the key according to their desire 
 
 -------------------------------------------- Nitro --------------------------------------------
 Config.RemoveNitroOnpress = 2 -- Determines of how much you want to remove nitro when player press nitro key
 Config.NitroItem = "nitro" -- item to install nitro to a vehicle
-Config.EnableNitro = true -- Determines if nitro system is enabled or not
+Config.EnableNitro = false -- Determines if nitro system is enabled or not
 Config.NitroForce = 50.0 -- Nitro force when player using nitro
 
 -------------------------------------------- Money commands --------------------------------------------
@@ -115,51 +115,51 @@ Config.EnableSeatbelt = true -- Determines if seatbelt is active
 
 -------------------------------------------- Settings text --------------------------------------------
 Config.SettingsLocale = { -- Settings texts
-    ["text_hud_1"] = "TEST",
+    ["text_hud_1"] = "yazi",
     ["text_hud_2"] = "hud",
-    ["classic_hud_1"] = "Klasik",
+    ["classic_hud_1"] = "klasik",
     ["classic_hud_2"] = "hud",
-    ["radial_hud_1"] = "Yuvarlak",
+    ["radial_hud_1"] = "yuvarlak",
     ["radial_hud_2"] = "hud",
-    ["hide_hud"] = "Hud Sakla",
-    ["health"] = "Can",
+    ["hide_hud"] = "Hud'u Gizle",
+    ["health"] = "Sağlık",
     ["armor"] = "Zırh",
     ["thirst"] = "Susuzluk",
     ["stress"] = "Stres",
-    ["oxy"] = "Oksijen",
+    ["oxy"] = "Nefes",
     ["hunger"] = "Açlık",
-    ["show_hud"] = "Hud Göster",
-    ["stamina"] = "Dayanıklılık",
+    ["show_hud"] = "Hud'u Göster",
+    ["stamina"] = "Stamina",
     ["nitro"] = "Nitro",
-    ["Altitude"] = "Yükseklik",
+    ["Altitude"] = "Rakım",
     ["Parachute"] = "Paraşüt",
-    ["enable_cinematicmode"] = "Sinematik Mod Aç",
-    ["disable_cinematicmode"] = "Sinematik Mod Kapat",
-    ["exit_settings_1"] = "ESC",
-    ["exit_settings_2"] = "Çıkış",
-    ["speedometer"] = "Hız Kadranı",
-    ["map"] = "Harita",
-    ["show_compass"] = "Pusula Aç",
-    ["hide_compass"] = "Pusula Kapat",
+    ["enable_cinematicmode"] = "Sinematik'i Etkinleştir",
+    ["disable_cinematicmode"] = "Sinematiği Devre Dışı Bırak",
+    ["exit_settings_1"] = "CIKIS YAP",
+    ["exit_settings_2"] = "AYARLAR",
+    ["speedometer"] = "HIZ",
+    ["map"] = "HARITA",
+    ["show_compass"] = "Saati/Tarihi Göster",
+    ["hide_compass"] = "Saati/Tarihi Gizle",
     ["rectangle"] = "Kare",
     ["radial"] = "Yuvarlak",
-    ["dynamic"] = "Dinamik",
-    ["status"] = "Durum",
-    ["enable"] = "Aktifleştir",
-    ["hud_size"] = "Hud Boyutu",
-    ["disable"] = "Kapat",
-    ["hide_at"] = "Sakla",
-    ["and_above"] = "ve yukarıda",
-    ["enable_edit_mode"] = "Hud Yerleştir (Tek)",
-    ["enable_edit_mode_2"] = "Hud Yerleştir (Çoklu)",
-    ["change_status_size"] = "Hud Boyutu Değiştir",
-    ["change_color"] = "Renk Ayarları",
-    ["disable_edit_mode"] = "Düzenleyiciden Çık",
-    ["reset_hud_positions"] = "Hud Sıfırla",
-    ["info_text"] = "Lütfen yenileme hızının FPS kaybı yaşatacağını unutmayın",
-    ["speedometer_size"] = "Kadran Boyutu",
+    ["dynamic"] = "dinamik",
+    ["status"] = "DURUM",
+    ["enable"] = "Etkinleştir",
+    ["hud_size"] = "Arayüz Boyutu",
+    ["disable"] = "Devre Dışı Bırak",
+    ["hide_at"] = "Gizle",
+    ["and_above"] = "Yukarıda",
+    ["enable_edit_mode"] = "HUD'u Hareket Ettir (Tek Simge)",
+    ["enable_edit_mode_2"] = "HUD'u Hareket Ettir (Blok)",
+    ["change_status_size"] = "HUD Boyutunu Değiştirin",
+    ["change_color"] = "HUD Rengini Değiştir",
+    ["disable_edit_mode"] = "Düzenleme Modunu Devre Dışı Bırak",
+    ["reset_hud_positions"] = "HUD Pozisyonunu Sıfırla",
+    ["info_text"] = "Yenileme hızını artırmanın oyun performansını azaltabileceğini unutmayın.!",
+    ["speedometer_size"] = "Gösterge Boyutu",
     ["refresh_rate"] = "Yenileme Hızı",
-    ["esc_to_exit"] = "DÜZENLEME MODUNDAN ÇIKMAK İÇİN ESC BASIN"
+    ["esc_to_exit"] = "DUZENLEME MODUNDAN CIKMAK ICIN ESC"
 }
 
 -------------------------------------------- Fuel --------------------------------------------
@@ -181,9 +181,9 @@ Config.StressWhitelistJobs = { -- Add here jobs you want to disable stress
 }
 
 Config.WhitelistedWeaponStress = {
-    'weapon_petrolcan',
-    'weapon_hazardcan',
-    'weapon_fireextinguisher'
+    `weapon_petrolcan`,
+    `weapon_hazardcan`,
+    `weapon_fireextinguisher`
 }
 
 Config.AddStress = {
@@ -232,68 +232,68 @@ Config.RemoveStress = { -- You can set here amounts by your desire
 
 Config.Notifications = { -- Notifications
     ["stress_gained"] = {
-        message = 'Getting Stressed',
+        message = 'Stres Olmaya Başladın',
         type = "error",
         time = 5000
     },
     ["stress_relive"] = {
-        message =  'You Are Relaxing',
+        message =  'Sakinleşiyorsun',
         type = "success",
         time = 5000
     },
     ["took_off_seatbelt"] = {
         type = "error",
-        message = "Kemer çıkartıldı.",
+        message = "Kemeri Çıkardın.",
         time = 5000
     },
     ["took_seatbelt"] = {
         type = "success",
-        message = "Kemer takıldı.",
+        message = "Kemeri Taktınız.",
         time = 5000
     },
     ["cruise_actived"] = {
         type = "success",
-        message = "Hız sınırı aktif edildi.",
+        message = "Hız Sabitleyici Açıldı.",
         time = 5000
     },
     ["cruise_disabled"] = {
         type = "error",
-        message = "Hız sınırı kapatıldı.",
+        message = "Hız Sabitleyici Kapandı.",
         time = 5000
     },
     ["spam"] = {
         type = "error",
-        message = "Aspetta qualche secondo.",
+        message = "Birkaç Saniye Bekleyin.",
         time = 5000
     },
     ["engine_on"] = {
         type = "success",
-        message = "Motor çalıştırıldı.",
+        message = "Motor Çalıştı.",
         time = 5000
     }, 
     ["engine_off"] = {
         type = "success",
-        message = "Motor durduruldu.",
+        message = "Motor Durdu.",
         time = 5000
     }, 
     ["cant_install_nitro"] = {
         type = "error",
-        message = "Nitro takılamıyor.",
+        message = "Nitro'yu aracın içinden kullanamazsın.",
         time = 5000
     }, 
     ["no_veh_nearby"] = {
         type = "error",
-        message = "Yakında araç bulunamadı.",
+        message = "Yakınlarda araç yok.",
         time = 5000
     }, 
     ["cash_display"] = {
         type = "success",
-        message = "Nakit $%s taşıyorsun.",
+        message = "Cebinde $%s paran var.",
         time = 5000
     }, 
     ["bank_display"] = {
         type = "success",
-        message = "Banka hesabında $%s var",
+        message = "Bankanda $%s paran var.",
         time = 5000
     }, 
 }
