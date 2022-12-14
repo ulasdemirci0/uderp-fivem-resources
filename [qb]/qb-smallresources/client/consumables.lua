@@ -20,8 +20,13 @@ end
 local function EquipParachuteAnim()
     loadAnimDict("clothingshirt")
     TaskPlayAnim(PlayerPedId(), "clothingshirt", "try_shirt_positive_d", 8.0, 1.0, -1, 49, 0, false, false, false)
+    
 end
 
+local function EquipArmorAnim()
+    loadAnimDict("clothingtie")
+    TaskPlayAnim(PlayerPedId(), "clothingtie", "try_tie_negative_c", 8.0, 1.0, -1, 49, 0, false, false, false)
+end
 local function HealOxy()
     if not healing then
         healing = true
@@ -380,6 +385,7 @@ end)
 
 RegisterNetEvent('consumables:client:UseArmor', function()
     if GetPedArmour(PlayerPedId()) >= 75 then QBCore.Functions.Notify('You already have enough armor on!', 'error') return end
+    EquipArmorAnim()
     QBCore.Functions.Progressbar("use_armor", "Putting on the body armour..", 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
@@ -397,13 +403,14 @@ RegisterNetEvent('consumables:client:UseHeavyArmor', function()
     if GetPedArmour(PlayerPedId()) == 100 then QBCore.Functions.Notify('You already have enough armor on!', 'error') return end
     local ped = PlayerPedId()
     local PlayerData = QBCore.Functions.GetPlayerData()
+     EquipArmorAnim()
     QBCore.Functions.Progressbar("use_heavyarmor", "Putting on body armour..", 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
 		disableMouse = false,
 		disableCombat = true,
     }, {}, {}, {}, function() -- Done
-        if PlayerData.charinfo.gender == 0 then
+        --[[ if PlayerData.charinfo.gender == 0 then
             currentVest = GetPedDrawableVariation(ped, 9)
             currentVestTexture = GetPedTextureVariation(ped, 9)
             if GetPedDrawableVariation(ped, 9) == 7 then
@@ -415,7 +422,7 @@ RegisterNetEvent('consumables:client:UseHeavyArmor', function()
             currentVest = GetPedDrawableVariation(ped, 30)
             currentVestTexture = GetPedTextureVariation(ped, 30)
             SetPedComponentVariation(ped, 9, 30, 0, 2)
-        end
+        end ]]
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["heavyarmor"], "remove")
         TriggerServerEvent("consumables:server:useHeavyArmor")
         SetPedArmour(ped, 100)
