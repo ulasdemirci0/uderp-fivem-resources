@@ -262,7 +262,7 @@ Config.Products = {
         },
         [6] = {
             name = "cleaningkit",
-            price = 150,
+            price = 25,
             amount = 5,
             info = {},
             type = "item",
