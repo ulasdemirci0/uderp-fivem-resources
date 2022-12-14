@@ -100,7 +100,6 @@ local weapons = {
     'WEAPON_GLOCK18C',
     'WEAPON_GLOCK22',
     'WEAPON_AKS74',
-    'WEAPON_AK74',
 }
 
 -- Wheapons that require the Police holster animation
