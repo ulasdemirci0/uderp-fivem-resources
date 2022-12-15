@@ -18,13 +18,13 @@ Config.EnablePedMenu = false
 Config.PedMenuGroup = "admin"
 
 Config.NewCharacterSections = {
-    Ped = true,
+    Ped = false,
     HeadBlend = true,
     FaceFeatures = true,
     HeadOverlays = true,
     Components = true,
     Props = true,
-    Tattoos = true
+    Tattoos = false
 }
 
 Config.GenderBasedOnPed = true
@@ -36,7 +36,7 @@ Config.OnDutyOnlyClothingRooms = false -- Set to `true` to make the clothing roo
 
 Config.BossManagedOutfits = false -- Allows Job / Gang bosses to manage their own job / gang outfits
 
-Config.ReloadSkinCooldown = 5000
+Config.ReloadSkinCooldown = 500
 
 -- ACE Permissions Config
 Config.EnableACEPermissions = false
@@ -70,28 +70,28 @@ Config.Blips = {
         Sprite = 366,
         Color = 47,
         Scale = 0.7,
-        Name = "Clothing Store",
+        Name = "Kıyafet Mağazası",
     },
     ["barber"] = {
         Show = true,
         Sprite = 71,
         Color = 0,
         Scale = 0.7,
-        Name = "Barber",
+        Name = "Kuaför",
     },
     ["tattoo"] = {
         Show = true,
         Sprite = 75,
         Color = 4,
         Scale = 0.7,
-        Name = "Tattoo Shop",
+        Name = "Dövme Stilisti",
     },
     ["surgeon"] = {
         Show = false,
         Sprite = 102,
         Color = 4,
         Scale = 0.7,
-        Name = "Plastic Surgeon",
+        Name = "Estetik Merkezi",
     }
 }
 
@@ -100,21 +100,21 @@ Config.TargetConfig = {
         model = "s_f_m_shop_high",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-tshirt",
-        label = "Open Clothing Store",
+        label = "Kıyafet Mağazasını Aç",
         distance = 3
     },
     ["barber"] = {
         model = "s_m_m_hairdress_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-scissors",
-        label = "Open Barber Shop",
+        label = "Saç Kataloğunu Aç",
         distance = 3
     },
     ["tattoo"] = {
         model = "u_m_y_tattoo_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-pen",
-        label = "Open Tattoo Shop",
+        label = "Dövme Kataloğunu Aç",
         distance = 3
     },
     --[[["surgeon"] = {
@@ -128,14 +128,14 @@ Config.TargetConfig = {
         model = "mp_g_m_pros_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-sign-in-alt",
-        label = "Open Job / Gang Clothes Menu",
+        label = "İş / Çete Kıyafetleri",
         distance = 3
     },
     ["playeroutfitroom"] = {
         model = "mp_g_m_pros_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-sign-in-alt",
-        label = "Open Outfits Menu",
+        label = "Kayıtlı Kıyafetler",
         distance = 3
     },
 }
@@ -639,7 +639,7 @@ Config.PlayerOutfitRooms = {
                 "BHH65156",
             }
         },
-        ]]--
+        ]] --
 }
 
 Config.Outfits = {
