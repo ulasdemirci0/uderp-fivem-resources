@@ -14,18 +14,6 @@ HideWhenCantCraft = false, -- Instead of lowering the opacity it hides the item 
 
 Categories = {
 
-['misc'] = {
-	Label = 'MISC',
-	Image = 'fishingrod',
-	Jobs = {}
-},
-['medical'] = {
-	Label = 'MEDICAL',
-	Image = 'bandage',
-	Jobs = {doctor, ambulance}
-}
-},
-
 MechCategories = {
 ['mechanic'] = {
 	Label = 'MECHANICS',
@@ -35,64 +23,52 @@ MechCategories = {
 },
 
 GunCategories = {
-['weapons'] = {
-	Label = 'WEAPONS',
-	Image = 'WEAPON_APPISTOL',
+['closerange'] = {
+	Label = 'Yakın dövüş silahları',
+	Image = 'weapon_knife',
 	Jobs = {}
 },
+['pistol'] = {
+	Label = 'Tabanca',
+	Image = 'weapon_pistol',
+	Jobs = {}
+}
+['smg'] = {
+	Label = 'Hafif makinalı',
+	Image = 'weapon_smg',
+	Jobs = {}
+}
+['rifle'] = {
+	Label = 'Ağır makinalı',
+	Image = 'weapon_smg',
+	Jobs = {}
+}
 ['attachments'] = {
-	Label = 'ATTACHMENTS',
+	Label = 'Eklentiler',
 	Image = 'smg_scope',
+	Jobs = {}
+}
+['components'] = {
+	Label = 'Parçalar',
+	Image = 'screwdriverset',
+	Jobs = {}
+}
+['ammo'] = {
+	Label = 'Mermi',
+	Image = 'weapon_smg',
 	Jobs = {}
 }
 },
 
 
-PermanentItems = { -- Items that dont get removed when crafting
-	['wrench'] = true
-},
-
 Recipes = { -- Enter Item name and then the speed value! The higher the value the more torque
 
-['bandage'] = {
-	ItemName = 'bandage',
-	Level = 0, -- From what level this item will be craftable
-	Category = 'medical', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {'ambulance'}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 2, -- The amount that will be crafted
-	SuccessRate = 100, -- 100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 10, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-		['clothe'] = 2, -- item name and count, adding items that dont exist in database will crash the script
-		['wood'] = 1,
-	}
-}, 
+-- Close Range
 
-['fishingrod'] = {
-	ItemName = 'fishingrod',
+['weapon_bottle'] = {
+	ItemName = 'Kırık Şişe',
 	Level = 0, -- From what level this item will be craftable
-	Category = 'misc', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 3, -- The amount that will be crafted
-	SuccessRate = 90, -- 90% That the craft will succeed! If it does not you will lose your ingredients
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-		['wood'] = 3 -- item name and count, adding items that dont exist in database will crash the script
-	}
-},
-
--- // ATTACHMENTS Craft stuff
-
-['pistol_extendedclip'] = {
-	ItemName = 'Pistol Extended Clip',
-	Level = 0, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
+	Category = 'closerange', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
@@ -101,15 +77,13 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
 	Time = 20, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
-		["metalscrap"] = 50,
-		["steel"] = 45,
-		["rubber"] = 5
+		["glass"] = 100,
 	}
 },
-['pistol_suppressor'] = {
-	ItemName = 'Pistol Suppressor',
-	Level = 1, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
+['weapon_knuckle'] = {
+	ItemName = 'Muşta',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
@@ -118,15 +92,15 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
 	Time = 20, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
-		["metalscrap"] = 95,
-		["steel"] = 120,
-		["rubber"] = 25
+		["iron"] = 60,
+		["steel"] = 20,
+		["metalscrap"] = 20,
 	}
 },
-['weapon_pistol'] = {
-	ItemName = 'Colt 1911',
-	Level = 3, -- From what level this item will be craftable
-	Category = 'weapons', -- The category item will be put in
+['weapon_bat'] = {
+	ItemName = 'Beyzbol sopası',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
@@ -134,24 +108,164 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 	SuccessRate = 100, --  100% you will recieve the item
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
 	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+
+['weapon_hammer'] = {
+	ItemName = 'Çekiç',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+['weapon_crowbar'] = {
+	ItemName = 'Levye',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+['weapon_pipewrench'] = {
+	ItemName = 'İngiliz Anahtarı',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+['weapon_knife'] = {
+	ItemName = 'Bıçak',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+['weapon_dagger'] = {
+	ItemName = 'Hançer',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+
+['weapon_hatchet'] = {
+	ItemName = 'Balta',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+['weapon_switchblade'] = {
+	ItemName = 'Sustalı',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+
+['weapon_machete'] = {
+	ItemName = 'Pala',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'closerange', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 20, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["iron"] = 100,
+	}
+},
+
+-- Pistol
+
+['weapon_fnx45'] = {
+	ItemName = 'FN FNX-45',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'pistol', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 300, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
 		["metalscrap"] = 35,
 		["steel"] = 100,
 		["iron"] = 85,
-	
 	}
 },
-['weapon_revolver_mk2'] = {
-	ItemName = 'Revolver MK2',
-	Level = 3, -- From what level this item will be craftable
-	Category = 'weapons', -- The category item will be put in
+['weapon_ceramicpistol'] = {
+	ItemName = 'Seramik Pistol',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'pistol', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
 	Amount = 1, -- The amount that will be crafted
 	SuccessRate = 100, --  100% you will recieve the item
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
+	Time = 300, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
 		["metalscrap"] = 50,
 		["steel"] = 125,
@@ -159,17 +273,68 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 	
 	}
 },
-['weapon_microsmg'] = {
-	ItemName = 'Micro SMG',
-	Level = 3, -- From what level this item will be craftable
-	Category = 'weapons', -- The category item will be put in
+['weapon_combatpistol'] = {
+	ItemName = 'Combat Pistol',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'pistol', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
 	Amount = 1, -- The amount that will be crafted
 	SuccessRate = 100, --  100% you will recieve the item
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
+	Time = 300, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["metalscrap"] = 35,
+		["steel"] = 100,
+		["iron"] = 85,
+	}
+},
+['weapon_gadgetpistol'] = {
+	ItemName = 'Perico Pistol',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'pistol', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 300, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["metalscrap"] = 35,
+		["steel"] = 100,
+		["iron"] = 85,
+	}
+},
+['weapon_doubleaction'] = {
+	ItemName = 'Double-Action Revolver',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'pistol', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 300, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+		["metalscrap"] = 35,
+		["steel"] = 100,
+		["iron"] = 85,
+	}
+},
+['weapon_pistol50'] = {
+	ItemName = 'Pistol .50',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'pistol', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 300, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
 		["metalscrap"] = 50,
 		["steel"] = 125,
@@ -177,111 +342,49 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 	
 	}
 },
-['smg_extendedclip'] = {
-	ItemName = 'SMG Extended Clip',
-	Level = 2, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
+
+-- SMG(SMALL MACHİNE GUN)
+
+['weapon_mac10'] = {
+	ItemName = 'Mac-10',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'smg', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
 	Amount = 1, -- The amount that will be crafted
 	SuccessRate = 100, --  100% you will recieve the item
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
+	Time = 600, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
-			["steel"] = 25,
-		["aluminum"] = 70,
-		["plastic"] = 80
+		["metalscrap"] = 35,
+		["steel"] = 100,
+		["iron"] = 85,
 	}
 },
-['rifle_extendedclip'] = {
-	ItemName = 'Rifle Extended Clip',
-	Level = 4, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
+['weapon_gusenberg'] = {
+	ItemName = 'Mac-10',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'smg', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
 	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
 	Amount = 1, -- The amount that will be crafted
 	SuccessRate = 100, --  100% you will recieve the item
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
+	Time = 600, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
-		["steel"] = 25,
-		["aluminum"] = 70,
-		["plastic"] = 80
+		["metalscrap"] = 35,
+		["steel"] = 100,
+		["iron"] = 85,
 	}
 },
-['rifle_drummag'] = {
-	ItemName = 'Rifle Drummag',
-	Level = 5, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 1, -- The amount that will be crafted
-	SuccessRate = 100, --  100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-		["steel"] = 25,
-		["aluminum"] = 70,
-		["plastic"] = 80
-	}
-},
-['smg_flashlight'] = {
-	ItemName = 'SMG Flashlight',
-	Level = 6, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 1, -- The amount that will be crafted
-	SuccessRate = 100, --  100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-	    ["steel"] = 25,
-		["aluminum"] = 70,
-		["plastic"] = 80
-	}
-},
-['smg_suppressor'] = {
-	ItemName = 'SMG Suppressor',
-	Level = 7, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 1, -- The amount that will be crafted
-	SuccessRate = 100, --  100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-	["steel"] = 25,
-	["aluminum"] = 70,
-	["plastic"] = 80
-	}
-},
-['smg_scope'] = {
-	ItemName = 'SMG Scope',
-	Level = 8, -- From what level this item will be craftable
-	Category = 'attachments', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 1, -- The amount that will be crafted
-	SuccessRate = 100, --  100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-	["steel"] = 25,
-	["aluminum"] = 70,
-	["plastic"] = 80
-	}
-},
-['weapon_compactrifle'] = {
-	ItemName = 'Compact Rifle',
-	Level = 10, -- From what level this item will be craftable
+
+-- RİFLE(Machine Guns)
+
+['weapon_assaultrifle'] = {
+	ItemName = 'Assault Rifle',
+	Level = 0, -- From what level this item will be craftable
 	Category = 'weapons', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
@@ -289,7 +392,126 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 	Amount = 1, -- The amount that will be crafted
 	SuccessRate = 100, --  100% you will recieve the item
 	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_carbinerifle'] = {
+	ItemName = 'Carbine Rifle',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_advancedrifle'] = {
+	ItemName = 'Advanced Rifle',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_specialcarbine'] = {
+	ItemName = 'HK-G33',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_bullpuprifle'] = {
+	ItemName = 'Famas',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_ak47'] = {
+	ItemName = 'Ak-47',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_scarh'] = {
+	ItemName = 'Scar-H',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
+	Ingredients = { -- Ingredients needed to craft this item
+	["steel"] = 25,
+	["aluminum"] = 70,
+	["plastic"] = 80
+	}
+},
+['weapon_m70'] = {
+	ItemName = 'M70',
+	Level = 0, -- From what level this item will be craftable
+	Category = 'weapons', -- The category item will be put in
+	isGun = false, -- Specify if this is a gun so it will be added to the loadout
+	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
+	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
+	Amount = 1, -- The amount that will be crafted
+	SuccessRate = 100, --  100% you will recieve the item
+	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
+	Time = 950, -- Time in seconds it takes to craft this item
 	Ingredients = { -- Ingredients needed to craft this item
 	["steel"] = 25,
 	["aluminum"] = 70,
@@ -298,44 +520,10 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 },
 
 
-['weapon_pumpshotgun'] = {
-	ItemName = 'Pump Shotgun',
-	Level = 10, -- From what level this item will be craftable
-	Category = 'weapons', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 1, -- The amount that will be crafted
-	SuccessRate = 100, --  100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-		["metalscrap"] = 110,
-		["steel"] = 125,
-		["aluminum"] = 50
-
-	}
-},
-['shotgun_ammo'] = {
-	ItemName = 'Shotgun Ammo',
-	Level = 11, -- From what level this item will be craftable
-	Category = 'weapons', -- The category item will be put in
-	isGun = false, -- Specify if this is a gun so it will be added to the loadout
-	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
-	JobGrades = {}, -- What job grades can craft this item, leaving {} allows any grade
-	Amount = 5, -- The amount that will be crafted
-	SuccessRate = 100, --  100% you will recieve the item
-	requireBlueprint = false, -- Requires a blueprint whitch you need to add in the database yourself TEMPLATE: itemname_blueprint EXAMPLE: bandage_blueprint
-	Time = 20, -- Time in seconds it takes to craft this item
-	Ingredients = { -- Ingredients needed to craft this item
-		["steel"] = 25,
-		["aluminum"] = 70,
-		["plastic"] = 80
-	}
-},
+-
 ['smg_ammo'] = {
 	ItemName = 'SMG Ammo',
-	Level = 11, -- From what level this item will be craftable
+	Level = 0, -- From what level this item will be craftable
 	Category = 'weapons', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
@@ -352,7 +540,7 @@ Recipes = { -- Enter Item name and then the speed value! The higher the value th
 },
 ['rifle_ammo'] = {
 	ItemName = 'Rifle Ammo',
-	Level = 12, -- From what level this item will be craftable
+	Level = 0, -- From what level this item will be craftable
 	Category = 'weapons', -- The category item will be put in
 	isGun = false, -- Specify if this is a gun so it will be added to the loadout
 	Jobs = {}, -- What jobs can craft this item, leaving {} allows any job
@@ -908,8 +1096,10 @@ Workbenches = { -- Every workbench location, leave {} for jobs if you want every
 		
 		{coords = vector3(-196.3735,-1318.485,32.08951), jobs = 'mechanic', Categories = 'MechCategories', blip = false, recipes = {}, radius = 3.0 },       					--bennys 1 
 		{coords = vector3(101.26113891602,6615.810546875,33.58126831054), jobs = 'mechanic', Categories = 'MechCategories', blip = false, recipes = {}, radius = 3.0 },      	--North LS customs
-		{coords = vector3(93.52, 3754.21, 41.57), jobs = {}, Categories = 'GunCategories', blip = false, recipes = {}, radius = 3.0 }, --Gun crafting 1 
-		{coords = vector3(164.9575,-1323.114,26.81208), jobs = {}, Categories = 'GunCategories', blip = false, recipes = {}, radius = 3.0} --Gun crafting 2 
+		{coords = vector3(-522.86, 4194.35, 193.73), jobs = {}, Categories = 'GunCategories', blip = false, recipes = {}, radius = 3.0 }, --Gun crafting 1 
+		{coords = vector3(93.65, 3754.39, 40.77), jobs = {}, Categories = 'GunCategories', blip = false, recipes = {}, radius = 3.0} --Gun crafting 2 
+		{coords = vector3(-2079.94, 2609.28, 3.08), jobs = {}, Categories = 'GunCategories', blip = false, recipes = {}, radius = 3.0 }, --Gun crafting 3 
+		{coords = vector3(-441.1, 1595.31, 358.47), jobs = {}, Categories = 'GunCategories', blip = false, recipes = {}, radius = 3.0 }, --Gun crafting 4 
 
 },
  
