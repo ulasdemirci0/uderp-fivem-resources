@@ -1,276 +1,338 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local PlayerData = {}
-local PlayerGang = {}
-local PlayerJob = {}
+local OutsideVehicles = {}
 
-local Markers = false
-local HouseMarkers = false
-local InputIn = false
-local InputOut = false
-local currentGarage = nil
-local currentGarageIndex = nil
-local garageZones = {}
-local lasthouse = nil
-local blipsZonesLoaded = false
+QBCore.Functions.CreateCallback("qb-garage:server:GetGarageVehicles", function(source, cb, garage, type, category)
+    local src = source
+    local pData = QBCore.Functions.GetPlayer(src)
+    if type == "public" then --Public garages give player cars in the garage only
+        MySQL.query('SELECT * FROM player_vehicles WHERE citizenid = ? AND garage = ? AND state = ?',
+            { pData.PlayerData.citizenid, garage, 1 }, function(result)
+            if result[1] then
+                cb(result)
+            else
+                cb(nil)
+            end
+        end)
+    elseif type == "depot" then --Depot give player cars that are not in garage only
+        MySQL.query('SELECT * FROM player_vehicles WHERE citizenid = ? AND (state = ?)', { pData.PlayerData.citizenid, 0 }
+            , function(result)
+            local tosend = {}
+            if result[1] then
+                --Check vehicle type against depot type
+                for _, vehicle in pairs(result) do
+                    if not OutsideVehicles[vehicle.plate] or not DoesEntityExist(OutsideVehicles[vehicle.plate].entity) then
+                        if category == "air" and
+                            (
+                            QBCore.Shared.Vehicles[vehicle.vehicle].category == "helicopters" or
+                                QBCore.Shared.Vehicles[vehicle.vehicle].category == "planes") then
+                            tosend[#tosend + 1] = vehicle
+                        elseif category == "sea" and QBCore.Shared.Vehicles[vehicle.vehicle].category == "boats" then
+                            tosend[#tosend + 1] = vehicle
+                        elseif category == "car" and QBCore.Shared.Vehicles[vehicle.vehicle].category ~= "helicopters"
+                            and QBCore.Shared.Vehicles[vehicle.vehicle].category ~= "planes" and
+                            QBCore.Shared.Vehicles[vehicle.vehicle].category ~= "boats" then
+                            tosend[#tosend + 1] = vehicle
+                        end
+                    end
+                end
+                cb(tosend)
+            else
+                cb(nil)
+            end
+        end)
+    else --House give all cars in the garage, Job and Gang depend of config
+        local shared = ''
+        if not SharedGarages and type ~= "house" then
+            shared = " AND citizenid = '" .. pData.PlayerData.citizenid .. "'"
+        end
+        MySQL.query('SELECT * FROM player_vehicles WHERE garage = ? AND state = ?' .. shared, { garage, 1 },
+            function(result)
+                if result[1] then
+                    cb(result)
+                else
+                    cb(nil)
+                end
+            end)
+    end
+end)
 
-
---Menus
-local function MenuGarage(type, garage, indexgarage)
-    local header
-    local leave
-    if type == "house" then
-        header = Lang:t("menu.header." .. type .. "_car", { value = garage.label })
-        leave = Lang:t("menu.leave.car")
+QBCore.Functions.CreateCallback("qb-garage:server:validateGarageVehicle", function(source, cb, garage, type, plate)
+    local src = source
+    local pData = QBCore.Functions.GetPlayer(src)
+    if type == "public" then --Public garages give player cars in the garage only
+        MySQL.query('SELECT * FROM player_vehicles WHERE citizenid = ? AND garage = ? AND state = ? AND plate = ?',
+            { pData.PlayerData.citizenid, garage, 1, plate }, function(result)
+            if result[1] then
+                cb(true)
+            else
+                cb(false)
+            end
+        end)
+    elseif type == "depot" then --Depot give player cars that are not in garage only
+        MySQL.query('SELECT * FROM player_vehicles WHERE citizenid = ? AND (state = ? OR state = ?) AND plate = ?',
+            { pData.PlayerData.citizenid, 0, 2, plate }, function(result)
+            if result[1] then
+                cb(true)
+            else
+                cb(false)
+            end
+        end)
     else
-        header = Lang:t("menu.header." .. type .. "_" .. garage.vehicle, { value = garage.label })
-        leave = Lang:t("menu.leave." .. garage.vehicle)
+        local shared = ''
+        if not SharedGarages and type ~= "house" then
+            shared = " AND citizenid = '" .. pData.PlayerData.citizenid .. "'"
+        end
+        MySQL.query('SELECT * FROM player_vehicles WHERE garage = ? AND state = ? AND plate = ?' .. shared,
+            { garage, 1, plate }, function(result)
+            if result[1] then
+                cb(true)
+            else
+                cb(false)
+            end
+        end)
     end
+end)
 
-    exports['qb-menu']:openMenu({
-        {
-            header = header,
-            isMenuHeader = true
-        },
-        {
-            header = Lang:t("menu.header.vehicles"),
-            txt = Lang:t("menu.text.vehicles"),
-            params = {
-                event = "qb-garages:client:VehicleList",
-                args = {
-                    type = type,
-                    garage = garage,
-                    index = indexgarage,
-                }
-            }
-        },
-        {
-            header = leave,
-            txt = "",
-            params = {
-                event = "qb-menu:closeMenu"
-            }
-        },
-    })
-end
-
-local function ClearMenu()
-    TriggerEvent("qb-menu:closeMenu")
-end
-
-local function closeMenuFull()
-    ClearMenu()
-end
-
-local function DestroyZone(type, index)
-    if garageZones[type .. "_" .. index] then
-        garageZones[type .. "_" .. index].zonecombo:destroy()
-        garageZones[type .. "_" .. index].zone:destroy()
+QBCore.Functions.CreateCallback("qb-garage:server:checkOwnership", function(source, cb, plate, type, house, gang)
+    local src = source
+    local pData = QBCore.Functions.GetPlayer(src)
+    if type == "public" then --Public garages only for player cars
+        MySQL.query('SELECT * FROM player_vehicles WHERE plate = ? AND citizenid = ?',
+            { plate, pData.PlayerData.citizenid }, function(result)
+            if result[1] then
+                cb(true)
+            else
+                MySQL.query('SELECT * FROM player_vehicles WHERE fakeplate = ? AND citizenid = ?',
+                    { plate, pData.PlayerData.citizenid }, function(fakeplate)
+                    if fakeplate[1] then
+                        cb(true)
+                    else
+                        cb(false)
+                    end
+                end)
+            end
+        end)
+    elseif type == "house" then --House garages only for player cars that have keys of the house
+        MySQL.query('SELECT * FROM player_vehicles WHERE plate = ?', { plate }, function(result)
+            if result[1] then
+                local hasHouseKey = exports['qb-houses']:hasKey(result[1].license, result[1].citizenid, house)
+                if hasHouseKey then
+                    cb(true)
+                else
+                    MySQL.query('SELECT * FROM player_vehicles WHERE fakeplate = ? AND citizenid = ?',
+                        { plate, pData.PlayerData.citizenid }, function(fakeplate)
+                        if fakeplate[1] then
+                            cb(true)
+                        else
+                            cb(false)
+                        end
+                    end)
+                end
+            else
+                cb(false)
+            end
+        end)
+    elseif type == "gang" then --Gang garages only for gang members cars (for sharing)
+        MySQL.query('SELECT * FROM player_vehicles WHERE plate = ?', { plate }, function(result)
+            if result[1] then
+                --Check if found owner is part of the gang
+                local resultplayer = MySQL.single.await('SELECT * FROM players WHERE citizenid = ?',
+                    { result[1].citizenid })
+                if resultplayer then
+                    local playergang = json.decode(resultplayer.gang)
+                    if playergang.name == gang then
+                        cb(true)
+                    else
+                        cb(false)
+                    end
+                else
+                    cb(false)
+                end
+            else
+                cb(false)
+            end
+        end)
+    else --Job garages only for cars that are owned by someone (for sharing and service) or only by player depending of config
+        local shared = ''
+        if not SharedGarages then
+            shared = " AND citizenid = '" .. pData.PlayerData.citizenid .. "'"
+        end
+        MySQL.query('SELECT * FROM player_vehicles WHERE plate = ?' .. shared, { plate }, function(result)
+            if result[1] then
+                cb(true)
+            else
+                MySQL.query('SELECT * FROM player_vehicles WHERE fakeplate = ?', { plate }, function(fakeplate)
+                    if fakeplate[1] then
+                        cb(true)
+                    else
+                        cb(false)
+                    end
+                end)
+            end
+        end)
     end
-end
+end)
 
-local function CreateZone(type, garage, index)
-    local size
-    local coords
-    local heading
-    local minz
-    local maxz
+QBCore.Functions.CreateCallback('qb-garage:server:spawnvehicle', function(source, cb, vehInfo, coords, warp)
+    local plate = vehInfo.plate
+    local veh = QBCore.Functions.SpawnVehicle(source, vehInfo.vehicle, coords, warp)
+    local hasFakePlate = exports['brazzers-fakeplates']:getFakePlateFromPlate(plate)
+    if hasFakePlate then SetVehicleNumberPlateText(veh, hasFakePlate) else SetVehicleNumberPlateText(veh, plate) end
+    SetEntityHeading(veh, coords.w)
+    local vehProps = {}
+    local result = MySQL.query.await('SELECT mods FROM player_vehicles WHERE plate = ?', { plate })
+    if result[1] then vehProps = json.decode(result[1].mods) end
+    local netId = NetworkGetNetworkIdFromEntity(veh)
+    OutsideVehicles[plate] = { netID = netId, entity = veh }
+    cb(netId, vehProps)
+end)
 
-    if type == 'in' then
-        size = 4
-        coords = vector3(garage.putVehicle.x, garage.putVehicle.y, garage.putVehicle.z)
-        heading = garage.spawnPoint.w
-        minz = coords.z - 1.0
-        maxz = coords.z + 2.0
-    elseif type == 'out' then
-        size = 2
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
-        heading = garage.spawnPoint.w
-        minz = coords.z - 1.0
-        maxz = coords.z + 2.0
-    elseif type == 'marker' then
-        size = 60
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
-        heading = garage.spawnPoint.w
-        minz = coords.z - 7.5
-        maxz = coords.z + 7.0
-    elseif type == 'hmarker' then
-        size = 20
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
-        heading = garage.takeVehicle.w
-        minz = coords.z - 4.0
-        maxz = coords.z + 2.0
-    elseif type == 'house' then
-        size = 2
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
-        heading = garage.takeVehicle.w
-        minz = coords.z - 1.0
-        maxz = coords.z + 2.0
+QBCore.Functions.CreateCallback("qb-garage:server:GetVehicleProperties", function(_, cb, plate)
+    local properties = {}
+    local result = MySQL.query.await('SELECT mods FROM player_vehicles WHERE plate = ?', { plate })
+    if result[1] then
+        properties = json.decode(result[1].mods)
     end
-    garageZones[type .. "_" .. index] = {}
-    garageZones[type .. "_" .. index].zone = BoxZone:Create(
-        coords, size, size, {
-        minZ = minz,
-        maxZ = maxz,
-        name = type,
-        debugPoly = false,
-        heading = heading
-    })
+    cb(properties)
+end)
 
-    garageZones[type .. "_" .. index].zonecombo = ComboZone:Create({ garageZones[type .. "_" .. index].zone },
-        { name = "box" .. type, debugPoly = false })
-    garageZones[type .. "_" .. index].zonecombo:onPlayerInOut(function(isPointInside)
-        if isPointInside then
-            local text
-            if type == "in" then
-                if garage.type == "house" then
-                    text = Lang:t("info.park_e")
-                else
-                    text = Lang:t("info.park_e") .. "<br>" .. garage.label
-                end
-                exports['qb-core']:DrawText(text, 'left')
-                InputIn = true
-            elseif type == "out" then
-                if garage.type == "house" then
-                    text = Lang:t("info.car_e")
-                else
-                    text = Lang:t("info." .. garage.vehicle .. "_e") .. "<br>" .. garage.label
-                end
+QBCore.Functions.CreateCallback("qb-garage:server:IsSpawnOk", function(_, cb, plate, type)
+    if type == "depot" then --If depot, check if vehicle is not already spawned on the map
+        if OutsideVehicles[plate] and DoesEntityExist(OutsideVehicles[plate].entity) then
+            cb(false)
+        else
+            cb(true)
+        end
+    else
+        cb(true)
+    end
+end)
 
-                exports['qb-core']:DrawText(text, 'left')
-                InputOut = true
-            elseif type == "marker" then
-                currentGarage = garage
-                currentGarageIndex = index
-                CreateZone("out", garage, index)
-                if garage.type ~= "depot" then
-                    CreateZone("in", garage, index)
-                    Markers = true
+RegisterNetEvent('qb-garage:server:updateVehicle', function(state, fuel, engine, body, plate, garage, type, gang)
+    QBCore.Functions.TriggerCallback('qb-garage:server:checkOwnership', source, function(owned) --Check ownership
+        if owned then
+            if state == 0 or state == 1 or state == 2 then --Check state value
+                if type ~= "house" then
+                    if Garages[garage] then
+                        local hasFakePlate = exports['brazzers-fakeplates']:isFakePlateOnVehicle(plate)
+                        if hasFakePlate then
+                            --Check if garage is existing
+                            MySQL.update('UPDATE player_vehicles SET state = ?, garage = ?, fuel = ?, engine = ?, body = ? WHERE fakeplate = ?'
+                                , { state, garage, fuel, engine, body, plate })
+                        else
+                            MySQL.update('UPDATE player_vehicles SET state = ?, garage = ?, fuel = ?, engine = ?, body = ? WHERE plate = ?'
+                                , { state, garage, fuel, engine, body, plate })
+                        end
+                    end
                 else
-                    HouseMarkers = true
-                end
-            elseif type == "hmarker" then
-                currentGarage = garage
-                currentGarage.type = "house"
-                currentGarageIndex = index
-                CreateZone("house", garage, index)
-                HouseMarkers = true
-            elseif type == "house" then
-                if IsPedInAnyVehicle(PlayerPedId(), false) then
-                    exports['qb-core']:DrawText(Lang:t("info.park_e"), 'left')
-                    InputIn = true
-                else
-                    exports['qb-core']:DrawText(Lang:t("info.car_e"), 'left')
-                    InputOut = true
+                    if hasFakePlate then
+                        MySQL.update('UPDATE player_vehicles SET state = ?, garage = ?, fuel = ?, engine = ?, body = ? WHERE fakeplate = ?'
+                            , { state, garage, fuel, engine, body, plate })
+                    else
+                        MySQL.update('UPDATE player_vehicles SET state = ?, garage = ?, fuel = ?, engine = ?, body = ? WHERE plate = ?'
+                            , { state, garage, fuel, engine, body, plate })
+                    end
                 end
             end
         else
-            if type == "marker" then
-                if currentGarage == garage then
-                    if garage.type ~= "depot" then
-                        Markers = false
-                    else
-                        HouseMarkers = false
-                    end
-                    DestroyZone("in", index)
-                    DestroyZone("out", index)
-                    currentGarage = nil
-                    currentGarageIndex = nil
+            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.not_owned"), 'error')
+        end
+    end, plate, type, garage, gang)
+end)
+
+RegisterNetEvent('qb-garage:server:updateVehicleState', function(state, plate, garage)
+    local type
+    if Garages[garage] then
+        type = Garages[garage].type
+    else
+        type = "house"
+    end
+
+    QBCore.Functions.TriggerCallback('qb-garage:server:validateGarageVehicle', source,
+        function(owned) --Check ownership
+            if owned then
+                if state == 0 then --Check state value
+                    MySQL.update('UPDATE player_vehicles SET state = ?, depotprice = ? WHERE plate = ?',
+                        { state, 0, plate })
                 end
-            elseif type == "hmarker" then
-                HouseMarkers = false
-                DestroyZone("house", index)
-            elseif type == "house" then
-                exports['qb-core']:HideText()
-                InputIn = false
-                InputOut = false
-            elseif type == "in" then
-                exports['qb-core']:HideText()
-                InputIn = false
-            elseif type == "out" then
-                closeMenuFull()
-                exports['qb-core']:HideText()
-                InputOut = false
+            else
+                TriggerClientEvent('QBCore:Notify', source, Lang:t("error.not_owned"), 'error')
+            end
+        end, garage, type, plate)
+end)
+
+RegisterNetEvent('qb-garages:server:UpdateOutsideVehicle', function(plate, vehicle)
+    local entity = NetworkGetEntityFromNetworkId(vehicle)
+    OutsideVehicles[plate] = { netID = vehicle, entity = entity }
+end)
+
+AddEventHandler('onResourceStart', function(resource)
+    if resource == GetCurrentResourceName() then
+        Wait(100)
+        if AutoRespawn then
+            MySQL.update('UPDATE player_vehicles SET state = 1 WHERE state = 0', {})
+        end
+    end
+end)
+
+RegisterNetEvent('qb-garage:server:PayDepotPrice', function(data)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local cashBalance = Player.PlayerData.money["cash"]
+    local bankBalance = Player.PlayerData.money["bank"]
+
+    local vehicle = data.vehicle
+
+    MySQL.query('SELECT * FROM player_vehicles WHERE plate = ?', { vehicle.plate }, function(result)
+        if result[1] then
+            if cashBalance >= result[1].depotprice then
+                Player.Functions.RemoveMoney("cash", result[1].depotprice, "paid-depot")
+                TriggerClientEvent("qb-garages:client:takeOutGarage", src, data)
+            elseif bankBalance >= result[1].depotprice then
+                Player.Functions.RemoveMoney("bank", result[1].depotprice, "paid-depot")
+                TriggerClientEvent("qb-garages:client:takeOutGarage", src, data)
+            else
+                TriggerClientEvent('QBCore:Notify', src, Lang:t("error.not_enough"), 'error')
             end
         end
     end)
-end
+end)
 
-local function doCarDamage(currentVehicle, veh)
-    local engine = veh.engine + 0.0
-    local body = veh.body + 0.0
 
-    if VisuallyDamageCars then
-        local data = json.decode(veh.mods)
 
-        for k, v in pairs(data.doorStatus) do
-            if v then
-                SetVehicleDoorBroken(currentVehicle, tonumber(k), true)
-            end
-        end
-        for k, v in pairs(data.tireBurstState) do
-            if v then
-                SetVehicleTyreBurst(currentVehicle, tonumber(k), true)
-            end
-        end
-        for k, v in pairs(data.windowStatus) do
-            if not v then
-                SmashVehicleWindow(currentVehicle, tonumber(k))
-            end
-        end
-    end
-    SetVehicleEngineHealth(currentVehicle, engine)
-    SetVehicleBodyHealth(currentVehicle, body)
-end
-
-local function CheckPlayers(vehicle, garage)
-    for i = -1, 5, 1 do
-        local seat = GetPedInVehicleSeat(vehicle, i)
-        if seat then
-            TaskLeaveVehicle(seat, vehicle, 0)
-            if garage then
-                SetEntityCoords(seat, garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
-            end
-        end
-    end
-    SetVehicleDoorsLocked(vehicle)
-    Wait(1500)
-    QBCore.Functions.DeleteVehicle(vehicle)
-end
-
--- Functions
-local function round(num, numDecimalPlaces)
-    return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", num))
-end
-
-RegisterNetEvent("qb-garages:client:VehicleList", function(data)
-    local type = data.type
-    local garage = data.garage
-    local indexgarage = data.index
-    local header
-    local leave
-    if type == "house" then
-        header = Lang:t("menu.header." .. type .. "_car", { value = garage.label })
-        leave = Lang:t("menu.leave.car")
-    else
-        header = Lang:t("menu.header." .. type .. "_" .. garage.vehicle, { value = garage.label })
-        leave = Lang:t("menu.leave." .. garage.vehicle)
-    end
-
-    QBCore.Functions.TriggerCallback("qb-garage:server:GetGarageVehicles", function(result)
-        if result == nil then
-            QBCore.Functions.Notify(Lang:t("error.no_vehicles"), "error", 5000)
+--External Calls
+--Call from qb-vehiclesales
+QBCore.Functions.CreateCallback("qb-garage:server:checkVehicleOwner", function(source, cb, plate)
+    local src = source
+    local pData = QBCore.Functions.GetPlayer(src)
+    MySQL.query('SELECT * FROM player_vehicles WHERE plate = ? AND citizenid = ?', { plate, pData.PlayerData.citizenid }
+        , function(result)
+        if result[1] then
+            cb(true, result[1].balance)
         else
-            local MenuGarageOptions = {
-                {
-                    header = header,
-                    isMenuHeader = true
-                },
-            }
+            cb(false)
+        end
+    end)
+end)
+
+--Call from qb-phone
+QBCore.Functions.CreateCallback('qb-garage:server:GetPlayerVehicles', function(source, cb)
+    local Player = QBCore.Functions.GetPlayer(source)
+    local Vehicles = {}
+
+    MySQL.query('SELECT * FROM player_vehicles WHERE citizenid = ?', { Player.PlayerData.citizenid }, function(result)
+        if result[1] then
             for _, v in pairs(result) do
-                local enginePercent = round(v.engine / 10, 0)
-                local bodyPercent = round(v.body / 10, 0)
-                local currentFuel = v.fuel
-                local vname = QBCore.Shared.Vehicles[v.vehicle].name
+                local VehicleData = QBCore.Shared.Vehicles[v.vehicle]
+
+                local VehicleGarage = Lang:t("error.no_garage")
+                if v.garage ~= nil then
+                    if Garages[v.garage] ~= nil then
+                        VehicleGarage = Garages[v.garage].label
+                    else
+                        VehicleGarage = Lang:t("info.house_garage") -- HouseGarages[v.garage].label
+                    end
+                end
 
                 if v.state == 0 then
                     v.state = Lang:t("status.out")
@@ -279,281 +341,28 @@ RegisterNetEvent("qb-garages:client:VehicleList", function(data)
                 elseif v.state == 2 then
                     v.state = Lang:t("status.impound")
                 end
-                if type == "depot" then
-                    MenuGarageOptions[#MenuGarageOptions + 1] = {
-                        header = Lang:t('menu.header.depot', { value = vname, value2 = v.depotprice }),
-                        txt = Lang:t('menu.text.depot', { value = v.plate, value2 = currentFuel, value3 = enginePercent, value4 = bodyPercent }),
-                        params = {
-                            event = "qb-garages:client:TakeOutDepot",
-                            args = {
-                                vehicle = v,
-                                type = type,
-                                garage = garage,
-                                index = indexgarage,
-                            }
-                        }
-                    }
+
+                local fullname
+                if VehicleData["brand"] ~= nil then
+                    fullname = VehicleData["brand"] .. " " .. VehicleData["name"]
                 else
-                    MenuGarageOptions[#MenuGarageOptions + 1] = {
-                        header = Lang:t('menu.header.garage', { value = vname, value2 = v.plate }),
-                        txt = Lang:t('menu.text.garage', { value = v.state, value2 = currentFuel, value3 = enginePercent, value4 = bodyPercent }),
-                        params = {
-                            event = "qb-garages:client:takeOutGarage",
-                            args = {
-                                vehicle = v,
-                                type = type,
-                                garage = garage,
-                                index = indexgarage,
-                            }
-                        }
-                    }
+                    fullname = VehicleData["name"]
                 end
-            end
-
-            MenuGarageOptions[#MenuGarageOptions + 1] = {
-                header = leave,
-                txt = "",
-                params = {
-                    event = "qb-menu:closeMenu",
+                Vehicles[#Vehicles + 1] = {
+                    fullname = fullname,
+                    brand = VehicleData["brand"],
+                    model = VehicleData["name"],
+                    plate = v.plate,
+                    garage = VehicleGarage,
+                    state = v.state,
+                    fuel = v.fuel,
+                    engine = v.engine,
+                    body = v.body
                 }
-            }
-            exports['qb-menu']:openMenu(MenuGarageOptions)
-        end
-    end, indexgarage, type, garage.vehicle)
-end)
-
-RegisterNetEvent('qb-garages:client:takeOutGarage', function(data)
-    local type = data.type
-    local vehicle = data.vehicle
-    local garage = data.garage
-    local index = data.index
-    QBCore.Functions.TriggerCallback('qb-garage:server:IsSpawnOk', function(spawn)
-        if spawn then
-            local location
-            if type == "house" then
-                if garage.takeVehicle.h then garage.takeVehicle.w = garage.takeVehicle.h end -- backward compatibility
-                location = garage.takeVehicle
-            else
-                location = garage.spawnPoint
             end
-            QBCore.Functions.TriggerCallback('qb-garage:server:spawnvehicle', function(netId, properties)
-                local veh = NetToVeh(netId)
-                QBCore.Functions.SetVehicleProperties(veh, properties)
-                exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
-                doCarDamage(veh, vehicle)
-                TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, index)
-                closeMenuFull()
-                TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
-                SetVehicleEngineOn(veh, true, true)
-                if type == "house" then
-                    exports['qb-core']:DrawText(Lang:t("info.park_e"), 'left')
-                    InputOut = false
-                    InputIn = true
-                end
-            end, vehicle, location, true)
+            cb(Vehicles)
         else
-            QBCore.Functions.Notify(Lang:t("error.not_impound"), "error", 5000)
+            cb(nil)
         end
-    end, vehicle.plate, type)
-end)
-
-local function enterVehicle(veh, indexgarage, type, garage)
-    local plate = QBCore.Functions.GetPlate(veh)
-    if GetVehicleNumberOfPassengers(veh) == 0 then
-        QBCore.Functions.TriggerCallback('qb-garage:server:checkOwnership', function(owned)
-            if owned then
-                local bodyDamage = math.ceil(GetVehicleBodyHealth(veh))
-                local engineDamage = math.ceil(GetVehicleEngineHealth(veh))
-                local totalFuel = exports['LegacyFuel']:GetFuel(veh)
-                TriggerServerEvent("qb-vehicletuning:server:SaveVehicleProps", QBCore.Functions.GetVehicleProperties(veh))
-                TriggerServerEvent('qb-garage:server:updateVehicle', 1, totalFuel, engineDamage, bodyDamage, plate, indexgarage, type, PlayerGang.name)
-                CheckPlayers(veh, garage)
-                if type == "house" then
-                    exports['qb-core']:DrawText(Lang:t("info.car_e"), 'left')
-                    InputOut = true
-                    InputIn = false
-                end
-
-                if plate then
-                    TriggerServerEvent('qb-garages:server:UpdateOutsideVehicle', plate, nil)
-                end
-                QBCore.Functions.Notify(Lang:t("success.vehicle_parked"), "primary", 4500)
-            else
-                QBCore.Functions.Notify(Lang:t("error.not_owned"), "error", 3500)
-            end
-        end, plate, type, indexgarage, PlayerGang.name)
-    else
-        QBCore.Functions.Notify(Lang:t("error.vehicle_occupied"), "error", 5000)
-    end
-end
-
-local function CreateBlipsZones()
-    if blipsZonesLoaded then return end
-
-    PlayerData = QBCore.Functions.GetPlayerData()
-    PlayerGang = PlayerData.gang
-    PlayerJob = PlayerData.job
-    for index, garage in pairs(Garages) do
-        if garage.showBlip then
-            local Garage = AddBlipForCoord(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
-            SetBlipSprite(Garage, garage.blipNumber)
-            SetBlipDisplay(Garage, 4)
-            SetBlipScale(Garage, 0.60)
-            SetBlipAsShortRange(Garage, true)
-            SetBlipColour(Garage, 3)
-            BeginTextCommandSetBlipName("STRING")
-            AddTextComponentSubstringPlayerName(garage.blipName)
-            EndTextCommandSetBlipName(Garage)
-        end
-        if garage.type == "job" then
-            if PlayerJob.name == garage.job then
-                CreateZone("marker", garage, index)
-            end
-        elseif garage.type == "gang" then
-            if PlayerGang.name == garage.job then
-                CreateZone("marker", garage, index)
-            end
-        else
-            CreateZone("marker", garage, index)
-        end
-    end
-    blipsZonesLoaded = true
-end
-
-RegisterNetEvent('qb-garages:client:setHouseGarage', function(house, hasKey)
-    if HouseGarages[house] then
-        if lasthouse ~= house then
-            if lasthouse then
-                DestroyZone("hmarker", lasthouse)
-            end
-            if hasKey and HouseGarages[house].takeVehicle.x then
-                CreateZone("hmarker", HouseGarages[house], house)
-                lasthouse = house
-            end
-        end
-    end
-end)
-
-RegisterNetEvent('qb-garages:client:houseGarageConfig', function(garageConfig)
-    HouseGarages = garageConfig
-end)
-
-RegisterNetEvent('qb-garages:client:addHouseGarage', function(house, garageInfo)
-    HouseGarages[house] = garageInfo
-end)
-
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
-    CreateBlipsZones()
-end)
-
-AddEventHandler("onResourceStart", function(res)
-    if res ~= GetCurrentResourceName() then return end
-    CreateBlipsZones()
-end)
-
-RegisterNetEvent('QBCore:Client:OnGangUpdate', function(gang)
-    PlayerGang = gang
-end)
-
-RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
-    PlayerJob = job
-end)
-
-RegisterNetEvent('qb-garages:client:TakeOutDepot', function(data)
-    local vehicle = data.vehicle
-
-    if vehicle.depotprice ~= 0 then
-        TriggerServerEvent("qb-garage:server:PayDepotPrice", data)
-    else
-        TriggerEvent("qb-garages:client:takeOutGarage", data)
-    end
-end)
-
--- Threads
-CreateThread(function()
-    local sleep
-    while true do
-        sleep = 2000
-        if Markers then
-            DrawMarker(2, currentGarage.putVehicle.x, currentGarage.putVehicle.y, currentGarage.putVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 255, 255, 255, 255, false, false, false, true, false, false, false)
-            DrawMarker(2, currentGarage.takeVehicle.x, currentGarage.takeVehicle.y, currentGarage.takeVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
-            sleep = 0
-        elseif HouseMarkers then
-            DrawMarker(2, currentGarage.takeVehicle.x, currentGarage.takeVehicle.y, currentGarage.takeVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
-            sleep = 0
-        end
-        if InputIn or InputOut then
-            if IsControlJustReleased(0, 38) then
-                if InputIn then
-                    local ped = PlayerPedId()
-                    local curVeh = GetVehiclePedIsIn(ped)
-                    local vehClass = GetVehicleClass(curVeh)
-                    --Check vehicle type for garage
-                    if currentGarage.vehicle == "car" or not currentGarage.vehicle then
-                        if vehClass ~= 14 and vehClass ~= 15 and vehClass ~= 16 then
-                            if currentGarage.type == "job" then
-                                if PlayerJob.name == currentGarage.job then
-                                    enterVehicle(curVeh, currentGarageIndex, currentGarage.type)
-                                end
-                            elseif currentGarage.type == "gang" then
-                                if PlayerGang.name == currentGarage.job then
-                                    enterVehicle(curVeh, currentGarageIndex, currentGarage.type)
-                                end
-                            else
-                                enterVehicle(curVeh, currentGarageIndex, currentGarage.type)
-                            end
-                        else
-                            QBCore.Functions.Notify(Lang:t("error.not_correct_type"), "error", 3500)
-                        end
-                    elseif currentGarage.vehicle == "air" then
-                        if vehClass == 15 or vehClass == 16 then
-                            if currentGarage.type == "job" then
-                                if PlayerJob.name == currentGarage.job then
-                                    enterVehicle(curVeh, currentGarageIndex, currentGarage.type)
-                                end
-                            elseif currentGarage.type == "gang" then
-                                if PlayerGang.name == currentGarage.job then
-                                    enterVehicle(curVeh, currentGarageIndex, currentGarage.type)
-                                end
-                            else
-                                enterVehicle(curVeh, currentGarageIndex, currentGarage.type)
-                            end
-                        else
-                            QBCore.Functions.Notify(Lang:t("error.not_correct_type"), "error", 3500)
-                        end
-                    elseif currentGarage.vehicle == "sea" then
-                        if vehClass == 14 then
-                            if currentGarage.type == "job" then
-                                if PlayerJob.name == currentGarage.job then
-                                    enterVehicle(curVeh, currentGarageIndex, currentGarage.type, currentGarage)
-                                end
-                            elseif currentGarage.type == "gang" then
-                                if PlayerGang.name == currentGarage.job then
-                                    enterVehicle(curVeh, currentGarageIndex, currentGarage.type, currentGarage)
-                                end
-                            else
-                                enterVehicle(curVeh, currentGarageIndex, currentGarage.type, currentGarage)
-                            end
-                        else
-                            QBCore.Functions.Notify(Lang:t("error.not_correct_type"), "error", 3500)
-                        end
-                    end
-                elseif InputOut then
-                    if currentGarage.type == "job" then
-                        if PlayerJob.name == currentGarage.job then
-                            MenuGarage(currentGarage.type, currentGarage, currentGarageIndex)
-                        end
-                    elseif currentGarage.type == "gang" then
-                        if PlayerGang.name == currentGarage.job then
-                            MenuGarage(currentGarage.type, currentGarage, currentGarageIndex)
-                        end
-                    else
-                        MenuGarage(currentGarage.type, currentGarage, currentGarageIndex)
-                    end
-                end
-            end
-            sleep = 0
-        end
-        Wait(sleep)
-    end
+    end)
 end)
