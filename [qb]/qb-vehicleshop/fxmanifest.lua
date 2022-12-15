@@ -1,28 +1,40 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'qb-vehicleshop'
-version '2.0.0'
+description 'QB-VehicleShop'
+version '1.0.0'
 
-shared_script {
-    'config.lua',
-    '@qb-core/shared/locale.lua',
-    'locales/en.lua',
-    'locales/*.lua'
+server_scripts {			
+	'config.lua',
+	'server/server.lua',
 }
 
-client_scripts {
-    '@PolyZone/client.lua',
-    '@PolyZone/BoxZone.lua',
-    '@PolyZone/EntityZone.lua',
-    '@PolyZone/CircleZone.lua',
-    '@PolyZone/ComboZone.lua',
-    'client.lua'
+client_scripts {		
+	'config.lua',
+	'client/utils.lua',
+	'client/client.lua'
 }
 
-server_scripts {
-    '@oxmysql/lib/MySQL.lua',
-    'server.lua'
+files {
+    'html/index.html',
+	'html/carousel.css',	
+    'html/carousel.js',
+	'html/design.css',
+	'html/script.js',		
+	'html/pickr.es5.min.js',	
+	'html/picker.js',	
+	'html/jquery-ui.js',
+	'html/jqueri-ui.css',
+	'html/nano.min.css',	
+    'html/images/*.png',
+    'html/fonts/*.ttf',
+    'imgs/*.png',
+	'imgs/brands/*.png',	
 }
 
-lua54 'yes'
+ui_page 'html/index.html'
+
+dependencies {
+	'qb-core',
+	--'qb-vehiclekeys'
+}
