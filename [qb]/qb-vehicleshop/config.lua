@@ -172,7 +172,7 @@ Config.Shops = {
         },
     },
     ['air'] = {
-        ['Type'] = 'free-use', -- no player interaction is required to purchase a vehicle
+        ['Type'] = 'managed', -- no player interaction is required to purchase a vehicle
         ['Zone'] = {
             ['Shape'] = {--polygon that surrounds the shop
                 vector2(-1607.58, -3141.7),
@@ -184,7 +184,7 @@ Config.Shops = {
             ['maxZ'] = 16.99, -- max height of the shop zone
             ['size'] = 7.0, -- size of the vehicles zones
         },
-        ['Job'] = 'none', -- Name of job or none
+        ['Job'] = 'cardealer', -- Name of job or none
         ['ShopLabel'] = 'Air Shop', -- Blip name
         ['showBlip'] = true, -- true or false
         ['blipSprite'] = 251, -- Blip sprite
