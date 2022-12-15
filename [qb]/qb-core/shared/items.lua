@@ -425,47 +425,15 @@ QBShared.Items = {
     ['weapon_karambit'] = { ['name'] = 'weapon_karambit', ['label'] = 'Karambit', ['weight'] = 1000, ['type'] = 'weapon', ['ammotype'] = nil, ['image'] = 'weapon_karambit.png', ['unique'] = true, ['useable'] = false, ["created"] = nil, ['description'] = 'A short knife with a pointed and edged blade, used as a weapon' },
     ['weapon_colbaton'] = { ['name'] = 'weapon_colbaton', ['label'] = 'PD Baton', ['weight'] = 1000, ['type'] = 'weapon', ['ammotype'] = nil, ['image'] = 'weapon_colbaton.png' },
 
-    -- Kenevir
-    ['weed'] = {
-        ['name'] = 'weed',
-        ['label'] = 'Kenevir',
-        ['weight'] = 250,
-        ['type'] = 'item',
-        ['image'] = 'weed_seed.png',
-        ['unique'] = false,
-        ['useable'] = false,
-        ['shouldClose'] = true,
-        ['combinable'] = nil,
-        ['description'] = '',
-    },
-
-    ['weed_islenmis'] = {
-        ['name'] = 'weed_islenmis',
-        ['label'] = 'Paketlenmiş Kenevir',
-        ['weight'] = 1000,
-        ['type'] = 'item',
-        ['image'] = 'weed_baggy.png',
-        ['unique'] = false,
-        ['useable'] = false,
-        ['shouldClose'] = true,
-        ['combinable'] = nil,
-        ['description'] = '',
-    },
-    ['portakal'] = {
-        ['name'] = 'portakal',
-        ['label'] = 'Portakal',
-        ['weight'] = 1000,
-        ['type'] = 'item',
-        ['image'] = 'orange.png',
-        ['unique'] = false,
-        ['useable'] = false,
-        ['shouldClose'] = true,
-        ['combinable'] = nil,
-        ['description'] = '',
-    },
-
+    -- Legal
+    ['weed'] = { ['name'] = 'weed', ['label'] = 'Kenevir', ['weight'] = 250, ['type'] = 'item', ['image'] = 'weed_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '', },
+    ['weed_islenmis'] = { ['name'] = 'weed_islenmis', ['label'] = 'Paketlenmiş Kenevir', ['weight'] = 1000, ['type'] = 'item', ['image'] = 'weed_baggy.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '', },
+    ['portakal'] = { ['name'] = 'portakal', ['label'] = 'Portakal', ['weight'] = 1000, ['type'] = 'item', ['image'] = 'orange.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '', },
+    --Hacker
     ['hackerphone'] = { ['name'] = 'hackerphone', ['label'] = 'root@hackerphone', ['weight'] = 2000, ['type'] = 'item', ['image'] = 'hackerphone.png', ['unique'] = true, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = "" },
     ["centralchip"] = { ["name"] = "centralchip", ["label"] = "Central Chip", ["weight"] = 1000, ["type"] = "item", ["image"] = "centralchip.png", ["unique"] = true, ["useable"] = true, ["shouldClose"] = true, ["combinable"] = nil, ["description"] = "" },
     ["tracker"] = { ["name"] = "tracker", ["label"] = "Tracker", ["weight"] = 1000, ["type"] = "item", ["image"] = "tracker.png", ["unique"] = true, ["useable"] = true, ["shouldClose"] = true, ["combinable"] = nil, ["description"] = "" },
 
+    -- Fake Plate
+    ["fakeplate"] = { ["name"] = "fakeplate", ["label"] = "Fake Plate Kit", ["weight"] = 0, ["type"] = "item", ["image"] = "image1.png", ["unique"] = true, ["useable"] = true, ["shouldClose"] = true, ["combinable"] = nil, ["description"] = "Use on a vehicle to alter its plate or change it back - 1 time use.." },
 }
