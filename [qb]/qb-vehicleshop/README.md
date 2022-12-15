@@ -1,224 +1,417 @@
 # qb-vehicleshop
 
-**Test Drives:**
-* Configurable time
-* Returns player once time is up
-* Can't take out more than one vehicle
+![screenshot](https://i.imgur.com/47b68Py.png)
 
-**Financing:**
-* Configurable down payment
-* Configurable maximum payments
-* Configurable commission amount for private dealerships
-* Checks for payments due on player join and updates times on player logout or quit
+## Credits
+I did not make this script, I've simply updated it to support the latest ![QBCore](https://github.com/qbcore-framework/qb-core). 
+All credits go to Luminos Dev and ![GhzGarage](https://github.com/GhzGarage).
 
-**Shops:**
-* Lock to a specific job
-* Commission paid to sales person for private dealer
-* Create as many as desired with easy polyzone creation
-* Vehicle sale amount gets deposited into the cardealer society fund for private dealer
+## For the RGB color to save, you need to make the following changes:
 
-**Planned Updates**
-* QB-Phone support to make payments
-
-**Preview header when near a vehicle at the public dealership:**
-
-![image](https://user-images.githubusercontent.com/57848836/138773379-836be2a6-a800-47a4-8037-84d9052a964c.png)
-
-**After pressing the focus key and selecting the preview header (default: LEFT ALT)**
-
-![image](https://user-images.githubusercontent.com/57848836/138770886-15e056db-3e57-43ea-b855-3ef4fd107acf.png)
-
-**Configurable test drive times that automatically return the player**
-![20211025160757_1](https://user-images.githubusercontent.com/57848836/138771162-00ee2607-0b56-418b-848c-5d8a009f4acd.jpg)
-
-**Vehicle purchasing**
-![20211025160853_1](https://user-images.githubusercontent.com/57848836/138772385-ce16c0e6-baea-4b54-8eff-dbf44c54f568.jpg)
-
-**Private job-based dealership menu (works off closest player)**
-
-![image](https://user-images.githubusercontent.com/57848836/138772120-9513fa09-a22f-4a5f-8afe-6dc7756999f4.png)
-
-**Financing a vehicle with configurable max payment amount and minimum downpayment percentage**
-![image](https://user-images.githubusercontent.com/57848836/138771328-0b88078c-9f3d-4754-a4c7-bd5b68dd5129.png)
-
-**Financing preview header**
-
-![image](https://user-images.githubusercontent.com/57848836/138773600-d6f510f8-a476-436d-8211-21e8c920eb6b.png)
-
-**Finance vehicle list**
-
-![image](https://user-images.githubusercontent.com/57848836/138771582-727e7fd4-4837-4320-b79a-479a6268b7ac.png)
-
-**Make a payment or pay off vehicle in full**
-
-![image](https://user-images.githubusercontent.com/57848836/138771627-faed7fcb-73c8-4b77-a33f-fffbb738ab03.png)
-
-### Dependencies:
-
-**[PolyZone](https://github.com/qbcore-framework/PolyZone)**
-
-* You need to create new PolyZones if you want to create a new dealership or move default locations to another area. After you create the new PolyZones, add them to the Config.Shops > [Shape]
-
-* Here's a Wiki on how to create new PolyZone:
-https://github.com/mkafrin/PolyZone/wiki/Using-the-creation-script
-
-**[qb-menu](https://github.com/qbcore-framework/qb-menu)**
-
-**[qb-input](https://github.com/qbcore-framework/qb-input)**
-
+### Replace ```QBCore.Functions.GetVehicleProperties``` from ```qb-core/client/functions.lua``` with:
 ```lua
-Config = {}
-Config.UsingTarget = false -- If you are using qb-target (uses entity zones to target vehicles)
-Config.Commission = 0.10 -- Percent that goes to sales person from a full car sale - default 10%
-Config.FinanceCommission = 0.05 -- Percent that goes to sales person from a finance sale - default 5%
-Config.FinanceZone = vector3(-29.53, -1103.67, 26.42) -- Where the finance menu is located
-Config.PaymentWarning = 10 -- time in minutes that player has to make payment before repo - default 10
-Config.PaymentInterval = 24 -- time in hours between payment being due - default 24
-Config.MinimumDown = 10 -- minimum percentage allowed down - default 10
-Config.MaximumPayments = 24 -- maximum payments allowed - default 24
-Config.Shops = {
-    ['pdm'] = {
-        ['Type'] = 'free-use',  -- no player interaction is required to purchase a car
-        ['Zone'] = {
-            ['Shape'] = { --polygon that surrounds the shop
-                vector2(-56.727394104004, -1086.2325439453),
-                vector2(-60.612808227539, -1096.7795410156),
-                vector2(-58.26834487915, -1100.572265625),
-                vector2(-35.927803039551, -1109.0034179688),
-                vector2(-34.427627563477, -1108.5111083984),
-                vector2(-32.02657699585, -1101.5877685547),
-                vector2(-33.342102050781, -1101.0377197266),
-                vector2(-31.292987823486, -1095.3717041016)
-            },
-            ['minZ'] = 25.0,  -- min height of the shop zone
-            ['maxZ'] = 28.0  -- max height of the shop zone
-        },
-        ['Job'] = 'none', -- Name of job or none
-        ['ShopLabel'] = 'Premium Deluxe Motorsport', -- Blip name
-        ['Categories'] = { -- Categories available to browse
-            ['sportsclassics'] = 'Sports Classics',
-            ['sedans'] = 'Sedans',
-            ['coupes'] = 'Coupes',
-            ['suvs'] = 'SUVs',
-            ['offroad'] = 'Offroad',
-            ['muscle'] = 'Muscle',
-            ['compacts'] = 'Compacts',
-            ['motorcycles'] = 'Motorcycles',
-            ['vans'] = 'Vans'
-        },
-        ['TestDriveTimeLimit'] = 0.5, -- Time in minutes until the vehicle gets deleted - default 0.5 (30 seconds)
-        ['Location'] = vector3(-45.67, -1098.34, 26.42), -- Blip Location
-        ['ReturnLocation'] = vector3(-44.74, -1082.58, 26.68), -- Location to return vehicle, only enables if the vehicleshop has a job owned
-        ['VehicleSpawn'] = vector4(-56.79, -1109.85, 26.43, 71.5), -- Spawn location when vehicle is bought
-        ['ShowroomVehicles'] = {
-            [1] = {
-                coords = vector4(-45.65, -1093.66, 25.44, 69.5), -- where the vehicle will spawn on display
-                defaultVehicle = 'adder', -- Default display vehicle
-                chosenVehicle = 'adder', -- Same as default but is dynamically changed when swapping vehicles
-            },
-            [2] = {
-                coords = vector4(-48.27, -1101.86, 25.44, 294.5),
-                defaultVehicle = 'schafter2',
-                chosenVehicle = 'schafter2',
-            },
-            [3] = {
-                coords = vector4(-39.6, -1096.01, 25.44, 66.5),
-                defaultVehicle = 'comet2',
-                chosenVehicle = 'comet2',
-            },
-            [4] = {
-                coords = vector4(-51.21, -1096.77, 25.44, 254.5),
-                defaultVehicle = 'vigero',
-                chosenVehicle = 'vigero',
-            },
-            [5] = {
-                coords = vector4(-40.18, -1104.13, 25.44, 338.5),
-                defaultVehicle = 't20',
-                chosenVehicle = 't20',
-            },
-            [6] = {
-                coords = vector4(-43.31, -1099.02, 25.44, 52.5),
-                defaultVehicle = 'bati',
-                chosenVehicle = 'bati',
-            },
-            [7] = {
-                coords = vector4(-50.66, -1093.05, 25.44, 222.5),
-                defaultVehicle = 'bati',
-                chosenVehicle = 'bati',
-            },
-            [8] = {
-                coords = vector4(-44.28, -1102.47, 25.44, 298.5),
-                defaultVehicle = 'bati',
-                chosenVehicle = 'bati',
-            }
-        },
-    },
-    ['luxury'] = {
-        ['Type'] = 'managed',  -- meaning a real player has to sell the car
-        ['Zone'] = {
-            ['Shape'] = {
-                vector2(-81.724754333496, 72.436462402344),
-                vector2(-60.159938812256, 60.576206207275),
-                vector2(-55.763122558594, 61.749210357666),
-                vector2(-52.965869903564, 69.869110107422),
-                vector2(-50.352680206299, 75.886123657227),
-                vector2(-61.261016845703, 81.564918518066),
-                vector2(-63.812171936035, 75.633102416992),
-                vector2(-76.546226501465, 81.189826965332)
-            },
-            ['minZ'] = 69.0,
-            ['maxZ'] = 76.0
-        },
-        ['Job'] = 'cardealer', -- Name of job or none
-        ['ShopLabel'] = 'Luxury Vehicle Shop',
-        ['Categories'] = {
-            ['super'] = 'Super',
-            ['sports'] = 'Sports'
-        },
-        ['TestDriveTimeLimit'] = 0.5,
-        ['Location'] = vector3(-63.59, 68.25, 73.06),
-        ['ReturnLocation'] = vector3(-65.05, 81.23, 71.16),
-        ['VehicleSpawn'] = vector4(-71.13, 84.04, 71.09, 65.23),
-        ['ShowroomVehicles'] = {
-            [1] = {
-                coords = vector4(-75.96, 74.78, 70.90, 221.69),
-                defaultVehicle = 'italirsx',
-                chosenVehicle = 'italirsx',
-            },
-            [2] = {
-                coords = vector4(-66.52, 74.33, 70.65, 188.03),
-                defaultVehicle = 'italigtb',
-                chosenVehicle = 'italigtb',
-            },
-            [3] = {
-                coords = vector4(-71.83, 68.60, 70.75, 276.57),
-                defaultVehicle = 'nero',
-                chosenVehicle = 'nero',
-            },
-            [4] = {
-                coords = vector4(-59.95, 68.61, 70.85, 181.44),
-                defaultVehicle = 'comet2',
-                chosenVehicle = 'comet2',
-            }
-        }
-    } -- Add your next table under this comma
-}
+QBCore.Functions.GetVehicleProperties = function(vehicle)
+	if DoesEntityExist(vehicle) then		
+		local paintType1, whoCaresColor1, whoCaresPearlescentColor1 = GetVehicleModColor_1(vehicle)
+		local paintType2, whoCaresColor2, whoCaresPearlescentColor2 = GetVehicleModColor_2(vehicle)
+		local color1 = {}
+		local color2 = {}
+		color1[1], color1[2], color1[3] = GetVehicleCustomPrimaryColour(vehicle)
+		color2[1], color2[2], color2[3] = GetVehicleCustomSecondaryColour(vehicle)
+		
+		local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
+		local extras = {}
+
+		for extraId=0, 12 do
+			if DoesExtraExist(vehicle, extraId) then
+				local state = IsVehicleExtraTurnedOn(vehicle, extraId) == 1
+				extras[tostring(extraId)] = state
+			end
+		end
+
+		return {
+			model             = GetEntityModel(vehicle),
+
+			plate             = Trim(GetVehicleNumberPlateText(vehicle)),
+			plateIndex        = GetVehicleNumberPlateTextIndex(vehicle),
+			
+			bodyHealth        = Round(GetVehicleBodyHealth(vehicle), 1),
+			engineHealth      = Round(GetVehicleEngineHealth(vehicle), 1),
+			tankHealth        = Round(GetVehiclePetrolTankHealth(vehicle), 1),
+
+			fuelLevel         = Round(GetVehicleFuelLevel(vehicle), 1),
+			dirtLevel         = Round(GetVehicleDirtLevel(vehicle), 1),
+			
+			color1            = color1,
+			color2            = color2,
+			paintType         = {paintType1, paintType2},
+
+			pearlescentColor  = pearlescentColor,
+			interiorColor     = GetVehicleInteriorColor(vehicle),
+			dashboardColor    = GetVehicleDashboardColour(vehicle),
+			wheelColor        = wheelColor,
+
+			wheels            = GetVehicleWheelType(vehicle),
+			windowTint        = GetVehicleWindowTint(vehicle),
+			xenonColor        = GetVehicleXenonLightsColour(vehicle),
+
+			neonEnabled       = {
+				IsVehicleNeonLightEnabled(vehicle, 0),
+				IsVehicleNeonLightEnabled(vehicle, 1),
+				IsVehicleNeonLightEnabled(vehicle, 2),
+				IsVehicleNeonLightEnabled(vehicle, 3)
+			},
+
+			neonColor         = table.pack(GetVehicleNeonLightsColour(vehicle)),
+			extras            = extras,
+			tyreSmokeColor    = table.pack(GetVehicleTyreSmokeColor(vehicle)),
+
+			modSpoilers       = GetVehicleMod(vehicle, 0),
+			modFrontBumper    = GetVehicleMod(vehicle, 1),
+			modRearBumper     = GetVehicleMod(vehicle, 2),
+			modSideSkirt      = GetVehicleMod(vehicle, 3),
+			modExhaust        = GetVehicleMod(vehicle, 4),
+			modFrame          = GetVehicleMod(vehicle, 5),
+			modGrille         = GetVehicleMod(vehicle, 6),
+			modHood           = GetVehicleMod(vehicle, 7),
+			modFender         = GetVehicleMod(vehicle, 8),
+			modRightFender    = GetVehicleMod(vehicle, 9),
+			modRoof           = GetVehicleMod(vehicle, 10),
+
+			modEngine         = GetVehicleMod(vehicle, 11),
+			modBrakes         = GetVehicleMod(vehicle, 12),
+			modTransmission   = GetVehicleMod(vehicle, 13),
+			modHorns          = GetVehicleMod(vehicle, 14),
+			modSuspension     = GetVehicleMod(vehicle, 15),
+			modArmor          = GetVehicleMod(vehicle, 16),
+
+			modTurbo          = IsToggleModOn(vehicle, 18),
+			modSmokeEnabled   = IsToggleModOn(vehicle, 20),
+			modXenon          = IsToggleModOn(vehicle, 22),
+
+			modFrontWheels    = GetVehicleMod(vehicle, 23),
+			modBackWheels     = GetVehicleMod(vehicle, 24),
+			modCustomTiresF   = GetVehicleModVariation(vehicle, 23),
+			modCustomTiresR   = GetVehicleModVariation(vehicle, 24),
+
+			modPlateHolder    = GetVehicleMod(vehicle, 25),
+			modVanityPlate    = GetVehicleMod(vehicle, 26),
+			modTrimA          = GetVehicleMod(vehicle, 27),
+			modOrnaments      = GetVehicleMod(vehicle, 28),
+			modDashboard      = GetVehicleMod(vehicle, 29),
+			modDial           = GetVehicleMod(vehicle, 30),
+			modDoorSpeaker    = GetVehicleMod(vehicle, 31),
+			modSeats          = GetVehicleMod(vehicle, 32),
+			modSteeringWheel  = GetVehicleMod(vehicle, 33),
+			modShifterLeavers = GetVehicleMod(vehicle, 34),
+			modAPlate         = GetVehicleMod(vehicle, 35),
+			modSpeakers       = GetVehicleMod(vehicle, 36),
+			modTrunk          = GetVehicleMod(vehicle, 37),
+			modHydrolic       = GetVehicleMod(vehicle, 38),
+			modEngineBlock    = GetVehicleMod(vehicle, 39),
+			modAirFilter      = GetVehicleMod(vehicle, 40),
+			modStruts         = GetVehicleMod(vehicle, 41),
+			modArchCover      = GetVehicleMod(vehicle, 42),
+			modAerials        = GetVehicleMod(vehicle, 43),
+			modTrimB          = GetVehicleMod(vehicle, 44),
+			modTank           = GetVehicleMod(vehicle, 45),
+			modWindows        = GetVehicleMod(vehicle, 46),
+			modLivery         = GetVehicleMod(vehicle, 48),
+		}
+	else
+		return
+	end
+end
 ```
 
-# License
+### Replace ```QBCore.Functions.SetVehicleProperties``` from ```qb-core/client/functions.lua``` with:
+```lua
+QBCore.Functions.SetVehicleProperties = function(vehicle, props)
+	if DoesEntityExist(vehicle) then
+		SetVehicleModKit(vehicle, 0)
 
-    QBCore Framework
-    Copyright (C) 2021 Joshua Eger
+		if props.plate ~= nil then
+			SetVehicleNumberPlateText(vehicle, props.plate)
+		end
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+		if props.plateIndex ~= nil then
+			SetVehicleNumberPlateTextIndex(vehicle, props.plateIndex)
+		end
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+		if props.bodyHealth ~= nil then
+			SetVehicleBodyHealth(vehicle, props.bodyHealth + 0.0)
+		end
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>
+		if props.engineHealth ~= nil then
+			SetVehicleEngineHealth(vehicle, props.engineHealth + 0.0)
+		end
+
+		if props.fuelLevel ~= nil then
+			SetVehicleFuelLevel(vehicle, props.fuelLevel + 0.0)
+		end
+
+		if props.dirtLevel ~= nil then
+			SetVehicleDirtLevel(vehicle, props.dirtLevel + 0.0)
+		end
+
+		if props.paintType ~= nil then
+			SetVehicleModColor_1(vehicle, props.paintType[1], 0, 0)
+			SetVehicleModColor_2(vehicle, props.paintType[2], 0, 0)
+		end
+
+		if props.color1 ~= nil then
+			ClearVehicleCustomPrimaryColour(vehicle)
+			SetVehicleCustomPrimaryColour(vehicle, props.color1[1], props.color1[2], props.color1[3])
+		end
+
+		if props.color2 ~= nil then
+			ClearVehicleCustomSecondaryColour(vehicle)
+			SetVehicleCustomSecondaryColour(vehicle, props.color2[1], props.color2[2], props.color2[3])
+		end
+
+		if props.interiorColor ~= nil then
+			SetVehicleInteriorColor(vehicle, props.interiorColor)
+		end
+
+		if props.dashboardColor ~= nil then
+			SetVehicleDashboardColour(vehicle, props.dashboardColor)
+		end
+
+		if props.pearlescentColor ~= nil then
+			local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
+			SetVehicleExtraColours(vehicle, props.pearlescentColor, wheelColor)
+		end
+
+		if props.wheelColor ~= nil then
+			local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
+			SetVehicleExtraColours(vehicle, pearlescentColor, props.wheelColor)
+		end
+
+		if props.wheels ~= nil then
+			SetVehicleWheelType(vehicle, props.wheels)
+		end
+
+		if props.windowTint ~= nil then
+			SetVehicleWindowTint(vehicle, props.windowTint)
+		end
+
+		if props.neonEnabled ~= nil then
+			SetVehicleNeonLightEnabled(vehicle, 0, props.neonEnabled[1])
+			SetVehicleNeonLightEnabled(vehicle, 1, props.neonEnabled[2])
+			SetVehicleNeonLightEnabled(vehicle, 2, props.neonEnabled[3])
+			SetVehicleNeonLightEnabled(vehicle, 3, props.neonEnabled[4])
+		end
+
+		if props.extras ~= nil then
+			for id,enabled in pairs(props.extras) do
+				if enabled then
+					SetVehicleExtra(vehicle, tonumber(id), 0)
+				else
+					SetVehicleExtra(vehicle, tonumber(id), 1)
+				end
+			end
+		end
+
+		if props.neonColor ~= nil then
+			SetVehicleNeonLightsColour(vehicle, props.neonColor["1"], props.neonColor["2"], props.neonColor["3"])
+		end
+
+		if props.modSmokeEnabled ~= nil then
+			ToggleVehicleMod(vehicle, 20, true)
+		end
+
+		if props.tyreSmokeColor ~= nil then
+			SetVehicleTyreSmokeColor(vehicle, props.tyreSmokeColor["1"], props.tyreSmokeColor["2"], props.tyreSmokeColor["3"])
+		end
+
+		if props.modSpoilers ~= nil then
+			SetVehicleMod(vehicle, 0, props.modSpoilers, false)
+		end
+
+		if props.modFrontBumper ~= nil then
+			SetVehicleMod(vehicle, 1, props.modFrontBumper, false)
+		end
+
+		if props.modRearBumper ~= nil then
+			SetVehicleMod(vehicle, 2, props.modRearBumper, false)
+		end
+
+		if props.modSideSkirt ~= nil then
+			SetVehicleMod(vehicle, 3, props.modSideSkirt, false)
+		end
+
+		if props.modExhaust ~= nil then
+			SetVehicleMod(vehicle, 4, props.modExhaust, false)
+		end
+
+		if props.modFrame ~= nil then
+			SetVehicleMod(vehicle, 5, props.modFrame, false)
+		end
+
+		if props.modGrille ~= nil then
+			SetVehicleMod(vehicle, 6, props.modGrille, false)
+		end
+
+		if props.modHood ~= nil then
+			SetVehicleMod(vehicle, 7, props.modHood, false)
+		end
+
+		if props.modFender ~= nil then
+			SetVehicleMod(vehicle, 8, props.modFender, false)
+		end
+
+		if props.modRightFender ~= nil then
+			SetVehicleMod(vehicle, 9, props.modRightFender, false)
+		end
+
+		if props.modRoof ~= nil then
+			SetVehicleMod(vehicle, 10, props.modRoof, false)
+		end
+
+		if props.modEngine ~= nil then
+			SetVehicleMod(vehicle, 11, props.modEngine, false)
+		end
+
+		if props.modBrakes ~= nil then
+			SetVehicleMod(vehicle, 12, props.modBrakes, false)
+		end
+
+		if props.modTransmission ~= nil then
+			SetVehicleMod(vehicle, 13, props.modTransmission, false)
+		end
+
+		if props.modHorns ~= nil then
+			SetVehicleMod(vehicle, 14, props.modHorns, false)
+		end
+
+		if props.modSuspension ~= nil then
+			SetVehicleMod(vehicle, 15, props.modSuspension, false)
+		end
+
+		if props.modArmor ~= nil then
+			SetVehicleMod(vehicle, 16, props.modArmor, false)
+		end
+
+		if props.modTurbo ~= nil then
+			ToggleVehicleMod(vehicle,  18, props.modTurbo)
+		end
+
+		if props.modXenon ~= nil then
+			ToggleVehicleMod(vehicle,  22, props.modXenon)
+		end
+
+		if props.xenonColor ~= nil then
+			SetVehicleXenonLightsColor(vehicle, props.xenonColor)
+		end
+
+		if props.modFrontWheels ~= nil then
+			SetVehicleMod(vehicle, 23, props.modFrontWheels, false)
+		end
+
+		if props.modBackWheels ~= nil then
+			SetVehicleMod(vehicle, 24, props.modBackWheels, false)
+		end
+
+		if props.modCustomTiresF ~= nil then
+			SetVehicleMod(vehicle, 23, props.modFrontWheels, props.modCustomTiresF)
+		end
+
+		if props.modCustomTiresR ~= nil then
+			SetVehicleMod(vehicle, 24, props.modBackWheels, props.modCustomTiresR)
+		end
+    
+		if props.modPlateHolder ~= nil then
+			SetVehicleMod(vehicle, 25, props.modPlateHolder, false)
+		end
+
+		if props.modVanityPlate ~= nil then
+			SetVehicleMod(vehicle, 26, props.modVanityPlate, false)
+		end
+
+		if props.modTrimA ~= nil then
+			SetVehicleMod(vehicle, 27, props.modTrimA, false)
+		end
+
+		if props.modOrnaments ~= nil then
+			SetVehicleMod(vehicle, 28, props.modOrnaments, false)
+		end
+
+		if props.modDashboard ~= nil then
+			SetVehicleMod(vehicle, 29, props.modDashboard, false)
+		end
+
+		if props.modDial ~= nil then
+			SetVehicleMod(vehicle, 30, props.modDial, false)
+		end
+
+		if props.modDoorSpeaker ~= nil then
+			SetVehicleMod(vehicle, 31, props.modDoorSpeaker, false)
+		end
+
+		if props.modSeats ~= nil then
+			SetVehicleMod(vehicle, 32, props.modSeats, false)
+		end
+
+		if props.modSteeringWheel ~= nil then
+			SetVehicleMod(vehicle, 33, props.modSteeringWheel, false)
+		end
+
+		if props.modShifterLeavers ~= nil then
+			SetVehicleMod(vehicle, 34, props.modShifterLeavers, false)
+		end
+
+		if props.modAPlate ~= nil then
+			SetVehicleMod(vehicle, 35, props.modAPlate, false)
+		end
+
+		if props.modSpeakers ~= nil then
+			SetVehicleMod(vehicle, 36, props.modSpeakers, false)
+		end
+
+		if props.modTrunk ~= nil then
+			SetVehicleMod(vehicle, 37, props.modTrunk, false)
+		end
+
+		if props.modHydrolic ~= nil then
+			SetVehicleMod(vehicle, 38, props.modHydrolic, false)
+		end
+
+		if props.modEngineBlock ~= nil then
+			SetVehicleMod(vehicle, 39, props.modEngineBlock, false)
+		end
+
+		if props.modAirFilter ~= nil then
+			SetVehicleMod(vehicle, 40, props.modAirFilter, false)
+		end
+
+		if props.modStruts ~= nil then
+			SetVehicleMod(vehicle, 41, props.modStruts, false)
+		end
+
+		if props.modArchCover ~= nil then
+			SetVehicleMod(vehicle, 42, props.modArchCover, false)
+		end
+
+		if props.modAerials ~= nil then
+			SetVehicleMod(vehicle, 43, props.modAerials, false)
+		end
+
+		if props.modTrimB ~= nil then
+			SetVehicleMod(vehicle, 44, props.modTrimB, false)
+		end
+
+		if props.modTank ~= nil then
+			SetVehicleMod(vehicle, 45, props.modTank, false)
+		end
+
+		if props.modWindows ~= nil then
+			SetVehicleMod(vehicle, 46, props.modWindows, false)
+		end
+
+		if props.modLivery ~= nil then
+			SetVehicleMod(vehicle, 48, props.modLivery, false)
+			SetVehicleLivery(vehicle, props.modLivery)
+		end
+	end
+end
+```
