@@ -1,7 +1,7 @@
 -- DO NOT TOUCH
 Config = {}
 Config.Languages = {}
-Config.Voice = "salty"
+Config.Voice = "saltychat"
 -- Main config starts here!
 Config.Language = "en"
 Config.SharedObject = "qb-core"
