@@ -40,3 +40,4 @@ luac.out
 *.hex
 
 /.idea/
+\[qb\]/npwd/sv_npwd.log
