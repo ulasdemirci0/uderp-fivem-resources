@@ -4,10 +4,10 @@ Config.PlateLetters  = 4
 Config.PlateNumbers  = 4
 Config.PlateUseSpace = false
 
-Config.SpawnVehicle = true  -- TRUE if you want spawn vehicle when buy
+Config.SpawnVehicle = true -- TRUE if you want spawn vehicle when buy
 
-Config.TestDrive = true     -- TRUE if you want enable test drive
-Config.TestDriveTime = 30   -- TIME in SEC
+Config.TestDrive = true -- TRUE if you want enable test drive
+Config.TestDriveTime = 30 -- TIME in SEC
 
 Config.Blips = {
     [1] = {
@@ -80,7 +80,7 @@ Config.Shops = {
         testdrive = vector4(0, 0, 0, 0) -- Where Vehicle Spawns on Test Drive
     },
     [7] = {
-        category = 'boat',
+        category = 'boats',
         coords = vector3(-773.7, -1495.2, 2.6), -- Marker Point
         spawnvehicle = vector4(-801.36, -1504.19, -0.09, 290.76), -- Display Point
         cameracoords = vector3(-789.71, -1501.12, 4.59), -- Where To Create Camera
