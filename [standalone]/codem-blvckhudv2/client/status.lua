@@ -1,17 +1,17 @@
 RegisterNetEvent("esx_status:onTick")
 AddEventHandler("esx_status:onTick", function(data)
-    for _,v in pairs(data) do
+    for _, v in pairs(data) do
         if v.name == "hunger" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "hunger",
-                value =  v.percent,
+                value = v.percent,
             })
         elseif v.name == "thirst" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "thirst",
-                value =  v.percent,
+                value = v.percent,
             })
         end
     end
@@ -35,18 +35,18 @@ end)
 
 RegisterNetEvent('esx_status:update')
 AddEventHandler('esx_status:update', function(data)
-    for _,v in pairs(data) do
+    for _, v in pairs(data) do
         if v.name == "hunger" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "hunger",
-                value =  v.percent,
+                value = v.percent,
             })
         elseif v.name == "thirst" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "thirst",
-                value =  v.percent,
+                value = v.percent,
             })
         end
     end
@@ -54,18 +54,18 @@ end)
 
 RegisterNetEvent('ui:updateStatus')
 AddEventHandler('ui:updateStatus', function(data)
-    for _,v in pairs(data) do
+    for _, v in pairs(data) do
         if v.name == "hunger" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "hunger",
-                value =  v.percent,
+                value = v.percent,
             })
         elseif v.name == "thirst" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "thirst",
-                value =  v.percent,
+                value = v.percent,
             })
         end
     end
@@ -73,18 +73,18 @@ end)
 
 RegisterNetEvent('esx_customui:updateStatus')
 AddEventHandler('esx_customui:updateStatus', function(data)
-    for _,v in pairs(data) do
+    for _, v in pairs(data) do
         if v.name == "hunger" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "hunger",
-                value =  v.percent,
+                value = v.percent,
             })
         elseif v.name == "thirst" then
             SendNUIMessage({
                 type = "set_status",
                 statustype = "thirst",
-                value =  v.percent,
+                value = v.percent,
             })
         end
     end
@@ -92,15 +92,21 @@ end)
 
 RegisterNetEvent("hud:client:UpdateNeeds")
 AddEventHandler("hud:client:UpdateNeeds", function(newHunger, newThirst)
+    if newHunger > 100 then
+        newHunger = 100
+    end
+    if newThirst > 100 then
+        newThirst = 100
+    end
     SendNUIMessage({
         type = "set_status",
         statustype = "hunger",
-        value =  newHunger,
+        value = newHunger,
     })
     SendNUIMessage({
         type = "set_status",
         statustype = "thirst",
-        value =  newThirst,
+        value = newThirst,
     })
 end)
 
@@ -115,12 +121,12 @@ Citizen.CreateThread(function()
                 SendNUIMessage({
                     type = "set_status",
                     statustype = "hunger",
-                    value =  myhunger,
+                    value = myhunger,
                 })
                 SendNUIMessage({
                     type = "set_status",
                     statustype = "thirst",
-                    value =  mythirst,
+                    value = mythirst,
                 })
             end)
         end)
@@ -129,25 +135,25 @@ Citizen.CreateThread(function()
         local myhunger = frameworkObject.Functions.GetPlayerData().metadata["hunger"]
         local mythirst = frameworkObject.Functions.GetPlayerData().metadata["thirst"]
         Citizen.Wait(2500)
-    
+
         SendNUIMessage({
             type = "set_status",
             statustype = "hunger",
-            value =  myhunger,
+            value = myhunger,
         })
         SendNUIMessage({
             type = "set_status",
             statustype = "thirst",
-            value =  mythirst,
+            value = mythirst,
         })
 
     end
     local playerPed = playerPed
     local health = GetEntityHealth(playerPed)
-    local val = health-100
+    local val = health - 100
 
     if GetEntityModel(playerPed) == `mp_f_freemode_01` then
-        val = (health+25)-100
+        val = (health + 25) - 100
     end
     SendNUIMessage({
         type = "set_status",
@@ -163,9 +169,9 @@ Citizen.CreateThread(function()
         local playerPed = playerPed
         local health = GetEntityHealth(playerPed)
         if lastHealth ~= health then
-            local val = health-100
+            local val = health - 100
             if GetEntityModel(playerPed) == `mp_f_freemode_01` then
-                val = (health+25)-100
+                val = (health + 25) - 100
             end
             SendNUIMessage({
                 type = "set_status",
@@ -185,12 +191,12 @@ end)
 
 RegisterNUICallback('hudselected', function(data)
     local hudtype = data.type
-    local defaultAspectRatio = 1920/1080 -- Don't change this.
+    local defaultAspectRatio = 1920 / 1080 -- Don't change this.
     local resolutionX, resolutionY = GetActiveScreenResolution()
-    local aspectRatio = resolutionX/resolutionY
+    local aspectRatio = resolutionX / resolutionY
     local minimapOffset = 0
     if aspectRatio > defaultAspectRatio then
-        minimapOffset = ((defaultAspectRatio-aspectRatio)/3.6)-0.008
+        minimapOffset = ((defaultAspectRatio - aspectRatio) / 3.6) - 0.008
     end
     TriggerServerEvent('codem-blvckhudv2:UpdateData', data.settingstype, data.val)
     if data.settingstype == "hud" then
@@ -203,27 +209,27 @@ RegisterNUICallback('hudselected', function(data)
                 armour = armour,
             })
             if Config.Framework == "esx" then
-    
+
             else
                 local myhunger = frameworkObject.Functions.GetPlayerData().metadata["hunger"]
                 local mythirst = frameworkObject.Functions.GetPlayerData().metadata["thirst"]
                 SendNUIMessage({
                     type = "set_status",
                     statustype = "hunger",
-                    value =  myhunger,
+                    value = myhunger,
                 })
                 SendNUIMessage({
                     type = "set_status",
                     statustype = "thirst",
-                    value =  mythirst,
+                    value = mythirst,
                 })
             end
-        
-    
+
+
             local health = GetEntityHealth(playerPed)
-            local val = health-100
+            local val = health - 100
             if GetEntityModel(playerPed) == `mp_f_freemode_01` then
-                val = (health+25)-100
+                val = (health + 25) - 100
             end
             SendNUIMessage({
                 type = "set_status",
