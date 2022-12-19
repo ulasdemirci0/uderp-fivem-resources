@@ -6,7 +6,7 @@ Config.PlateUseSpace = false
 
 Config.SpawnVehicle = true -- TRUE if you want spawn vehicle when buy
 
-Config.TestDrive = true -- TRUE if you want enable test drive
+Config.TestDrive = false -- TRUE if you want enable test drive
 Config.TestDriveTime = 30 -- TIME in SEC
 
 Config.Blips = {
@@ -36,12 +36,12 @@ Config.Shops = {
     },
     [2] = {
         category = 'police',
-        coords = vector3(454.6, -1017.4, 28.4),
+        coords = vector3(459.15, -1008.02, 28.26),
         spawnvehicle = vector4(228.28, -992.3, -99.39, 204.73), -- Display Point
         cameracoords = vector3(227.41, -999.59, -99.0), -- Where To Create Camera
         pointcamera = vector3(228.28, -992.3, -99.39), -- Where To Point Camera
-        buyspawn = vector4(-11.87, -1080.87, 25.71, 132.0), -- Where Vehicle Spawns on Buy
-        testdrive = vector4(-11.87, -1080.87, 25.71, 132.0) -- Where Vehicle Spawns on Test Drive
+        buyspawn = vector4(444.82, -1019.27, 28.21, 91.83), -- Where Vehicle Spawns on Buy
+        testdrive = vector4(444.82, -1019.27, 28.21, 91.83) -- Where Vehicle Spawns on Test Drive
     },
     [3] = {
         category = 'ambulance',
