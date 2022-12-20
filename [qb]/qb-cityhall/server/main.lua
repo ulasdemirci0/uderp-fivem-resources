@@ -4,6 +4,7 @@ local availableJobs = {
     ["taxi"] = "Taksi Şoförü",
     ["garbage"] = "Çöp Kamyonu Şoförü",
     ["bus"] = "Otobüs Şoförü",
+    ["lumberjack"] = "Odunculuk"
 }
 
 -- Exports

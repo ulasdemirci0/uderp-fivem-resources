@@ -1239,4 +1239,15 @@ QBShared.Items = {
         ["image"] = "orange.png", ["unique"] = false, ["useable"] = false, ["shouldClose"] = false, ["combinable"] = nil,
         ["description"] = "cRACK", },
 
+
+    -- Odunculuk
+    ["tree_lumber"] = { ["name"] = "tree_lumber", ["label"] = "Kütük", ["weight"] = 50, ["type"] = "item",
+        ["image"] = "lumber.png", ["unique"] = false, ["useable"] = false, ["shouldClose"] = true, ["combinable"] = nil,
+        ["description"] = "" },
+    ["tree_bark"]   = { ["name"] = "tree_bark", ["label"] = "Tahta Parçası", ["weight"] = 50, ["type"] = "item",
+        ["image"] = "treebark.png", ["unique"] = false, ["useable"] = false, ["shouldClose"] = true, ["combinable"] = nil,
+        ["description"] = "" },
+    ["wood_plank"]  = { ["name"] = "wood_plank", ["label"] = "Kalas", ["weight"] = 50, ["type"] = "item",
+        ["image"] = "woodplank.png", ["unique"] = false, ["useable"] = false, ["shouldClose"] = true,
+        ["combinable"] = nil, ["description"] = "" },
 }
