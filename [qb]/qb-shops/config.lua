@@ -276,14 +276,14 @@ Config.Products = {
             type = "item",
             slot = 7,
         },
---      [8] = {
---           name = "repairkit",
---           price = 50,
---           amount = 5,
---           info = {},
---           type = "item",
---           slot = 8,
---        },
+        --      [8] = {
+        --           name = "repairkit",
+        --           price = 50,
+        --           amount = 5,
+        --           info = {},
+        --           type = "item",
+        --           slot = 8,
+        --        },
     },
     ["weedshop"] = {
         [1] = {
@@ -728,7 +728,7 @@ Config.Locations = {
 
     -- Hardware Store Locations
     ["hardware"] = {
-        ["label"] = "Hardware Store",
+        ["label"] = "Hırdavatçı",
         ["coords"] = vector4(45.68, -1749.04, 29.61, 53.13),
         ["ped"] = 'mp_m_waremech_01',
         ["scenario"] = "WORLD_HUMAN_CLIPBOARD",
@@ -743,7 +743,7 @@ Config.Locations = {
     },
 
     ["hardware2"] = {
-        ["label"] = "Hardware Store",
+        ["label"] = "Hırdavatçı",
         ["coords"] = vector4(2747.71, 3472.85, 55.67, 255.08),
         ["ped"] = 'mp_m_waremech_01',
         ["scenario"] = "WORLD_HUMAN_CLIPBOARD",
@@ -758,13 +758,13 @@ Config.Locations = {
     },
 
     ["hardware3"] = {
-        ["label"] = "Hardware Store",
+        ["label"] = "Hırdavatçı",
         ["coords"] = vector4(-421.83, 6136.13, 31.88, 228.2),
         ["ped"] = 'mp_m_waremech_01',
         ["scenario"] = "WORLD_HUMAN_CLIPBOARD",
         ["radius"] = 1.5,
         ["targetIcon"] = "fas fa-wrench",
-        ["targetLabel"] = "Hardware Store",
+        ["targetLabel"] = "Hırdavatçı",
         ["products"] = Config.Products["hardware"],
         ["showblip"] = true,
         ["blipsprite"] = 402,
@@ -773,7 +773,7 @@ Config.Locations = {
     },
 
     -- Ammunation Locations
-    ["ammunation"] = {
+    --[[     ["ammunation"] = {
         ["label"] = "Ammunation",
         ["type"] = "weapon",
         ["coords"] = vector4(-661.96, -933.53, 21.83, 177.05),
@@ -938,7 +938,7 @@ Config.Locations = {
         ["blipscale"] = 0.6,
         ["blipcolor"] = 0
     },
-
+ ]]
     -- Casino Locations
     ["casino"] = {
         ["label"] = "Diamond Casino",
@@ -971,7 +971,7 @@ Config.Locations = {
     },
 
     -- Weedshop Locations
-    ["weedshop"] = {
+    --[[  ["weedshop"] = {
         ["label"] = "Smoke On The Water",
         ["coords"] = vector4(-1168.26, -1573.2, 4.66, 105.24),
         ["ped"] = 'a_m_y_hippy_01',
@@ -985,7 +985,7 @@ Config.Locations = {
         ["blipscale"] = 0.8,
         ["blipcolor"] = 0
     },
-
+ ]]
     -- Sea Word Locations
     ["seaword"] = {
         ["label"] = "Sea Word",
