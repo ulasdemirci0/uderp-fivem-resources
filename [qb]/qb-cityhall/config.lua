@@ -15,17 +15,17 @@ Config.Cityhalls = {
         },
         licenses = {
             ["id_card"] = {
-                label = "ID Card",
-                cost = 50,
+                label = "Kimlik Kartı",
+                cost = 350,
             },
             ["driver_license"] = {
-                label = "Driver License",
-                cost = 50,
+                label = "Ehliyet",
+                cost = 500,
                 metadata = "driver"
             },
             ["weaponlicense"] = {
-                label = "Weapon License",
-                cost = 50,
+                label = "Silah Ruhsatı",
+                cost = 5000,
                 metadata = "weapon"
             },
         }
@@ -41,7 +41,7 @@ Config.DrivingSchools = {
             display = 4,
             scale = 0.65,
             colour = 3,
-            title = "Driving School"
+            title = "Sürüş Okulu"
         },
         instructors = {
             "DJD56142",

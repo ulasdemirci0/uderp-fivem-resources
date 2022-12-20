@@ -8,14 +8,14 @@ Config.MaxDrops = 10 -- amount of locations before being forced to return to sta
 
 Config.Locations = {
     ["main"] = {
-        label = "Truck Shed",
+        label = "Lojistik İş Paneli",
         coords = vector4(153.68, -3211.88, 5.91, 274.5),
     },
     ["vehicle"] = {
-        label = "Truck Storage",
+        label = "Lojistik Garajı",
         coords = vector4(141.12, -3204.31, 5.85, 267.5),
     },
-    ["stores"] ={
+    ["stores"] = {
         [1] = {
             name = "ltdgasoline",
             coords = vector4(-41.07, -1747.91, 29.4, 137.5),

@@ -3,10 +3,10 @@ Config = {}
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
 
 -- Price taken and given back when delivered a truck
-Config.TruckPrice = 250
+Config.TruckPrice = 1000
 
 -- Want to give out a cryptostick per stop?
-Config.GiveCryptoStick = true
+Config.GiveCryptoStick = false
 
 -- Has to roll this number or higher to receive a cryptostick
 Config.CryptoStickChance = 75
@@ -43,21 +43,21 @@ Config.Peds = {
 
 Config.Locations = {
     ["main"] = {
-        label = "Garbage Depot",
+        label = "Çöp Toplama Merkezi",
         coords = vector3(-313.84, -1522.82, 27.56),
     },
     ["vehicle"] = {
-        label = "Garbage Truck Storage",
+        label = "Çöp Kamyonu Otoparkı",
         coords = { -- parking spot locations to spawn garbage
             [1] = vector4(-333.84, -1527.28, 27.28, 1.97),
             [2] = vector4(-327.55, -1527.69, 27.25, 359.43),
         },
     },
     ["paycheck"] = {
-        label = "Payslip Collection",
+        label = "Yevmiye'yi Alın",
         coords = vector3(-321.45, -1545.86, 31.02),
     },
-    ["trashcan"] ={
+    ["trashcan"] = {
         [1] = {
             name = "forumdrive",
             coords = vector4(-168.07, -1662.8, 33.31, 137.5),
@@ -144,16 +144,16 @@ Config.Locations = {
         },
     },
     ["routes"] = { -- Custom routes (WIP Do not use)
-        [1] = {7, 6, 5, 15, 10},
-        [2] = {11, 18, 7, 8, 15},
-        [3] = {1, 7, 8, 17, 18},
-        [4] = {16, 17, 4, 8, 21},
-        [5] = {8, 2, 6, 17, 19},
-        [6] = {3, 19, 1, 8, 11},
-        [7] = {8, 19, 9, 6, 14},
-        [8] = {14, 12, 20, 9, 11},
-        [9] = {9, 18, 3, 6, 20},
-        [10] = {9, 13, 7, 17, 16}
+        [1] = { 7, 6, 5, 15, 10 },
+        [2] = { 11, 18, 7, 8, 15 },
+        [3] = { 1, 7, 8, 17, 18 },
+        [4] = { 16, 17, 4, 8, 21 },
+        [5] = { 8, 2, 6, 17, 19 },
+        [6] = { 3, 19, 1, 8, 11 },
+        [7] = { 8, 19, 9, 6, 14 },
+        [8] = { 14, 12, 20, 9, 11 },
+        [9] = { 9, 18, 3, 6, 20 },
+        [10] = { 9, 13, 7, 17, 16 }
     }
 }
 
