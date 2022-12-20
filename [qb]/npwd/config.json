@@ -1,4 +1,7 @@
 {
+  "images": {
+    "useWebhook": true
+  },
   "PhoneAsItem": {
     "enabled": true,
     "exportResource": "qb-npwd",
@@ -24,10 +27,16 @@
 
   "debug": {
     "level": "error",
-    "enabled": true,
-    "sentryEnabled": true
+    "enabled": false,
+    "sentryEnabled": false
   },
-  "apps": ["pefcl"],
+  "apps": [
+    "pefcl",
+    "npwd_advertisements",
+    "npwd_qb_banking",
+    "npwd_qb_garage",
+    "npwd_qb_mail"
+  ],
   "voiceMessage": {
     "enabled": false,
     "authorizationHeader": "PE-Secret",
