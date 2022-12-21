@@ -344,6 +344,14 @@ Config.Products = {
             type = "item",
             slot = 2,
         },
+        [3] = {
+            name = "fishingrod",
+            price = 200,
+            amount = 100,
+            info = {},
+            type = "item",
+            slot = 3,
+        },
     },
     ["leisureshop"] = {
         [1] = {
@@ -988,13 +996,13 @@ Config.Locations = {
  ]]
     -- Sea Word Locations
     ["seaword"] = {
-        ["label"] = "Sea Word",
-        ["coords"] = vector4(-1687.03, -1072.18, 13.15, 52.93),
+        ["label"] = "Seyyar Dalgıç",
+        ["coords"] = vector4(-1827.25, -1246.17, 13.02, 319.18),
         ["ped"] = 'a_m_y_beach_01',
         ["scenario"] = "WORLD_HUMAN_STAND_IMPATIENT",
         ["radius"] = 1.5,
         ["targetIcon"] = "fas fa-fish",
-        ["targetLabel"] = "Sea Word",
+        ["targetLabel"] = "Deniz Malzemeleri",
         ["products"] = Config.Products["gearshop"],
         ["showblip"] = true,
         ["blipsprite"] = 52,

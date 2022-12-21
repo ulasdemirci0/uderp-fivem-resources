@@ -1250,4 +1250,64 @@ QBShared.Items = {
     ["wood_plank"]  = { ["name"] = "wood_plank", ["label"] = "Kalas", ["weight"] = 50, ["type"] = "item",
         ["image"] = "woodplank.png", ["unique"] = false, ["useable"] = false, ["shouldClose"] = true,
         ["combinable"] = nil, ["description"] = "" },
+
+    -- Balıkçılık
+    -- Fishing
+    ['fishingrod'] = { ['name'] = 'fishingrod', ['label'] = 'Olta', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'fishingrod.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true,
+        ['combinable'] = nil, ['description'] = 'With this I can catch the fish..' },
+
+    ['fishingbait'] = { ['name'] = 'fishingbait', ['label'] = 'Baık Yemi', ['weight'] = 50, ['type'] = 'item',
+        ['image'] = 'fishingbait.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false,
+        ['combinable'] = nil, ['description'] = 'With this I can lure the fishessss..' },
+
+    ['catfish'] = { ['name'] = 'catfish', ['label'] = 'Kedi Balığı', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'catfish.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    ['fish'] = { ['name'] = 'fish', ['label'] = 'Balık', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'fish.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    ['fish2'] = { ['name'] = 'fish2', ['label'] = 'Balık', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'fish2.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    ['goldfish'] = { ['name'] = 'goldfish', ['label'] = 'Akvaryum Balığı', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'goldfish.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false,
+        ['combinable'] = nil, ['description'] = 'A Fish' },
+
+    ['largemouthbass'] = { ['name'] = 'largemouthbass', ['label'] = 'Levrek', ['weight'] = 1000,
+        ['type'] = 'item', ['image'] = 'largemouthbass.png', ['unique'] = false, ['useable'] = false,
+        ['shouldClose'] = false, ['combinable'] = nil, ['description'] = 'A Fish' },
+
+    ['redfish'] = { ['name'] = 'redfish', ['label'] = 'Çupra', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'redfish.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    ['salmon'] = { ['name'] = 'salmon', ['label'] = 'Somon', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'salmon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    ['stingray'] = { ['name'] = 'stingray', ['label'] = 'Vatoz', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'stingray.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false,
+        ['combinable'] = nil, ['description'] = 'A Fish' },
+
+    ['stripedbass'] = { ['name'] = 'stripedbass', ['label'] = 'Çizgili Levrek', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'stripedbass.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false,
+        ['combinable'] = nil, ['description'] = 'A Fish' },
+
+    ['whale'] = { ['name'] = 'whale', ['label'] = 'Balina', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'whale.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    ['whale2'] = { ['name'] = 'whale2', ['label'] = 'Balina', ['weight'] = 1000, ['type'] = 'item',
+        ['image'] = 'whale2.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil,
+        ['description'] = 'A Fish' },
+
+    -- PD RADAR
+    ['weapon_radargun'] = { ['name'] = 'weapon_radargun', ['label'] = 'Portatif Radar', ['weight'] = 1000,
+        ['type'] = 'weapon',
+        ['ammotype'] = nil, ['image'] = 'weapon_radargun.png', ['unique'] = true, ['useable'] = false,
+        ['description'] = 'A handhel speed detection device' },
 }
