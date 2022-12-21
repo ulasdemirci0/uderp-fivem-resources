@@ -32,7 +32,8 @@ function GetClosestSpike()
 
     for id, _ in pairs(SpawnedSpikes) do
         if current then
-            if #(pos - vector3(SpawnedSpikes[id].coords.x, SpawnedSpikes[id].coords.y, SpawnedSpikes[id].coords.z)) < dist then
+            if #(pos - vector3(SpawnedSpikes[id].coords.x, SpawnedSpikes[id].coords.y, SpawnedSpikes[id].coords.z)) <
+                dist then
                 current = id
             end
         else
@@ -44,17 +45,17 @@ function GetClosestSpike()
 end
 
 local function DrawText3D(x, y, z, text)
-	SetTextScale(0.35, 0.35)
+    SetTextScale(0.35, 0.35)
     SetTextFont(4)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
     SetTextEntry("STRING")
     SetTextCentre(true)
     AddTextComponentString(text)
-    SetDrawOrigin(x,y,z, 0)
+    SetDrawOrigin(x, y, z, 0)
     DrawText(0.0, 0.0)
     local factor = (string.len(text)) / 370
-    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    DrawRect(0.0, 0.0 + 0.0125, 0.017 + factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
 
@@ -96,6 +97,26 @@ RegisterNetEvent('police:client:spawnBarrier', function()
         QBCore.Functions.Notify(Lang:t("error.canceled"), "error")
     end)
 end)
+
+RegisterNetEvent('police:client:spawnBetonBarrier', function()
+    QBCore.Functions.Progressbar("spawn_object", Lang:t("progressbar.place_object"), 2500, false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {
+        animDict = "anim@narcotics@trash",
+        anim = "drop_front",
+        flags = 16,
+    }, {}, {}, function() -- Done
+        StopAnimTask(PlayerPedId(), "anim@narcotics@trash", "drop_front", 1.0)
+        TriggerServerEvent("police:server:spawnObject", "betonBarier")
+    end, function() -- Cancel
+        StopAnimTask(PlayerPedId(), "anim@narcotics@trash", "drop_front", 1.0)
+        QBCore.Functions.Notify(Lang:t("error.canceled"), "error")
+    end)
+end)
+
 
 RegisterNetEvent('police:client:spawnRoadSign', function()
     QBCore.Functions.Progressbar("spawn_object", Lang:t("progressbar.place_object"), 2500, false, true, {
@@ -167,10 +188,12 @@ RegisterNetEvent('police:client:deleteObject', function()
             anim = "plant_floor",
             flags = 16,
         }, {}, {}, function() -- Done
-            StopAnimTask(PlayerPedId(), "weapons@first_person@aim_rng@generic@projectile@thermal_charge@", "plant_floor", 1.0)
+            StopAnimTask(PlayerPedId(), "weapons@first_person@aim_rng@generic@projectile@thermal_charge@", "plant_floor"
+                , 1.0)
             TriggerServerEvent("police:server:deleteObject", objectId)
         end, function() -- Cancel
-            StopAnimTask(PlayerPedId(), "weapons@first_person@aim_rng@generic@projectile@thermal_charge@", "plant_floor", 1.0)
+            StopAnimTask(PlayerPedId(), "weapons@first_person@aim_rng@generic@projectile@thermal_charge@", "plant_floor"
+                , 1.0)
             QBCore.Functions.Notify(Lang:t("error.canceled"), "error")
         end)
     end
@@ -208,7 +231,7 @@ RegisterNetEvent('police:client:SpawnSpikeStrip', function()
             SetNetworkIdCanMigrate(netid, false)
             SetEntityHeading(spike, GetEntityHeading(PlayerPedId()))
             PlaceObjectOnGroundProperly(spike)
-            SpawnedSpikes[#SpawnedSpikes+1] = {
+            SpawnedSpikes[#SpawnedSpikes + 1] = {
                 coords = vector3(spawnCoords.x, spawnCoords.y, spawnCoords.z),
                 netid = netid,
                 object = spike,
@@ -239,23 +262,25 @@ CreateThread(function()
         if LocalPlayer.state.isLoggedIn then
             if ClosestSpike then
                 local tires = {
-                    {bone = "wheel_lf", index = 0},
-                    {bone = "wheel_rf", index = 1},
-                    {bone = "wheel_lm", index = 2},
-                    {bone = "wheel_rm", index = 3},
-                    {bone = "wheel_lr", index = 4},
-                    {bone = "wheel_rr", index = 5}
+                    { bone = "wheel_lf", index = 0 },
+                    { bone = "wheel_rf", index = 1 },
+                    { bone = "wheel_lm", index = 2 },
+                    { bone = "wheel_rm", index = 3 },
+                    { bone = "wheel_lr", index = 4 },
+                    { bone = "wheel_rr", index = 5 }
                 }
 
                 for a = 1, #tires do
                     local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
-                    local tirePos = GetWorldPositionOfEntityBone(vehicle, GetEntityBoneIndexByName(vehicle, tires[a].bone))
+                    local tirePos = GetWorldPositionOfEntityBone(vehicle,
+                        GetEntityBoneIndexByName(vehicle, tires[a].bone))
                     local spike = GetClosestObjectOfType(tirePos.x, tirePos.y, tirePos.z, 15.0, spikemodel, 1, 1, 1)
                     local spikePos = GetEntityCoords(spike, false)
                     local distance = #(tirePos - spikePos)
 
                     if distance < 1.8 then
-                        if not IsVehicleTyreBurst(vehicle, tires[a].index, true) or IsVehicleTyreBurst(vehicle, tires[a].index, false) then
+                        if not IsVehicleTyreBurst(vehicle, tires[a].index, true) or
+                            IsVehicleTyreBurst(vehicle, tires[a].index, false) then
                             SetVehicleTyreBurst(vehicle, tires[a].index, false, 1000.0)
                         end
                     end
