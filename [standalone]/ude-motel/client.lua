@@ -19,26 +19,14 @@ local roomDoors = {
 
 }
 
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+--[[AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     currentRoom = math.random(1, #roomDoors)
     QBCore.Functions.Notify("New Motel room given! Your room number: " .. currentRoom, 'success', 5000)
-end)
+end)]]
 
 RegisterCommand('newmotel', function()
     currentRoom = math.random(1, #roomDoors)
     QBCore.Functions.Notify("New Motel room given! Your room number: " .. currentRoom, 'success', 5000)
-end)
-
-Citizen.CreateThread(function()
-    local gblip = AddBlipForCoord(blipCoords)
-    SetBlipSprite(gblip, 475)
-    SetBlipDisplay(gblip, 4)
-    SetBlipScale(gblip, 0.6)
-    SetBlipColour(gblip, 27)
-    SetBlipAsShortRange(gblip, true)
-    BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString("Continental Motel")
-    EndTextCommandSetBlipName(gblip)
 end)
 
 RegisterNetEvent('qb-motel:client:openMotelRoom')
