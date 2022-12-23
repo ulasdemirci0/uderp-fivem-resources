@@ -59,7 +59,7 @@ AddEventHandler('onResourceStart', function(resourceName)
 end)
 
 AddEventHandler('onResourceStop', function(resourceName)
-	if (GetCurrentResourceName() ~= resourceName) then return end
+    if (GetCurrentResourceName() ~= resourceName) then return end
     ClearPedSecondaryTask(PlayerPedId())
     SetEntityAsMissionEntity(tabletObj)
     DetachEntity(tabletObj, true, false)
@@ -72,12 +72,13 @@ end)
 ------------------------------------------
 --====================================================================================\
 
-RegisterKeyMapping('mdt', 'Open Police MDT', 'keyboard', 'k')
+-- RegisterKeyMapping('mdt', 'Open Police MDT', 'keyboard', 'k')
 
 RegisterCommand('mdt', function()
     local plyPed = PlayerPedId()
     PlayerData = QBCore.Functions.GetPlayerData()
-    if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
+    if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and
+        not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
         if GetJobType(PlayerData.job.name) ~= nil then
             TriggerServerEvent('mdt:server:openMDT')
         end
@@ -103,7 +104,8 @@ local function doAnimation()
     tabletObj = CreateObject(tabletProp, 0.0, 0.0, 0.0, true, true, false)
     local tabletBoneIndex = GetPedBoneIndex(plyPed, tabletBone)
 
-    AttachEntityToEntity(tabletObj, plyPed, tabletBoneIndex, tabletOffset.x, tabletOffset.y, tabletOffset.z, tabletRot.x, tabletRot.y, tabletRot.z, true, false, false, false, 2, true)
+    AttachEntityToEntity(tabletObj, plyPed, tabletBoneIndex, tabletOffset.x, tabletOffset.y, tabletOffset.z, tabletRot.x
+        , tabletRot.y, tabletRot.z, true, false, false, false, 2, true)
     SetModelAsNoLongerNeeded(tabletProp)
 
     CreateThread(function()
@@ -122,7 +124,6 @@ local function doAnimation()
     end)
 end
 
-
 local function CurrentDuty(duty)
     if duty == 1 then
         return "10-41"
@@ -132,14 +133,16 @@ end
 
 local function EnableGUI(enable)
     SetNuiFocus(enable, enable)
-    SendNUIMessage({ type = "show", enable = enable, job = PlayerData.job.name, rosterLink = Config.RosterLink[PlayerData.job.name] })
+    SendNUIMessage({ type = "show", enable = enable, job = PlayerData.job.name,
+        rosterLink = Config.RosterLink[PlayerData.job.name] })
     isOpen = enable
     doAnimation()
 end
 
 local function RefreshGUI()
     SetNuiFocus(false, false)
-    SendNUIMessage({ type = "show", enable = false, job = PlayerData.job.name, rosterLink = Config.RosterLink[PlayerData.job.name] })
+    SendNUIMessage({ type = "show", enable = false, job = PlayerData.job.name,
+        rosterLink = Config.RosterLink[PlayerData.job.name] })
     isOpen = false
 end
 
@@ -154,7 +157,6 @@ function AllowedJob(job)
     return false
 end
 
-
 --====================================================================================
 ------------------------------------------
 --               MAIN PAGE              --
@@ -163,7 +165,7 @@ end
 
 
 RegisterCommand("restartmdt", function(source, args, rawCommand)
-	RefreshGUI()
+    RefreshGUI()
 end, false)
 
 RegisterNUICallback("deleteBulletin", function(data, cb)
@@ -213,14 +215,14 @@ RegisterNetEvent('mdt:client:dashboardCalls', function(sentData)
 end)
 
 RegisterNetEvent('mdt:client:newBulletin', function(ignoreId, sentData, job)
-    if ignoreId == GetPlayerServerId(PlayerId()) then return end;
+    if ignoreId == GetPlayerServerId(PlayerId()) then return end
     if AllowedJob(PlayerData.job.name) then
         SendNUIMessage({ type = "newBulletin", data = sentData })
     end
 end)
 
 RegisterNetEvent('mdt:client:deleteBulletin', function(ignoreId, sentData, job)
-    if ignoreId == GetPlayerServerId(PlayerId()) then return end;
+    if ignoreId == GetPlayerServerId(PlayerId()) then return end
     if AllowedJob(PlayerData.job.name) then
         SendNUIMessage({ type = "deleteBulletin", data = sentData })
     end
@@ -237,15 +239,22 @@ RegisterNetEvent('mdt:client:open', function(bulletin, activeUnits, calls, cid)
     local area = GetLabelText(zone)
     local playerStreetsLocation = area
 
-    if not zone then zone = "UNKNOWN" end;
+    if not zone then zone = "UNKNOWN" end
 
-    if intersectStreetName ~= nil and intersectStreetName ~= "" then playerStreetsLocation = currentStreetName .. ", " .. intersectStreetName .. ", " .. area
-    elseif currentStreetName ~= nil and currentStreetName ~= "" then playerStreetsLocation = currentStreetName .. ", " .. area
+    if intersectStreetName ~= nil and intersectStreetName ~= "" then playerStreetsLocation = currentStreetName ..
+            ", " .. intersectStreetName .. ", " .. area
+    elseif currentStreetName ~= nil and currentStreetName ~= "" then playerStreetsLocation = currentStreetName ..
+            ", " .. area
     else playerStreetsLocation = area end
 
     -- local grade = PlayerData.job.grade.name
 
-    SendNUIMessage({ type = "data", activeUnits = activeUnits, citizenid = cid, ondutyonly = Config.OnlyShowOnDuty, name = "Welcome, " ..PlayerData.job.grade.name..' '..PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), location = playerStreetsLocation, fullname = PlayerData.charinfo.firstname..' '..PlayerData.charinfo.lastname, bulletin = bulletin })
+    SendNUIMessage({ type = "data", activeUnits = activeUnits, citizenid = cid, ondutyonly = Config.OnlyShowOnDuty,
+        name = "Welcome, " ..
+            PlayerData.job.grade.name ..
+            ' ' .. PlayerData.charinfo.lastname:sub(1, 1):upper() .. PlayerData.charinfo.lastname:sub(2),
+        location = playerStreetsLocation, fullname = PlayerData.charinfo.firstname .. ' ' .. PlayerData.charinfo.lastname,
+        bulletin = bulletin })
     SendNUIMessage({ type = "calls", data = calls })
     TriggerEvent("mdt:client:dashboardWarrants")
 end)
@@ -288,7 +297,8 @@ RegisterNUICallback("saveProfile", function(data, cb)
     local fingerprint = data.fingerprint
     local licenses = data.licenses
 
-    TriggerServerEvent("mdt:server:saveProfile", profilepic, information, cid, fName, sName, tags, gallery, fingerprint, licenses)
+    TriggerServerEvent("mdt:server:saveProfile", profilepic, information, cid, fName, sName, tags, gallery, fingerprint,
+        licenses)
     cb(true)
 end)
 
@@ -317,9 +327,9 @@ RegisterNUICallback("getProfileData", function(data, cb)
     local propertiesResult = getProfileProperties(id)
     result.properties = propertiesResult
     ]]
-    local vehicles=result.vehicles
-    for i=1,#vehicles do
-        local vehicle=result.vehicles[i]
+    local vehicles = result.vehicles
+    for i = 1, #vehicles do
+        local vehicle = result.vehicles[i]
         local vehData = QBCore.Shared.Vehicles[vehicle['vehicle']]
         result.vehicles[i]['model'] = vehData["name"]
     end
@@ -363,14 +373,14 @@ end)
 
 RegisterNUICallback("incidentSearchPerson", function(data, cb)
     local name = data.name
-    TriggerServerEvent('mdt:server:incidentSearchPerson', name )
+    TriggerServerEvent('mdt:server:incidentSearchPerson', name)
     cb(true)
 end)
 
 RegisterNetEvent('mdt:client:getProfileData', function(sentData, isLimited)
     if not isLimited then
         local vehicles = sentData['vehicles']
-        for i=1, #vehicles do
+        for i = 1, #vehicles do
             sentData['vehicles'][i]['plate'] = string.upper(sentData['vehicles'][i]['plate'])
             local tempModel = vehicles[i]['model']
             if tempModel and tempModel ~= "Unknown" then
@@ -398,7 +408,7 @@ end)
 RegisterNUICallback('SetHouseLocation', function(data, cb)
     local coords = {}
     for word in data.coord[1]:gmatch('[^,%s]+') do
-        coords[#coords+1] = tonumber(word)
+        coords[#coords + 1] = tonumber(word)
     end
     SetNewWaypoint(coords[1], coords[2])
     QBCore.Functions.Notify('GPS has been set!', 'success')
@@ -444,7 +454,8 @@ RegisterNUICallback("newBolo", function(data, cb)
     local gallery = data.gallery
     local officers = data.officers
     local time = data.time
-    TriggerServerEvent('mdt:server:newBolo', existing, id, title, plate, owner, individual, detail, tags, gallery, officers, time)
+    TriggerServerEvent('mdt:server:newBolo', existing, id, title, plate, owner, individual, detail, tags, gallery,
+        officers, time)
     cb(true)
 end)
 
@@ -515,7 +526,8 @@ RegisterNUICallback("newReport", function(data, cb)
     local civilians = data.civilians
     local time = data.time
 
-    TriggerServerEvent('mdt:server:newReport', existing, id, title, reporttype, details, tags, gallery, officers, civilians, time)
+    TriggerServerEvent('mdt:server:newReport', existing, id, title, reporttype, details, tags, gallery, officers,
+        civilians, time)
     cb(true)
 end)
 
@@ -545,7 +557,7 @@ RegisterNUICallback("searchVehicles", function(data, cb)
     end, data.name)
 
     local result = Citizen.Await(p)
-    for i=1, #result do
+    for i = 1, #result do
         local vehicle = result[i]
         local mods = json.decode(result[i].mods)
         result[i]['plate'] = string.upper(result[i]['plate'])
@@ -580,14 +592,15 @@ RegisterNUICallback("saveVehicleInfo", function(data, cb)
             local plate = string.upper(string.gsub(data['plate'], "^%s*(.-)%s*$", "%1"))
             local vehicles = GetGamePool('CVehicle')
 
-            for k,v in pairs(vehicles) do
+            for k, v in pairs(vehicles) do
                 local plt = string.upper(string.gsub(GetVehicleNumberPlateText(v), "^%s*(.-)%s*$", "%1"))
                 if plt == plate then
                     local dist = #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(v))
                     if dist < 5.0 then
                         found = VehToNet(v)
                         SendNUIMessage({ type = "greenImpound" })
-                        TriggerServerEvent('mdt:server:saveVehicleInfo', dbid, plate, imageurl, notes, stolen, code5, impound, points)
+                        TriggerServerEvent('mdt:server:saveVehicleInfo', dbid, plate, imageurl, notes, stolen, code5,
+                            impound, points)
                     end
                     break
                 end
@@ -603,7 +616,8 @@ RegisterNUICallback("saveVehicleInfo", function(data, cb)
             for k, v in pairs(Config.ImpoundLocations) do
                 if (#(playerPos - vector3(v.x, v.y, v.z)) < 20.0) then
                     impound.CurrentSelection = k
-                    TriggerServerEvent('mdt:server:saveVehicleInfo', dbid, plate, imageurl, notes, stolen, code5, impound, points)
+                    TriggerServerEvent('mdt:server:saveVehicleInfo', dbid, plate, imageurl, notes, stolen, code5, impound
+                        , points)
                     break
                 end
             end
@@ -683,7 +697,8 @@ RegisterNUICallback("setRadio", function(data, cb)
 end)
 
 RegisterNUICallback("saveIncident", function(data, cb)
-    TriggerServerEvent('mdt:server:saveIncident', data.ID, data.title, data.information, data.tags, data.officers, data.civilians, data.evidence, data.associated, data.time)
+    TriggerServerEvent('mdt:server:saveIncident', data.ID, data.title, data.information, data.tags, data.officers,
+        data.civilians, data.evidence, data.associated, data.time)
     cb(true)
 end)
 
@@ -726,7 +741,7 @@ RegisterNetEvent('mdt:client:setRadio', function(radio)
     if type(tonumber(radio)) == "number" then
         exports["pma-voice"]:setVoiceProperty("radioEnabled", true)
         exports["pma-voice"]:setRadioChannel(tonumber(radio))
-        QBCore.Functions.Notify("You have set your radio frequency to "..radio..".", "success")
+        QBCore.Functions.Notify("You have set your radio frequency to " .. radio .. ".", "success")
     else
         QBCore.Functions.Notify("Invalid Station(Please enter a number)", "error")
     end
@@ -737,11 +752,12 @@ RegisterNetEvent('mdt:client:sig100', function(radio, type)
     local duty = PlayerData.job.onduty
     if AllowedJob(job) and duty == 1 then
         if type == true then
-            exports['erp_notifications']:PersistentAlert("START", "signall100-"..radio, "inform", "Radio "..radio.." is currently signal 100!")
+            exports['erp_notifications']:PersistentAlert("START", "signall100-" .. radio, "inform",
+                "Radio " .. radio .. " is currently signal 100!")
         end
     end
     if not type then
-        exports['erp_notifications']:PersistentAlert("END", "signall100-"..radio)
+        exports['erp_notifications']:PersistentAlert("END", "signall100-" .. radio)
     end
 end)
 
@@ -825,16 +841,20 @@ end)
 RegisterNUICallback("dispatchNotif", function(data, cb)
     local info = data['data']
     local mentioned = false
-    if callSign ~= "" then if string.find(string.lower(info['message']),string.lower(string.gsub(callSign,'-','%%-'))) then mentioned = true end end
+    if callSign ~= "" then if string.find(string.lower(info['message']), string.lower(string.gsub(callSign, '-', '%%-'))) then mentioned = true end end
     if mentioned then
 
         -- Send notification to phone??
-        TriggerEvent('erp_phone:sendNotification', {img = info['profilepic'], title = "Dispatch (Mention)", content = info['message'], time = 7500, customPic = true })
+        TriggerEvent('erp_phone:sendNotification',
+            { img = info['profilepic'], title = "Dispatch (Mention)", content = info['message'], time = 7500,
+                customPic = true })
 
         PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
         PlaySoundFrontend(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0)
     else
-        TriggerEvent('erp_phone:sendNotification', {img = info['profilepic'], title = "Dispatch ("..info['name']..")", content = info['message'], time = 5000, customPic = true })
+        TriggerEvent('erp_phone:sendNotification',
+            { img = info['profilepic'], title = "Dispatch (" .. info['name'] .. ")", content = info['message'],
+                time = 5000, customPic = true })
     end
     cb(true)
 end)
@@ -887,12 +907,12 @@ RegisterNUICallback("removeImpound", function(data, cb)
             break
         end
     end
-	cb('ok')
+    cb('ok')
 end)
 
 RegisterNUICallback("statusImpound", function(data, cb)
-	TriggerServerEvent('mdt:server:statusImpound', data['plate'])
-	cb('ok')
+    TriggerServerEvent('mdt:server:statusImpound', data['plate'])
+    cb('ok')
 end)
 
 RegisterNUICallback('openCamera', function(data)
@@ -910,13 +930,13 @@ end)
 
 RegisterNetEvent('mdt:client:callDetach', function(callid, sentData)
     local job = PlayerData.job.name
-    if AllowedJob(job) then 
-        SendNUIMessage({ type = "callDetach", callid = callid, data = tonumber(sentData) }) 
+    if AllowedJob(job) then
+        SendNUIMessage({ type = "callDetach", callid = callid, data = tonumber(sentData) })
     end
 end)
 RegisterNetEvent('mdt:client:callAttach', function(callid, sentData)
     local job = PlayerData.job.name
-    if AllowedJob(job) then 
+    if AllowedJob(job) then
         SendNUIMessage({ type = "callAttach", callid = callid, data = tonumber(sentData) })
     end
 end)
@@ -927,7 +947,7 @@ end)
 
 RegisterNetEvent('mdt:client:dashboardMessage', function(sentData)
     local job = PlayerData.job.name
-    if AllowedJob(job) then 
+    if AllowedJob(job) then
         SendNUIMessage({ type = "dispatchmessage", data = sentData })
     end
 end)
