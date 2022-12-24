@@ -23,7 +23,7 @@ function LoadAnimDict(dict)
 end
 
 function DrawText3Ds(x, y, z, text)
-	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+	local onScreen, _x, _y = World3dToScreen2d(x, y, z)
 
 	if onScreen then
 		SetTextScale(0.35, 0.35)
@@ -33,12 +33,12 @@ function DrawText3Ds(x, y, z, text)
 		SetTextEntry("STRING")
 		SetTextCentre(1)
 		AddTextComponentString(text)
-		DrawText(_x,_y)
+		DrawText(_x, _y)
 	end
 end
 
 function Round(num, numDecimalPlaces)
-	local mult = 10^(numDecimalPlaces or 0)
+	local mult = 10 ^ (numDecimalPlaces or 0)
 
 	return math.floor(num * mult + 0.5) / mult
 end
@@ -48,7 +48,7 @@ function CreateBlip(coords)
 
 	SetBlipSprite(blip, 361)
 	SetBlipScale(blip, 0.6)
-	SetBlipColour(blip, 4)
+	SetBlipColour(blip, 1)
 	SetBlipDisplay(blip, 4)
 	SetBlipAsShortRange(blip, true)
 
