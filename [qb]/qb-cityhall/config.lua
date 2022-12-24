@@ -37,10 +37,10 @@ Config.DrivingSchools = {
         coords = vec3(240.3, -1379.89, 33.74),
         showBlip = true,
         blipData = {
-            sprite = 225,
+            sprite = 498,
             display = 4,
             scale = 0.65,
-            colour = 3,
+            colour = 32,
             title = "Sürüş Okulu"
         },
         instructors = {
