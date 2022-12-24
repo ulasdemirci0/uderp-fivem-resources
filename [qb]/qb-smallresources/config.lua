@@ -154,6 +154,20 @@ Config.Teleports = {
             drawText = '[E] Leave'
         },
     },
+
+    --Continental Garaj Enter/Exit
+    [2] = {
+        [1] = {
+            coords = vector4(414.95, -15.29, 99.65, 240.41),
+            ["AllowVehicle"] = false,
+            drawText = '[E] Continental Garaj'
+        },
+        [2] = {
+            coords = vector4(380.27, -15.0, 83.0, 31.82),
+            ["AllowVehicle"] = false,
+            drawText = '[E] Continental 1. Kat'
+        },
+    },
 }
 
 Config.CarWash = { -- carwash
