@@ -156,7 +156,7 @@ Config.Teleports = {
     },
 
     --Continental Garaj Enter/Exit
-    [2] = {
+    [3] = {
         [1] = {
             coords = vector4(414.95, -15.29, 99.65, 240.41),
             ["AllowVehicle"] = false,
@@ -166,6 +166,18 @@ Config.Teleports = {
             coords = vector4(380.27, -15.0, 83.0, 31.82),
             ["AllowVehicle"] = false,
             drawText = '[E] Continental 1. Kat'
+        },
+    },
+    [4] = {
+        [1] = {
+            coords = vector4(369.1, -59.66, 111.96, 259.38),
+            ["AllowVehicle"] = false,
+            drawText = '[E] Continental 1. Kat',
+        },
+        [2] = {
+            coords = vector4(417.27, -10.64, 99.65, 239.28),
+            ["AllowVehicle"] = false,
+            drawText = '[E] Üst Kata Çık'
         },
     },
 }
