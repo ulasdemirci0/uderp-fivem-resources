@@ -12,7 +12,7 @@ Config.LockPickDoorEvent = function() -- This function is called when a player a
 end
 
 -- Carjack Settings
-Config.CarJackEnable = true -- True allows for the ability to car jack peds.
+Config.CarJackEnable = false -- True allows for the ability to car jack peds.
 Config.CarjackingTime = 7500 -- How long it takes to carjack
 Config.DelayBetweenCarjackings = 10000 -- Time before you can carjack again
 Config.CarjackChance = {
@@ -44,16 +44,16 @@ Config.SharedKeys = { -- Share keys amongst employees. Employees can lock/unlock
     ['police'] = { -- Job name
         requireOnduty = false,
         vehicles = {
-	    'police', -- Vehicle model
-	    'police2', -- Vehicle model
-	}
+            'police', -- Vehicle model
+            'police2', -- Vehicle model
+        }
     },
 
     ['mechanic'] = {
         requireOnduty = false,
         vehicles = {
             'towtruck',
-	}
+        }
     }
 }
 
