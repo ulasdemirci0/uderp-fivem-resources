@@ -49,7 +49,7 @@ local Translations = {
         car_e = "[E] Garaj",
         sea_e = "[E] Botgarajı",
         air_e = "[E] Uçak garajı",
-        park_e = "[E] Mağaza Aracı",
+        park_e = "[E] Araç Park Et",
         house_garage = "Ev garajı",
     }
 }
