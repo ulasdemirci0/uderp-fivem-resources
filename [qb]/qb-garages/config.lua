@@ -16,6 +16,18 @@ Config.Garages = {
         ["type"] = "public", --public, job, gang, depot
         ["vehicle"] = "car" --car, air, sea, rig
     },
+    ["pdmgarage"] = {
+        ["label"] = "Galeri Garaj",
+        ["takeVehicle"] = vector3(-9.33, -1090.7, 26.67),
+        ["spawnPoint"] = vector4(-10.37, -1099.69, 26.67, 89.65),
+        ["putVehicle"] = vector3(-16.17, -1099.99, 26.68),
+        ["showBlip"] = false,
+        ["blipName"] = "Public Parking",
+        ["blipNumber"] = 357,
+        ["blipColor"] = 3,
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
+    },
     ["casinogarage"] = {
         ["label"] = "Casino Parking",
         ["takeVehicle"] = vector3(925.3, 51.85, 81.11),
