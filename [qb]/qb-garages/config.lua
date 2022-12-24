@@ -1,6 +1,6 @@
 Config = Config or {}
 Config.AutoRespawn = false --True == auto respawn cars that are outside into your garage on script restart, false == does not put them into your garage and players have to go to the impound
-Config.SharedGarages = false   --True == Gang and job garages are shared, false == Gang and Job garages are personal
+Config.SharedGarages = true --True == Gang and job garages are shared, false == Gang and Job garages are personal
 Config.VisuallyDamageCars = true --True == Visually damage cars that go out of the garage depending of body damage, false == Do not visually damage cars (damage is still applied to car values)
 
 Config.Garages = {
@@ -13,8 +13,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["casinogarage"] = {
         ["label"] = "Casino Parking",
@@ -25,8 +25,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["sapcounsel"] = {
         ["label"] = "San Andreas Parking",
@@ -37,8 +37,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["spanishave"] = {
         ["label"] = "Spanish Ave Parking",
@@ -49,8 +49,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["caears24"] = {
         ["label"] = "Caears 24 Parking",
@@ -61,8 +61,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["caears242"] = {
         ["label"] = "Caears 24 Parking",
@@ -73,8 +73,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["lagunapi"] = {
         ["label"] = "Laguna Parking",
@@ -85,8 +85,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["airportp"] = {
         ["label"] = "Airport Parking",
@@ -97,8 +97,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["beachp"] = {
         ["label"] = "Beach Parking",
@@ -109,8 +109,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["themotorhotel"] = {
         ["label"] = "The Motor Hotel Parking",
@@ -121,8 +121,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["liqourparking"] = {
         ["label"] = "Liqour Parking",
@@ -133,8 +133,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["shoreparking"] = {
         ["label"] = "Shore Parking",
@@ -145,8 +145,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["haanparking"] = {
         ["label"] = "Bell Farms Parking",
@@ -157,8 +157,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["dumbogarage"] = {
         ["label"] = "Dumbo Private Parking",
@@ -169,8 +169,8 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["pillboxgarage"] = {
         ["label"] = "Pillbox Garage Parking",
@@ -181,8 +181,20 @@ Config.Garages = {
         ["blipName"] = "Public Parking",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
+    },
+    ["continentalgarage"] = {
+        ["label"] = "Continental Garaj",
+        ["takeVehicle"] = vector3(382.47, -9.44, 82.98),
+        ["spawnPoint"] = vector4(380.95, -4.67, 82.98, 123.29),
+        ["putVehicle"] = vector3(376.69, 2.33, 82.98),
+        ["showBlip"] = false,
+        ["blipName"] = "Continental Garaj",
+        ["blipNumber"] = 357,
+        ["blipColor"] = 3,
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     --[[    ["hayesdepot"] = {
         ["label"] = "Hayes Depot",
@@ -196,15 +208,48 @@ Config.Garages = {
         ["vehicle"] = "car"                 --car, air, sea, rig
     }, --]]
     ["impoundlot"] = {
-        ["label"] = "Impound Lot",
+        ["label"] = "Çekilmiş Araçlar",
         ["takeVehicle"] = vector3(409.89, -1623.51, 29.29),
         ["spawnPoint"] = vector4(407.92, -1646.29, 29.29, 226.39),
         ["showBlip"] = true,
-        ["blipName"] = "Impound Lot",
+        ["blipName"] = "Çekilmiş Araçlar",
         ["blipNumber"] = 68,
-        ["blipColor"] = 3,
-        ["type"] = "depot",                --public, job, gang, depot
-        ["vehicle"] = "car"                 --car, air, sea, rig
+        ["blipColor"] = 1,
+        ["type"] = "depot", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
+    },
+    ["impoundlot2"] = {
+        ["label"] = "Çekilmiş Araçlar",
+        ["takeVehicle"] = vector3(1697.8, 3770.05, 34.52),
+        ["spawnPoint"] = vector4(1708.13, 3774.96, 34.09, 212.18),
+        ["showBlip"] = true,
+        ["blipName"] = "Çekilmiş Araçlar",
+        ["blipNumber"] = 68,
+        ["blipColor"] = 1,
+        ["type"] = "depot", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
+    },
+    ["impoundlot3"] = {
+        ["label"] = "Çekilmiş Araçlar",
+        ["takeVehicle"] = vector3(34.93, 6440.97, 31.38),
+        ["spawnPoint"] = vector4(34.94, 6440.95, 30.94, 243.34),
+        ["showBlip"] = true,
+        ["blipName"] = "Çekilmiş Araçlar",
+        ["blipNumber"] = 68,
+        ["blipColor"] = 1,
+        ["type"] = "depot", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
+    },
+    ["impoundlot4"] = {
+        ["label"] = "Çekilmiş Araçlar",
+        ["takeVehicle"] = vector3(273.11, 10.69, 79.25),
+        ["spawnPoint"] = vector4(278.56, 9.73, 79.25, 264.55),
+        ["showBlip"] = true,
+        ["blipName"] = "Çekilmiş Araçlar",
+        ["blipNumber"] = 68,
+        ["blipColor"] = 1,
+        ["type"] = "depot", --public, job, gang, depot
+        ["vehicle"] = "car" --car, air, sea, rig
     },
     ["ballas"] = {
         ["label"] = "Ballas",
@@ -215,8 +260,8 @@ Config.Garages = {
         ["blipName"] = "Ballas",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "gang",                --public, job, gang, depot
-        ["vehicle"] = "car",              --car, air, sea, rig
+        ["type"] = "gang", --public, job, gang, depot
+        ["vehicle"] = "car", --car, air, sea, rig
         ["job"] = "ballas",
         ["jobType"] = "ballas"
     },
@@ -229,8 +274,8 @@ Config.Garages = {
         ["blipName"] = "La Familia",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "gang",                --public, job, gang, depot
-        ["vehicle"] = "car",              --car, air, sea, rig
+        ["type"] = "gang", --public, job, gang, depot
+        ["vehicle"] = "car", --car, air, sea, rig
         ["job"] = "families",
         ["jobType"] = "families"
     },
@@ -243,8 +288,8 @@ Config.Garages = {
         ["blipName"] = "Lost MC",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "gang",                --public, job, gang, depot
-        ["vehicle"] = "car",              --car, air, sea, rig
+        ["type"] = "gang", --public, job, gang, depot
+        ["vehicle"] = "car", --car, air, sea, rig
         ["job"] = "lostmc",
         ["jobType"] = "lostmc"
     },
@@ -257,8 +302,8 @@ Config.Garages = {
         ["blipName"] = "Cartel",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "gang",                --public, job, gang, depot
-        ["vehicle"] = "car",              --car, air, sea, rig
+        ["type"] = "gang", --public, job, gang, depot
+        ["vehicle"] = "car", --car, air, sea, rig
         ["job"] = "cartel",
         ["jobType"] = "cartel"
     },
@@ -271,8 +316,8 @@ Config.Garages = {
         ["blipName"] = "Police",
         ["blipNumber"] = 357,
         ["blipColor"] = 3,
-        ["type"] = "job",                --public, job, gang, depot
-        ["vehicle"] = "car",              --car, air, sea, rig
+        ["type"] = "job", --public, job, gang, depot
+        ["vehicle"] = "car", --car, air, sea, rig
         ["job"] = "police",
         ["jobType"] = "leo"
     },
@@ -285,8 +330,8 @@ Config.Garages = {
         ["blipName"] = "Hangar",
         ["blipNumber"] = 360,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "air"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "air" --car, air, sea, rig
     },
     ["higginsheli"] = {
         ["label"] = "Higgins Helitours",
@@ -297,8 +342,8 @@ Config.Garages = {
         ["blipName"] = "Hangar",
         ["blipNumber"] = 360,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "air"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "air" --car, air, sea, rig
     },
     ["airsshores"] = {
         ["label"] = "Sandy Shores Hangar",
@@ -309,8 +354,8 @@ Config.Garages = {
         ["blipName"] = "Hangar",
         ["blipNumber"] = 360,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "air"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "air" --car, air, sea, rig
     },
     ["airdepot"] = {
         ["label"] = "Air Depot",
@@ -320,8 +365,8 @@ Config.Garages = {
         ["blipName"] = "Air Depot",
         ["blipNumber"] = 359,
         ["blipColor"] = 3,
-        ["type"] = "depot",                --public, job, gang, depot
-        ["vehicle"] = "air"                 --car, air, sea, rig
+        ["type"] = "depot", --public, job, gang, depot
+        ["vehicle"] = "air" --car, air, sea, rig
     },
     ["lsymc"] = {
         ["label"] = "LSYMC Boathouse",
@@ -332,8 +377,8 @@ Config.Garages = {
         ["blipName"] = "Boathouse",
         ["blipNumber"] = 356,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "sea"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "sea" --car, air, sea, rig
     },
     ["paleto"] = {
         ["label"] = "Paleto Boathouse",
@@ -344,8 +389,8 @@ Config.Garages = {
         ["blipName"] = "Boathouse",
         ["blipNumber"] = 356,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "sea"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "sea" --car, air, sea, rig
     },
     ["millars"] = {
         ["label"] = "Millars Boathouse",
@@ -356,8 +401,8 @@ Config.Garages = {
         ["blipName"] = "Boathouse",
         ["blipNumber"] = 356,
         ["blipColor"] = 3,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "sea"                 --car, air, sea, rig
+        ["type"] = "public", --public, job, gang, depot
+        ["vehicle"] = "sea" --car, air, sea, rig
     },
     ["seadepot"] = {
         ["label"] = "LSYMC Depot",
@@ -367,79 +412,79 @@ Config.Garages = {
         ["blipName"] = "LSYMC Depot",
         ["blipNumber"] = 356,
         ["blipColor"] = 3,
-        ["type"] = "depot",                --public, job, gang, depot
-        ["vehicle"] = "sea"                 --car, air, sea, rig
+        ["type"] = "depot", --public, job, gang, depot
+        ["vehicle"] = "sea" --car, air, sea, rig
     },
-    ["rigdepot"] = {
-        ["label"] = "Big Rig Depot",
-        ["takeVehicle"] = vector3(2373.64, 3104.58, 48.05),
-        ["spawnPoint"] = vector4(2373.63, 3110.19, 48.12, 123.26),
-        ["showBlip"] = true,
-        ["blipName"] = "Big Rig Depot",
-        ["blipNumber"] = 68,
-        ["blipColor"] = 2,
-        ["type"] = "depot",                --public, job, gang, depot
-        ["vehicle"] = "rig"                 --car, air, sea, rig
-    },
-    ["dumborigparking"] = {
-        ["label"] = "Dumbo Big Rig Parking",
-        ["takeVehicle"] = vector3(161.23, -3188.73, 5.97),
-        ["spawnPoint"] = vector4(172.59, -3178.28, 5.79, 269.66),
-        ["putVehicle"] =vector3(172.64, -3182.48, 5.79),
-        ["showBlip"] = true,
-        ["blipName"] = "Big Rig Parking",
-        ["blipNumber"] = 357,
-        ["blipColor"] = 2,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "rig"                 --car, air, sea, rig
-    },
-    ["popsrigparking"] = {
-        ["label"] = "Pop's Big Rig Parking",
-        ["takeVehicle"] = vector3(121.05, 6587.59, 32.09),
-        ["spawnPoint"] = vector4(131.08, 6589.77, 31.99, 272.9),
-        ["putVehicle"] = vector3(126.08, 6595.23, 31.95),
-        ["showBlip"] = true,
-        ["blipName"] = "Big Rig Parking",
-        ["blipNumber"] = 357,
-        ["blipColor"] = 2,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "rig"                 --car, air, sea, rig
-    },
-    ["ronsrigparking"] = {
-        ["label"] = "Ron's Big Rig Parking",
-        ["takeVehicle"] = vector3(-2523.99, 2319.13, 33.22),
-        ["spawnPoint"] = vector4(-2531.0, 2335.86, 33.13, 210.88),
-        ["putVehicle"] = vector3(-2526.56, 2335.61, 33.06),
-        ["showBlip"] = true,
-        ["blipName"] = "Big Rig Parking",
-        ["blipNumber"] = 357,
-        ["blipColor"] = 2,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "rig"                 --car, air, sea, rig
-    },
-    ["ronsrigparking2"] = {
-        ["label"] = "Ron's Big Rig Parking",
-        ["takeVehicle"] = vector3(2567.7, 463.03, 108.6),
-        ["spawnPoint"] = vector4(2555.24, 446.92, 108.52, 314.79),
-        ["putVehicle"] = vector3(2558.69, 425.04, 108.52),
-        ["showBlip"] = true,
-        ["blipName"] = "Big Rig Parking",
-        ["blipNumber"] = 357,
-        ["blipColor"] = 2,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "rig"                 --car, air, sea, rig
-    },
-    ["ronsrigparking3"] = {
-        ["label"] = "Ron's Big Rig Parking",
-        ["takeVehicle"] = vector3(-23.63, -2551.7, 6.14),
-        ["spawnPoint"] = vector4(-32.81, -2536.0, 6.07, 53.26),
-        ["putVehicle"] = vector3(-36.32, -2541.84, 6.07),
-        ["showBlip"] = true,
-        ["blipName"] = "Big Rig Parking",
-        ["blipNumber"] = 357,
-        ["blipColor"] = 2,
-        ["type"] = "public",                --public, job, gang, depot
-        ["vehicle"] = "rig"                 --car, air, sea, rig
-    },
+    -- ["rigdepot"] = {
+    --     ["label"] = "Big Rig Depot",
+    --     ["takeVehicle"] = vector3(2373.64, 3104.58, 48.05),
+    --     ["spawnPoint"] = vector4(2373.63, 3110.19, 48.12, 123.26),
+    --     ["showBlip"] = true,
+    --     ["blipName"] = "Big Rig Depot",
+    --     ["blipNumber"] = 68,
+    --     ["blipColor"] = 2,
+    --     ["type"] = "depot", --public, job, gang, depot
+    --     ["vehicle"] = "rig" --car, air, sea, rig
+    -- },
+    -- ["dumborigparking"] = {
+    --     ["label"] = "Dumbo Big Rig Parking",
+    --     ["takeVehicle"] = vector3(161.23, -3188.73, 5.97),
+    --     ["spawnPoint"] = vector4(172.59, -3178.28, 5.79, 269.66),
+    --     ["putVehicle"] = vector3(172.64, -3182.48, 5.79),
+    --     ["showBlip"] = true,
+    --     ["blipName"] = "Big Rig Parking",
+    --     ["blipNumber"] = 357,
+    --     ["blipColor"] = 2,
+    --     ["type"] = "public", --public, job, gang, depot
+    --     ["vehicle"] = "rig" --car, air, sea, rig
+    -- },
+    -- ["popsrigparking"] = {
+    --     ["label"] = "Pop's Big Rig Parking",
+    --     ["takeVehicle"] = vector3(121.05, 6587.59, 32.09),
+    --     ["spawnPoint"] = vector4(131.08, 6589.77, 31.99, 272.9),
+    --     ["putVehicle"] = vector3(126.08, 6595.23, 31.95),
+    --     ["showBlip"] = true,
+    --     ["blipName"] = "Big Rig Parking",
+    --     ["blipNumber"] = 357,
+    --     ["blipColor"] = 2,
+    --     ["type"] = "public", --public, job, gang, depot
+    --     ["vehicle"] = "rig" --car, air, sea, rig
+    -- },
+    -- ["ronsrigparking"] = {
+    --     ["label"] = "Ron's Big Rig Parking",
+    --     ["takeVehicle"] = vector3(-2523.99, 2319.13, 33.22),
+    --     ["spawnPoint"] = vector4(-2531.0, 2335.86, 33.13, 210.88),
+    --     ["putVehicle"] = vector3(-2526.56, 2335.61, 33.06),
+    --     ["showBlip"] = true,
+    --     ["blipName"] = "Big Rig Parking",
+    --     ["blipNumber"] = 357,
+    --     ["blipColor"] = 2,
+    --     ["type"] = "public", --public, job, gang, depot
+    --     ["vehicle"] = "rig" --car, air, sea, rig
+    -- },
+    -- ["ronsrigparking2"] = {
+    --     ["label"] = "Ron's Big Rig Parking",
+    --     ["takeVehicle"] = vector3(2567.7, 463.03, 108.6),
+    --     ["spawnPoint"] = vector4(2555.24, 446.92, 108.52, 314.79),
+    --     ["putVehicle"] = vector3(2558.69, 425.04, 108.52),
+    --     ["showBlip"] = true,
+    --     ["blipName"] = "Big Rig Parking",
+    --     ["blipNumber"] = 357,
+    --     ["blipColor"] = 2,
+    --     ["type"] = "public", --public, job, gang, depot
+    --     ["vehicle"] = "rig" --car, air, sea, rig
+    -- },
+    -- ["ronsrigparking3"] = {
+    --     ["label"] = "Ron's Big Rig Parking",
+    --     ["takeVehicle"] = vector3(-23.63, -2551.7, 6.14),
+    --     ["spawnPoint"] = vector4(-32.81, -2536.0, 6.07, 53.26),
+    --     ["putVehicle"] = vector3(-36.32, -2541.84, 6.07),
+    --     ["showBlip"] = true,
+    --     ["blipName"] = "Big Rig Parking",
+    --     ["blipNumber"] = 357,
+    --     ["blipColor"] = 2,
+    --     ["type"] = "public", --public, job, gang, depot
+    --     ["vehicle"] = "rig" --car, air, sea, rig
+    -- },
 }
 Config.HouseGarages = {}
