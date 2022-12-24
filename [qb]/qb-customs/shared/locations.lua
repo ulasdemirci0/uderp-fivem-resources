@@ -90,8 +90,10 @@ Config.Locations = {
         },
         restrictions = { deniedClasses = { 18 }, job = { "mechanic" } },
         zones = {
-            { coords = vector3(-323.77, -133.49, 38.56), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88, maxZ = 33.48 },
-            { coords = vector3(-337.14, -135.56, 38.59), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88, maxZ = 33.48 },
+            { coords = vector3(-323.77, -133.49, 38.56), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88,
+                maxZ = 33.48 },
+            { coords = vector3(-337.14, -135.56, 38.59), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88,
+                maxZ = 33.48 },
         }
     }, ['mechanic2'] = {
         settings = {
@@ -128,10 +130,12 @@ Config.Locations = {
         },
         restrictions = { deniedClasses = { 18 }, job = { "mechanic" } },
         zones = {
-            { coords = vector3(-32.0, -1065.56, 28.4), length = 6.0, width = 4.0, heading = 270.0, minZ = 26.88, maxZ = 33.48 },
-            { coords = vector3(-32.7, -1049.38, 27.97), length = 6.0, width = 4.0, heading = 270.0, minZ = 26.88, maxZ = 33.48 },
+            { coords = vector3(-32.0, -1065.56, 28.4), length = 6.0, width = 4.0, heading = 270.0, minZ = 26.88,
+                maxZ = 33.48 },
+            { coords = vector3(-32.7, -1049.38, 27.97), length = 6.0, width = 4.0, heading = 270.0, minZ = 26.88,
+                maxZ = 33.48 },
         }
-    },['mechanic3'] = {
+    }, ['mechanic3'] = {
         settings = {
             label = '[SATILIK] Mekanik 3',
             welcomeLabel = "Mekaniğimize Hoş Geldiniz!",
@@ -166,10 +170,12 @@ Config.Locations = {
         },
         restrictions = { deniedClasses = { 18 }, job = { "mechanic" } },
         zones = {
-            { coords = vector3(-213.77, -1319.66, 30.89), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88, maxZ = 33.48 },
-            { coords = vector3(-223.15, -1330.03, 30.89), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88, maxZ = 33.48 },
+            { coords = vector3(-213.77, -1319.66, 30.89), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88,
+                maxZ = 33.48 },
+            { coords = vector3(-223.15, -1330.03, 30.89), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88,
+                maxZ = 33.48 },
         }
-    },['mechanic4'] = {
+    }, ['mechanic4'] = {
         settings = {
             label = '[SATILIK] Mekanik 4',
             welcomeLabel = "Mekaniğimize Hoş Geldiniz!",
@@ -204,8 +210,10 @@ Config.Locations = {
         },
         restrictions = { deniedClasses = { 18 }, job = { "mechanic" } },
         zones = {
-            { coords = vector3(733.43, -1090.33, 21.75), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88, maxZ = 33.48 },
-            { coords = vector3(735.48, -1079.93, 21.74), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88, maxZ = 33.48 },
+            { coords = vector3(733.43, -1090.33, 21.75), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88,
+                maxZ = 33.48 },
+            { coords = vector3(735.48, -1079.93, 21.74), length = 6.0, width = 4.0, heading = 270.0, minZ = 29.88,
+                maxZ = 33.48 },
         }
     },
 
@@ -216,13 +224,20 @@ Config.Locations = {
             enabled = true,
         },
         categories = {
+            mods = true,
+            turbo = true,
             repair = true,
             respray = true,
             liveries = true,
+            wheels = true,
             tint = true,
-            extras = true,
             plate = true,
+            extras = true,
+            neons = true,
+            xenons = true,
+            horn = true,
             cosmetics = true,
+
         },
         drawtextui = {
             text = "MRPD Motorworks",
@@ -232,8 +247,10 @@ Config.Locations = {
             allowedClasses = { 18 },
         },
         zones = {
-            { coords = vector3(450.09, -975.92, 25.7), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5, maxZ = 28.5 },
-            { coords = vector3(435.53, -975.97, 25.7), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5, maxZ = 28.5 },
+            { coords = vector3(450.09, -975.92, 25.7), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5,
+                maxZ = 28.5 },
+            { coords = vector3(435.53, -975.97, 25.7), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5,
+                maxZ = 28.5 },
         }
     },
 
@@ -261,7 +278,8 @@ Config.Locations = {
         },
         zones = {
             { coords = vector3(337.2, -579.6, 28.8), length = 9.4, width = 4.2, heading = 340.0, minZ = 27.5, maxZ = 31.5 },
-            { coords = vector3(340.38, -570.8, 28.8), length = 8.8, width = 4.2, heading = 340.0, minZ = 27.5, maxZ = 31.5 },
+            { coords = vector3(340.38, -570.8, 28.8), length = 8.8, width = 4.2, heading = 340.0, minZ = 27.5,
+                maxZ = 31.5 },
         }
     },
 }
