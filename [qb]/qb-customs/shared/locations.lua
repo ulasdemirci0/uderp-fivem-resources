@@ -251,6 +251,10 @@ Config.Locations = {
                 maxZ = 28.5 },
             { coords = vector3(435.53, -975.97, 25.7), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5,
                 maxZ = 28.5 },
+            { coords = vector3(462.62, -1019.56, 27.85), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5,
+                maxZ = 28.5, },
+            { coords = vector3(462.82, -1014.96, 27.83), length = 9.0, width = 4.0, heading = 90.0, minZ = 24.5,
+                maxZ = 28.5 },
         }
     },
 
