@@ -10,10 +10,10 @@ Config = {
     -- Set this to true to enable some extra prints
     DebugDisplay = false,
     -- Set this to false if you have something else on X, and then just use /e c to cancel emotes.
-    EnableXtoCancel = true,
+    EnableXtoCancel = false,
     CancelEmoteKey = 'x', -- Get the button string here https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
     -- Set this to true if you want to disarm the player when they play an emote.
-    DisarmPlayer = false,
+    DisarmPlayer = true,
     -- Set this if you really wanna disable emotes in cars, as of 1.7.2 they only play the upper body part if in vehicle
     AllowedInCars = true,
     -- You can disable the menu here / change the keybind. It is currently set to F5
@@ -33,7 +33,7 @@ Config = {
     -- You can change the menu position here
     MenuPosition = "right", -- (left, right)
     -- You can enable or disable the Ragdoll keybinding here.
-    RagdollEnabled = false,
+    RagdollEnabled = true,
     RagdollKeybind = 'm', -- Get the button string here https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
     -- You can enable or disable Ragdoll as Toggle here. Only works if RagdollEnabled is set to true.
     RagdollAsToggle = true,
@@ -56,12 +56,12 @@ Config = {
     -- You can disable the Adult Emotes here.
     AdultEmotesDisabled = false,
     -- You can disable the Animal Emotes here.
-    AnimalEmotesEnabled = true,
+    AnimalEmotesEnabled = false,
     -- Used to enable or disable the search feature in the menu.
     Search = true,
     -- You can disable the handsup here / change the keybind. It is currently set to H
     HandsupKeybindEnabled = true,
-    HandsupKeybind = 'h', -- Get the button string here https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
+    HandsupKeybind = 'x', -- Get the button string here https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
     -- You can disable the fingrer pointing here / change the keybind. It is currently set to B
     PointingKeybindEnabled = true,
     PointingKeybind = 'b', -- Get the button string here https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
